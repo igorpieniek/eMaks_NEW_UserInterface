@@ -15,6 +15,7 @@
 
 
 
+
 #define VELOCITY_FRAME_ID   0x23E //TODO
 #define TURN_FRAME_ID  		0x24D
 #define STATUS_FRAME_ID  	0x25D
@@ -80,6 +81,8 @@ private:
 
 public:
 	// RX part
+	void process();
+
 	void getData_Rx(uint32_t frame_id, uint8_t* data, uint8_t dlc);
 	void sendVelocity(float vel);
 	void sendTurn(float turn);

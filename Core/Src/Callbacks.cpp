@@ -20,9 +20,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
   }
   if (htim->Instance == TIM3) {
 	  if (modeManager.isJoystickMode()){
-		joystick.convert_adc_values(); //copy from /user_interface.c
-		joystick.calculate_joy_data();
-//		joystick.can_transmit_data();
+		joystick.process();
 	  }
   }
 }
@@ -33,8 +31,6 @@ void HAL_CAN_RxFifo1MsgPendingCallback (CAN_HandleTypeDef* hcan ){
 			&canManager.can_messages.rx_header,
 			canManager.can_messages.rx_data );
 
-	canManager.getData_Rx(canManager.can_messages.rx_header.StdId,
-			canManager.can_messages.rx_data,
-			canManager.can_messages.rx_header.DLC);
+	canManager.process();
 
 }

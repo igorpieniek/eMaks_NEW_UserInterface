@@ -9,7 +9,11 @@
 
 CanManager canManager;
 
-
+void CanManager::process(){
+	getData_Rx(can_messages.rx_header.StdId,
+			can_messages.rx_data,
+			can_messages.rx_header.DLC);
+}
 /////////////////////////RX PART///////////////////////////////////////////
 
 float CanManager::getSign_Rx(uint8_t * data){
