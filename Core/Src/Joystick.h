@@ -66,7 +66,7 @@ public:
 		uint8_t size;
 	}joy_axis;
 
-	void joy_params_init(void);
+	void init(void);
 	joystick_data* get_joy_pointer(void);
 	void convert_adc_values(void);
 	void calculate_joy_data(void);

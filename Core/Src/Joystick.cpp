@@ -8,7 +8,8 @@
 #include "Joystick.h"
 
 Joystick joystick;
-void Joystick::joy_params_init(void){
+
+void Joystick::init(void){
     HAL_ADC_Start(&hadc1);
     HAL_ADC_Start_DMA(&hadc1,adc_raw_values,NUMBER_OF_CHANNELS);
 
@@ -102,7 +103,7 @@ void Joystick::process(void){
 
 
 Joystick::Joystick() {
-	// TODO Auto-generated constructor stub
+	init();
 
 }
 

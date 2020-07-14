@@ -14,6 +14,7 @@
 
 
 #define IDLE_TIMER htim6
+#define IGNORE_VALUE 101.f
 
 class ModeManager {
 

@@ -19,9 +19,9 @@ float ModeManager::setVelocity(float vel, MSG_ORIGIN origin){
 		else if(origin == I3 && (getRCmode() == MODE_AUTONOMOUS) ){
 			return vel;
 		}
-		else return 0;
+		else return IGNORE_VALUE;
 	}
-	else return 0;
+	else return IGNORE_VALUE;
 }
 
 float ModeManager::setTurn(float turn, MSG_ORIGIN origin){
@@ -34,9 +34,9 @@ float ModeManager::setTurn(float turn, MSG_ORIGIN origin){
 				   	   	   	getRCmode() == MODE_SEMI) ){
 			return turn;
 		}
-		else return 0;
+		else return IGNORE_VALUE;
 	}
-	else return 0;
+	else return IGNORE_VALUE;
 }
 
 void ModeManager::statusUpdate(RC_MODE RCstatus, DRIVE_MODE drivestatus){
