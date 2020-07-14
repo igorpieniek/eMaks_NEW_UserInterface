@@ -12,8 +12,9 @@
 #include <stdbool.h>
 #include "adc.h"
 #include "math.h"
-#define X_AXIS_INDEX   2
-#define Y_AXIS_INDEX   1
+#include "canManager.h"
+#define X_AXIS_INDEX   1
+#define Y_AXIS_INDEX   2
 #define AXIS_NUMBER    2
 
 
@@ -71,6 +72,9 @@ public:
 	void calculate_joy_data(void);
 	void get_adc_data(joystick_data* joy,uint32_t* data);
 	uint8_t is_joy_near_neautral(ax_params params);
+
+	void process(void);
+
 	Joystick();
 	virtual ~Joystick();
 
@@ -91,6 +95,7 @@ private:
 
 	void calcualate_axis_voltage(ax_params params);
 	uint32_t* get_hal_adc_raw_data(void);
+	void sendToCan(void);
 };
 
 extern Joystick joystick;

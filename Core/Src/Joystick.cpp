@@ -86,7 +86,19 @@ void Joystick::calculate_joy_data(void){
 		calcualate_axis_voltage(axis.params[i]);
 	}
 }
+void Joystick::sendToCan(void){
+	float vel = joy.measurements[X_AXIS_INDEX].percentage_value;
+	float turn = joy.measurements[Y_AXIS_INDEX].percentage_value;
+	canManager.sendTurn(turn);
+	canManager.sendVelocity(vel);
 
+}
+
+void Joystick::process(void){
+	convert_adc_values();
+	calculate_joy_data();
+	sendToCan();
+}
 
 
 Joystick::Joystick() {

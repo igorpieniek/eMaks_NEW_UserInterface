@@ -67,10 +67,10 @@ void CanManager::getData_Rx(uint32_t frame_id, uint8_t* data, uint8_t dlc){
 
 void CanManager::sendMsg(SEND_MODE mode, uint8_t * msgData){
 	if (mode == TURN && sizeof(msgData)==STEERING_FRAME_LENGTH ){
-//		hal_can_send( STEERING_VELOCITY_FRAME_ID, STEERING_FRAME_LENGTH , msgData);
+		hal_can_send( STEERING_VELOCITY_FRAME_ID, STEERING_FRAME_LENGTH , msgData);
 	}
 	else if (mode == VELOCITY && sizeof(msgData)==STEERING_FRAME_LENGTH){
-//		hal_can_send( STEERING_TURN_FRAME_ID,  STEERING_FRAME_LENGTH , msgData);
+		hal_can_send( STEERING_TURN_FRAME_ID,  STEERING_FRAME_LENGTH , msgData);
 	}
 }
 

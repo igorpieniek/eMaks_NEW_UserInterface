@@ -70,8 +70,9 @@ private:
 	void convertVelocityTurnData_Tx(float value,SEND_MODE mode);
 
 	//Tx part
-	void sendVelocity(float vel);
-	void sendTurn(float turn);
+	void setVelocity(float vel, ModeManager::MSG_ORIGIN origin);
+	void setTurn(float turn, ModeManager::MSG_ORIGIN origin);
+
 
 	void hal_can_send(uint16_t frame_id, uint8_t dlc, uint8_t* data);
 	CAN_FilterTypeDef hcan_filter;
@@ -80,8 +81,8 @@ private:
 public:
 	// RX part
 	void getData_Rx(uint32_t frame_id, uint8_t* data, uint8_t dlc);
-	void setVelocity(float vel, ModeManager::MSG_ORIGIN origin);
-	void setTurn(float turn, ModeManager::MSG_ORIGIN origin);
+	void sendVelocity(float vel);
+	void sendTurn(float turn);
 	void stopAllMotors();
 
 

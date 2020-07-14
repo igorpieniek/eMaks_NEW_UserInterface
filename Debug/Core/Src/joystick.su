@@ -6,9 +6,11 @@ Joystick.cpp:37:6:void Joystick::convert_adc_values()	32	static
 Joystick.cpp:51:9:uint8_t Joystick::is_joy_near_neautral(Joystick::ax_params)	24	static
 Joystick.cpp:57:6:void Joystick::calcualate_axis_voltage(Joystick::ax_params)	32	static
 Joystick.cpp:84:6:void Joystick::calculate_joy_data()	32	static
-Joystick.cpp:92:1:Joystick::Joystick()	24	static
-Joystick.cpp:97:1:Joystick::~Joystick()	16	static
-Joystick.cpp:97:1:virtual Joystick::~Joystick()	16	static
+Joystick.cpp:89:6:void Joystick::sendToCan()	24	static
+Joystick.cpp:97:6:void Joystick::process()	16	static
+Joystick.cpp:104:1:Joystick::Joystick()	24	static
+Joystick.cpp:109:1:Joystick::~Joystick()	16	static
+Joystick.cpp:109:1:virtual Joystick::~Joystick()	16	static
 cmath:438:5:typename __gnu_cxx::__promote_2<_Tp, _Up>::__type std::pow(_Tp, _Up) [with _Tp = int; _Up = unsigned char]	24	static
-Joystick.cpp:99:1:void __static_initialization_and_destruction_0(int, int)	16	static
-Joystick.cpp:99:1:cpp)	8	static
+Joystick.cpp:111:1:void __static_initialization_and_destruction_0(int, int)	16	static
+Joystick.cpp:111:1:cpp)	8	static
