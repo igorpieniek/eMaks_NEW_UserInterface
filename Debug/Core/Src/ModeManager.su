@@ -1,0 +1,14 @@
+ModeManager.cpp:12:7:float ModeManager::setVelocity(float, ModeManager::MSG_ORIGIN)	24	static
+ModeManager.cpp:27:7:float ModeManager::setTurn(float, ModeManager::MSG_ORIGIN)	24	static
+ModeManager.cpp:42:6:void ModeManager::statusUpdate(ModeManager::RC_MODE, ModeManager::DRIVE_MODE)	16	static
+ModeManager.cpp:51:6:void ModeManager::startIdleTimer()	16	static
+ModeManager.cpp:55:6:void ModeManager::stopIdleTimer()	16	static
+ModeManager.cpp:59:6:void ModeManager::resetIdleTimer()	16	static
+ModeManager.cpp:63:25:ModeManager::DRIVE_MODE ModeManager::getDriveMode()	16	static
+ModeManager.cpp:66:22:ModeManager::RC_MODE ModeManager::getRCmode()	16	static
+ModeManager.cpp:96:9:uint8_t ModeManager::isJoystickMode()	16	static
+ModeManager.cpp:102:1:ModeManager::ModeManager()	16	static
+ModeManager.cpp:107:1:ModeManager::~ModeManager()	16	static
+ModeManager.cpp:107:1:virtual ModeManager::~ModeManager()	16	static
+ModeManager.cpp:109:1:void __static_initialization_and_destruction_0(int, int)	16	static
+ModeManager.cpp:109:1:cpp)	8	static
