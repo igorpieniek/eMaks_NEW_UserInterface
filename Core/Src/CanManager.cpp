@@ -51,14 +51,11 @@ uint16_t CanManager::uint8_To_uint16(uint8_t* data, uint8_t start_byte){
 }
 
 void CanManager::setVelocity(float vel, ModeManager::MSG_ORIGIN origin){
-	float velocity = modeManager.setVelocity( vel, origin );
-	if (velocity != IGNORE_VALUE) sendVelocity(velocity);
+	if (modeManager.velocityPermission(origin)) sendVelocity(vel);
 
 }
 void CanManager::setTurn(float turn, ModeManager::MSG_ORIGIN origin){
-	float tur = modeManager.setVelocity( turn, origin );
-	if (tur != IGNORE_VALUE) sendTurn(tur);
-
+	if (modeManager.turnPermission(origin)) sendTurn(turn);
 }
 
 void CanManager::getData_Rx(uint32_t frame_id, uint8_t* data, uint8_t dlc){

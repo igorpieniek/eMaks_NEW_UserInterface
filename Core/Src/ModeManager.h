@@ -14,7 +14,6 @@
 
 
 #define IDLE_TIMER htim6
-#define IGNORE_VALUE 101.f
 
 class ModeManager {
 
@@ -37,8 +36,8 @@ class ModeManager {
 			I3
 		};
 
-		float setVelocity(float vel, MSG_ORIGIN origin);
-		float setTurn(float turn,MSG_ORIGIN origin);
+		uint8_t turnPermission(MSG_ORIGIN origin);
+		uint8_t velocityPermission(MSG_ORIGIN origin);
 		void statusUpdate(RC_MODE RCstatus, DRIVE_MODE drivestatus);
 		DRIVE_MODE getDriveMode();
 		RC_MODE getRCmode();
