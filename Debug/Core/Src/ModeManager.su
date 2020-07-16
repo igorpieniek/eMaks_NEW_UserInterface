@@ -1,14 +1,15 @@
-ModeManager.cpp:12:9:uint8_t ModeManager::velocityPermission(ModeManager::MSG_ORIGIN)	16	static
-ModeManager.cpp:27:9:uint8_t ModeManager::turnPermission(ModeManager::MSG_ORIGIN)	16	static
-ModeManager.cpp:43:6:void ModeManager::statusUpdate(ModeManager::RC_MODE, ModeManager::DRIVE_MODE)	16	static
-ModeManager.cpp:52:6:void ModeManager::startIdleTimer()	16	static
-ModeManager.cpp:56:6:void ModeManager::stopIdleTimer()	16	static
-ModeManager.cpp:60:6:void ModeManager::resetIdleTimer()	16	static
-ModeManager.cpp:64:25:ModeManager::DRIVE_MODE ModeManager::getDriveMode()	16	static
-ModeManager.cpp:67:22:ModeManager::RC_MODE ModeManager::getRCmode()	16	static
-ModeManager.cpp:72:9:uint8_t ModeManager::isJoystickMode()	16	static
-ModeManager.cpp:78:1:ModeManager::ModeManager()	16	static
-ModeManager.cpp:83:1:ModeManager::~ModeManager()	16	static
-ModeManager.cpp:83:1:virtual ModeManager::~ModeManager()	16	static
-ModeManager.cpp:85:1:void __static_initialization_and_destruction_0(int, int)	16	static
-ModeManager.cpp:85:1:cpp)	8	static
+ModeManager.cpp:12:6:void ModeManager::init()	16	static
+ModeManager.cpp:15:9:uint8_t ModeManager::velocityPermission(ModeManager::MSG_ORIGIN)	16	static
+ModeManager.cpp:30:9:uint8_t ModeManager::turnPermission(ModeManager::MSG_ORIGIN)	16	static
+ModeManager.cpp:46:6:void ModeManager::statusUpdate(ModeManager::RC_MODE, ModeManager::DRIVE_MODE)	16	static
+ModeManager.cpp:55:6:void ModeManager::startIdleTimer()	16	static
+ModeManager.cpp:59:6:void ModeManager::stopIdleTimer()	16	static
+ModeManager.cpp:63:6:void ModeManager::resetIdleTimer()	16	static
+ModeManager.cpp:67:25:ModeManager::DRIVE_MODE ModeManager::getDriveMode()	16	static
+ModeManager.cpp:70:22:ModeManager::RC_MODE ModeManager::getRCmode()	16	static
+ModeManager.cpp:75:9:uint8_t ModeManager::isJoystickMode()	16	static
+ModeManager.cpp:81:1:ModeManager::ModeManager()	16	static
+ModeManager.cpp:86:1:ModeManager::~ModeManager()	16	static
+ModeManager.cpp:86:1:virtual ModeManager::~ModeManager()	16	static
+ModeManager.cpp:88:1:void __static_initialization_and_destruction_0(int, int)	16	static
+ModeManager.cpp:88:1:cpp)	8	static

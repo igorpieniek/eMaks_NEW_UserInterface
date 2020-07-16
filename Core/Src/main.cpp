@@ -30,7 +30,9 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "CanManager.h"
+#include "ModeManager.h"
+#include "Joystick.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -100,7 +102,9 @@ int main(void)
   MX_USART1_UART_Init();
   MX_TIM6_Init();
   /* USER CODE BEGIN 2 */
-
+  joystick.init();
+  modeManager.init();
+  canManager.init();
   /* USER CODE END 2 */
 
   /* Infinite loop */

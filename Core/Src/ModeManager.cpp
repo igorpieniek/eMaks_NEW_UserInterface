@@ -9,6 +9,9 @@
 
 ModeManager modeManager;
 
+void ModeManager::init(){
+	HAL_TIM_Base_Start_IT(&PROCESS_TIMER);
+}
 uint8_t ModeManager::velocityPermission(MSG_ORIGIN origin){
 	resetIdleTimer();
 	if (getDriveMode() == ENABLE){

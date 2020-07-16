@@ -80,6 +80,7 @@ private:
 
 public:
 	// RX part
+	void init();
 	void process();
 
 	void getData_Rx(uint32_t frame_id, uint8_t* data, uint8_t dlc);

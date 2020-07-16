@@ -14,6 +14,7 @@
 
 
 #define IDLE_TIMER htim6
+#define PROCESS_TIMER htim3
 
 class ModeManager {
 
@@ -36,6 +37,7 @@ class ModeManager {
 			I3
 		};
 
+		void init();
 		uint8_t turnPermission(MSG_ORIGIN origin);
 		uint8_t velocityPermission(MSG_ORIGIN origin);
 		void statusUpdate(RC_MODE RCstatus, DRIVE_MODE drivestatus);

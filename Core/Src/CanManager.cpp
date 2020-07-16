@@ -9,6 +9,10 @@
 
 CanManager canManager;
 
+void CanManager::init(){
+	hal_can_filter_init();
+
+}
 void CanManager::process(){
 	getData_Rx(can_messages.rx_header.StdId,
 			can_messages.rx_data,
@@ -149,7 +153,6 @@ void CanManager::hal_can_filter_init(void){
 	HAL_CAN_ConfigFilter(&hcan,&hcan_filter);
 }
 CanManager::CanManager() {
-	hal_can_filter_init();
 
 }
 
