@@ -103,7 +103,6 @@ void Joystick::process(void){
 
 
 Joystick::Joystick() {
-	init();
 
 }
 

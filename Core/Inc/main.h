@@ -72,12 +72,8 @@ void Error_Handler(void);
 #define BL_CTRL_GPIO_Port GPIOA
 #define TP_IRQ_Pin GPIO_PIN_4
 #define TP_IRQ_GPIO_Port GPIOA
-#define TP_SCK_Pin GPIO_PIN_5
-#define TP_SCK_GPIO_Port GPIOA
-#define SDO_Pin GPIO_PIN_6
-#define SDO_GPIO_Port GPIOA
-#define SDI_Pin GPIO_PIN_7
-#define SDI_GPIO_Port GPIOA
+#define LED_Pin GPIO_PIN_5
+#define LED_GPIO_Port GPIOA
 #define JOY2_X_Pin GPIO_PIN_4
 #define JOY2_X_GPIO_Port GPIOC
 #define JOY2_Y_Pin GPIO_PIN_5

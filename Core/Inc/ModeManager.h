@@ -60,8 +60,8 @@ class ModeManager {
 //		void process();
 
 
-		DRIVE_MODE driveMode = DISABLE;
-		RC_MODE RCmode = MODE_JOYSICK;
+		DRIVE_MODE driveMode;
+		RC_MODE RCmode;
 
 };
 
