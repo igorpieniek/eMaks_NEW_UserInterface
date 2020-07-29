@@ -1489,27 +1489,27 @@ LOAD d:/programs/atollic truestudio/truestudio for stm32 9.3.0/armtools/bin/../l
                 0x08002038                _Unwind_GetDataRelBase
  *(.text*)
  .text.HAL_TIM_PeriodElapsedCallback
-                0x08002040       0x68 Core\Src\Callbacks.o
+                0x08002040       0x5c Core\Src\Callbacks.o
                 0x08002040                HAL_TIM_PeriodElapsedCallback
  .text.HAL_CAN_RxFifo1MsgPendingCallback
-                0x080020a8       0x2c Core\Src\Callbacks.o
-                0x080020a8                HAL_CAN_RxFifo1MsgPendingCallback
+                0x0800209c       0x2c Core\Src\Callbacks.o
+                0x0800209c                HAL_CAN_RxFifo1MsgPendingCallback
  .text._ZN10CanManager4initEv
-                0x080020d4       0x16 Core\Src\CanManager.o
-                0x080020d4                CanManager::init()
+                0x080020c8       0x16 Core\Src\CanManager.o
+                0x080020c8                CanManager::init()
  .text._ZN10CanManager7processEv
-                0x080020ea       0x24 Core\Src\CanManager.o
-                0x080020ea                CanManager::process()
- *fill*         0x0800210e        0x2 
+                0x080020de       0x24 Core\Src\CanManager.o
+                0x080020de                CanManager::process()
+ *fill*         0x08002102        0x2 
  .text._ZN10CanManager10getSign_RxEPh
-                0x08002110       0x34 Core\Src\CanManager.o
-                0x08002110                CanManager::getSign_Rx(unsigned char*)
+                0x08002104       0x34 Core\Src\CanManager.o
+                0x08002104                CanManager::getSign_Rx(unsigned char*)
  .text._ZN10CanManager26convertVelocityTurnData_RxEPh
-                0x08002144       0x5c Core\Src\CanManager.o
-                0x08002144                CanManager::convertVelocityTurnData_Rx(unsigned char*)
+                0x08002138       0x5c Core\Src\CanManager.o
+                0x08002138                CanManager::convertVelocityTurnData_Rx(unsigned char*)
  .text._ZN10CanManager20convertStatusData_RxEPh
-                0x080021a0       0x48 Core\Src\CanManager.o
-                0x080021a0                CanManager::convertStatusData_Rx(unsigned char*)
+                0x08002194       0x54 Core\Src\CanManager.o
+                0x08002194                CanManager::convertStatusData_Rx(unsigned char*)
  .text._ZN10CanManager18getRCmodeStatus_RxEh
                 0x080021e8       0x3e Core\Src\CanManager.o
                 0x080021e8                CanManager::getRCmodeStatus_Rx(unsigned char)
@@ -2731,34 +2731,34 @@ LOAD d:/programs/atollic truestudio/truestudio for stm32 9.3.0/armtools/bin/../l
                 0x00000bff       0x1d d:/programs/atollic truestudio/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/armv7-m/crtn.o
 OUTPUT(User_interface_NEW.elf elf32-littlearm)
 
-.debug_info     0x00000000    0x17c40
- .debug_info    0x00000000     0x159f Core\Src\Callbacks.o
- .debug_info    0x0000159f     0x1f09 Core\Src\CanManager.o
- .debug_info    0x000034a8     0x1cec Core\Src\Joystick.o
- .debug_info    0x00005194      0xbe7 Core\Src\ModeManager.o
- .debug_info    0x00005d7b      0x9e4 Core\Src\adc.o
- .debug_info    0x0000675f      0xab7 Core\Src\can.o
- .debug_info    0x00007216      0x47c Core\Src\dma.o
- .debug_info    0x00007692      0x50e Core\Src\gpio.o
- .debug_info    0x00007ba0     0x18f0 Core\Src\main.o
- .debug_info    0x00009490      0x2c0 Core\Src\stm32f1xx_hal_msp.o
- .debug_info    0x00009750      0xb5d Core\Src\stm32f1xx_it.o
- .debug_info    0x0000a2ad      0xfe1 Core\Src\syscalls.o
- .debug_info    0x0000b28e      0x437 Core\Src\system_stm32f1xx.o
- .debug_info    0x0000b6c5      0xbb4 Core\Src\tim.o
- .debug_info    0x0000c279      0x8fb Core\Src\usart.o
- .debug_info    0x0000cb74      0x833 Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal.o
- .debug_info    0x0000d3a7      0xea0 Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_adc.o
- .debug_info    0x0000e247     0x1101 Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_can.o
- .debug_info    0x0000f348      0xd0d Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_cortex.o
- .debug_info    0x00010055      0x837 Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_dma.o
- .debug_info    0x0001088c      0x68d Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_gpio.o
- .debug_info    0x00010f19      0xa01 Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_rcc.o
- .debug_info    0x0001191a      0x4ba Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_rcc_ex.o
- .debug_info    0x00011dd4     0x34cc Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_tim.o
- .debug_info    0x000152a0     0x12fc Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_tim_ex.o
- .debug_info    0x0001659c     0x1632 Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_uart.o
- .debug_info    0x00017bce       0x72 startup\startup_stm32f103xe.o
+.debug_info     0x00000000    0x17c2a
+ .debug_info    0x00000000     0x1514 Core\Src\Callbacks.o
+ .debug_info    0x00001514     0x1f7e Core\Src\CanManager.o
+ .debug_info    0x00003492     0x1cec Core\Src\Joystick.o
+ .debug_info    0x0000517e      0xbe7 Core\Src\ModeManager.o
+ .debug_info    0x00005d65      0x9e4 Core\Src\adc.o
+ .debug_info    0x00006749      0xab7 Core\Src\can.o
+ .debug_info    0x00007200      0x47c Core\Src\dma.o
+ .debug_info    0x0000767c      0x50e Core\Src\gpio.o
+ .debug_info    0x00007b8a     0x18f0 Core\Src\main.o
+ .debug_info    0x0000947a      0x2c0 Core\Src\stm32f1xx_hal_msp.o
+ .debug_info    0x0000973a      0xb5d Core\Src\stm32f1xx_it.o
+ .debug_info    0x0000a297      0xfe1 Core\Src\syscalls.o
+ .debug_info    0x0000b278      0x437 Core\Src\system_stm32f1xx.o
+ .debug_info    0x0000b6af      0xbb4 Core\Src\tim.o
+ .debug_info    0x0000c263      0x8fb Core\Src\usart.o
+ .debug_info    0x0000cb5e      0x833 Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal.o
+ .debug_info    0x0000d391      0xea0 Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_adc.o
+ .debug_info    0x0000e231     0x1101 Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_can.o
+ .debug_info    0x0000f332      0xd0d Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_cortex.o
+ .debug_info    0x0001003f      0x837 Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_dma.o
+ .debug_info    0x00010876      0x68d Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_gpio.o
+ .debug_info    0x00010f03      0xa01 Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_rcc.o
+ .debug_info    0x00011904      0x4ba Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_rcc_ex.o
+ .debug_info    0x00011dbe     0x34cc Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_tim.o
+ .debug_info    0x0001528a     0x12fc Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_tim_ex.o
+ .debug_info    0x00016586     0x1632 Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_uart.o
+ .debug_info    0x00017bb8       0x72 startup\startup_stm32f103xe.o
 
 .debug_abbrev   0x00000000     0x3ea0
  .debug_abbrev  0x00000000      0x25b Core\Src\Callbacks.o
@@ -2875,8 +2875,8 @@ OUTPUT(User_interface_NEW.elf elf32-littlearm)
  .debug_ranges  0x00001108       0x20 startup\startup_stm32f103xe.o
 
 .debug_line     0x00000000     0x8565
- .debug_line    0x00000000      0x4e9 Core\Src\Callbacks.o
- .debug_line    0x000004e9      0x5ce Core\Src\CanManager.o
+ .debug_line    0x00000000      0x4e8 Core\Src\Callbacks.o
+ .debug_line    0x000004e8      0x5cf Core\Src\CanManager.o
  .debug_line    0x00000ab7      0x79b Core\Src\Joystick.o
  .debug_line    0x00001252      0x404 Core\Src\ModeManager.o
  .debug_line    0x00001656      0x2f8 Core\Src\adc.o
@@ -2904,10 +2904,10 @@ OUTPUT(User_interface_NEW.elf elf32-littlearm)
  .debug_line    0x000084e8       0x7d startup\startup_stm32f103xe.o
 
 .debug_str      0x00000000     0x59d0
- .debug_str     0x00000000      0xdd9 Core\Src\Callbacks.o
-                               0x10cd (size before relaxing)
- .debug_str     0x00000dd9      0x83b Core\Src\CanManager.o
-                               0x1730 (size before relaxing)
+ .debug_str     0x00000000      0xdb5 Core\Src\Callbacks.o
+                               0x1093 (size before relaxing)
+ .debug_str     0x00000db5      0x85f Core\Src\CanManager.o
+                               0x1756 (size before relaxing)
  .debug_str     0x00001614      0x569 Core\Src\Joystick.o
                                0x1649 (size before relaxing)
  .debug_str     0x00001b7d      0x353 Core\Src\ModeManager.o

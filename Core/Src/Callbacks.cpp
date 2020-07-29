@@ -19,7 +19,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
 	  canManager.stopAllMotors();
   }
   if (htim->Instance == TIM3) {
-	  HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
+
 	  if (modeManager.isJoystickMode()){
 		joystick.process();
 	  }

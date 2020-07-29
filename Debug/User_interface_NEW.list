@@ -25,23 +25,23 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   ALLOC
  10 .ARM.attributes 00000029  00000000  00000000  00020078  2**0
                   CONTENTS, READONLY
- 11 .debug_info   00017c40  00000000  00000000  000200a1  2**0
+ 11 .debug_info   00017c2a  00000000  00000000  000200a1  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_abbrev 00003ea0  00000000  00000000  00037ce1  2**0
+ 12 .debug_abbrev 00003ea0  00000000  00000000  00037ccb  2**0
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_aranges 00000e70  00000000  00000000  0003bb88  2**3
+ 13 .debug_aranges 00000e70  00000000  00000000  0003bb70  2**3
                   CONTENTS, READONLY, DEBUGGING
- 14 .debug_ranges 00001128  00000000  00000000  0003c9f8  2**3
+ 14 .debug_ranges 00001128  00000000  00000000  0003c9e0  2**3
                   CONTENTS, READONLY, DEBUGGING
- 15 .debug_line   00008565  00000000  00000000  0003db20  2**0
+ 15 .debug_line   00008565  00000000  00000000  0003db08  2**0
                   CONTENTS, READONLY, DEBUGGING
- 16 .debug_str    000059d0  00000000  00000000  00046085  2**0
+ 16 .debug_str    000059d0  00000000  00000000  0004606d  2**0
                   CONTENTS, READONLY, DEBUGGING
- 17 .comment      0000007c  00000000  00000000  0004ba55  2**0
+ 17 .comment      0000007c  00000000  00000000  0004ba3d  2**0
                   CONTENTS, READONLY
- 18 .debug_frame  00003648  00000000  00000000  0004bad4  2**2
+ 18 .debug_frame  00003648  00000000  00000000  0004babc  2**2
                   CONTENTS, READONLY, DEBUGGING
- 19 .debug_loc    00007d47  00000000  00000000  0004f11c  2**0
+ 19 .debug_loc    00007d47  00000000  00000000  0004f104  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -3060,244 +3060,245 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
   if (htim->Instance == TIM4) {
  8002048:	687b      	ldr	r3, [r7, #4]
  800204a:	681b      	ldr	r3, [r3, #0]
- 800204c:	4a10      	ldr	r2, [pc, #64]	; (8002090 <HAL_TIM_PeriodElapsedCallback+0x50>)
+ 800204c:	4a0e      	ldr	r2, [pc, #56]	; (8002088 <HAL_TIM_PeriodElapsedCallback+0x48>)
  800204e:	4293      	cmp	r3, r2
  8002050:	d102      	bne.n	8002058 <HAL_TIM_PeriodElapsedCallback+0x18>
 	  canManager.stopAllMotors();
- 8002052:	4810      	ldr	r0, [pc, #64]	; (8002094 <HAL_TIM_PeriodElapsedCallback+0x54>)
+ 8002052:	480e      	ldr	r0, [pc, #56]	; (800208c <HAL_TIM_PeriodElapsedCallback+0x4c>)
  8002054:	f000 faa4 	bl	80025a0 <_ZN10CanManager13stopAllMotorsEv>
   }
   if (htim->Instance == TIM3) {
  8002058:	687b      	ldr	r3, [r7, #4]
  800205a:	681b      	ldr	r3, [r3, #0]
- 800205c:	4a0e      	ldr	r2, [pc, #56]	; (8002098 <HAL_TIM_PeriodElapsedCallback+0x58>)
+ 800205c:	4a0c      	ldr	r2, [pc, #48]	; (8002090 <HAL_TIM_PeriodElapsedCallback+0x50>)
  800205e:	4293      	cmp	r3, r2
- 8002060:	d112      	bne.n	8002088 <HAL_TIM_PeriodElapsedCallback+0x48>
-	  HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
- 8002062:	f44f 6180 	mov.w	r1, #1024	; 0x400
- 8002066:	480d      	ldr	r0, [pc, #52]	; (800209c <HAL_TIM_PeriodElapsedCallback+0x5c>)
- 8002068:	f002 fc27 	bl	80048ba <HAL_GPIO_TogglePin>
+ 8002060:	d10d      	bne.n	800207e <HAL_TIM_PeriodElapsedCallback+0x3e>
+
 	  if (modeManager.isJoystickMode()){
- 800206c:	480c      	ldr	r0, [pc, #48]	; (80020a0 <HAL_TIM_PeriodElapsedCallback+0x60>)
- 800206e:	f000 ff5b 	bl	8002f28 <_ZN11ModeManager14isJoystickModeEv>
- 8002072:	4603      	mov	r3, r0
+ 8002062:	480c      	ldr	r0, [pc, #48]	; (8002094 <HAL_TIM_PeriodElapsedCallback+0x54>)
+ 8002064:	f000 ff60 	bl	8002f28 <_ZN11ModeManager14isJoystickModeEv>
+ 8002068:	4603      	mov	r3, r0
+ 800206a:	2b00      	cmp	r3, #0
+ 800206c:	bf14      	ite	ne
+ 800206e:	2301      	movne	r3, #1
+ 8002070:	2300      	moveq	r3, #0
+ 8002072:	b2db      	uxtb	r3, r3
  8002074:	2b00      	cmp	r3, #0
- 8002076:	bf14      	ite	ne
- 8002078:	2301      	movne	r3, #1
- 800207a:	2300      	moveq	r3, #0
- 800207c:	b2db      	uxtb	r3, r3
- 800207e:	2b00      	cmp	r3, #0
- 8002080:	d002      	beq.n	8002088 <HAL_TIM_PeriodElapsedCallback+0x48>
+ 8002076:	d002      	beq.n	800207e <HAL_TIM_PeriodElapsedCallback+0x3e>
 		joystick.process();
- 8002082:	4808      	ldr	r0, [pc, #32]	; (80020a4 <HAL_TIM_PeriodElapsedCallback+0x64>)
- 8002084:	f000 fdbe 	bl	8002c04 <_ZN8Joystick7processEv>
+ 8002078:	4807      	ldr	r0, [pc, #28]	; (8002098 <HAL_TIM_PeriodElapsedCallback+0x58>)
+ 800207a:	f000 fdc3 	bl	8002c04 <_ZN8Joystick7processEv>
 	  }
   }
 }
- 8002088:	bf00      	nop
- 800208a:	3708      	adds	r7, #8
- 800208c:	46bd      	mov	sp, r7
- 800208e:	bd80      	pop	{r7, pc}
- 8002090:	40000800 	.word	0x40000800
- 8002094:	20000094 	.word	0x20000094
- 8002098:	40000400 	.word	0x40000400
- 800209c:	40011000 	.word	0x40011000
- 80020a0:	200001b4 	.word	0x200001b4
- 80020a4:	20000100 	.word	0x20000100
+ 800207e:	bf00      	nop
+ 8002080:	3708      	adds	r7, #8
+ 8002082:	46bd      	mov	sp, r7
+ 8002084:	bd80      	pop	{r7, pc}
+ 8002086:	bf00      	nop
+ 8002088:	40000800 	.word	0x40000800
+ 800208c:	20000094 	.word	0x20000094
+ 8002090:	40000400 	.word	0x40000400
+ 8002094:	200001b4 	.word	0x200001b4
+ 8002098:	20000100 	.word	0x20000100
 
-080020a8 <HAL_CAN_RxFifo1MsgPendingCallback>:
+0800209c <HAL_CAN_RxFifo1MsgPendingCallback>:
 
 void HAL_CAN_RxFifo1MsgPendingCallback (CAN_HandleTypeDef* hcan ){
- 80020a8:	b580      	push	{r7, lr}
- 80020aa:	b082      	sub	sp, #8
- 80020ac:	af00      	add	r7, sp, #0
- 80020ae:	6078      	str	r0, [r7, #4]
+ 800209c:	b580      	push	{r7, lr}
+ 800209e:	b082      	sub	sp, #8
+ 80020a0:	af00      	add	r7, sp, #0
+ 80020a2:	6078      	str	r0, [r7, #4]
 
 	HAL_CAN_GetRxMessage(hcan,CAN_RX_FIFO0,
- 80020b0:	4b06      	ldr	r3, [pc, #24]	; (80020cc <HAL_CAN_RxFifo1MsgPendingCallback+0x24>)
- 80020b2:	6e9b      	ldr	r3, [r3, #104]	; 0x68
+ 80020a4:	4b06      	ldr	r3, [pc, #24]	; (80020c0 <HAL_CAN_RxFifo1MsgPendingCallback+0x24>)
+ 80020a6:	6e9b      	ldr	r3, [r3, #104]	; 0x68
 			&canManager.can_messages.rx_header,
 			canManager.can_messages.rx_data );
- 80020b4:	4a06      	ldr	r2, [pc, #24]	; (80020d0 <HAL_CAN_RxFifo1MsgPendingCallback+0x28>)
- 80020b6:	2100      	movs	r1, #0
- 80020b8:	6878      	ldr	r0, [r7, #4]
- 80020ba:	f001 ffc8 	bl	800404e <HAL_CAN_GetRxMessage>
+ 80020a8:	4a06      	ldr	r2, [pc, #24]	; (80020c4 <HAL_CAN_RxFifo1MsgPendingCallback+0x28>)
+ 80020aa:	2100      	movs	r1, #0
+ 80020ac:	6878      	ldr	r0, [r7, #4]
+ 80020ae:	f001 ffce 	bl	800404e <HAL_CAN_GetRxMessage>
 
 	canManager.process();
- 80020be:	4803      	ldr	r0, [pc, #12]	; (80020cc <HAL_CAN_RxFifo1MsgPendingCallback+0x24>)
- 80020c0:	f000 f813 	bl	80020ea <_ZN10CanManager7processEv>
+ 80020b2:	4803      	ldr	r0, [pc, #12]	; (80020c0 <HAL_CAN_RxFifo1MsgPendingCallback+0x24>)
+ 80020b4:	f000 f813 	bl	80020de <_ZN10CanManager7processEv>
 
 }
- 80020c4:	bf00      	nop
- 80020c6:	3708      	adds	r7, #8
- 80020c8:	46bd      	mov	sp, r7
- 80020ca:	bd80      	pop	{r7, pc}
- 80020cc:	20000094 	.word	0x20000094
- 80020d0:	200000d8 	.word	0x200000d8
+ 80020b8:	bf00      	nop
+ 80020ba:	3708      	adds	r7, #8
+ 80020bc:	46bd      	mov	sp, r7
+ 80020be:	bd80      	pop	{r7, pc}
+ 80020c0:	20000094 	.word	0x20000094
+ 80020c4:	200000d8 	.word	0x200000d8
 
-080020d4 <_ZN10CanManager4initEv>:
+080020c8 <_ZN10CanManager4initEv>:
 
 #include "CanManager.h"
 
 CanManager canManager;
 
 void CanManager::init(){
- 80020d4:	b580      	push	{r7, lr}
- 80020d6:	b082      	sub	sp, #8
- 80020d8:	af00      	add	r7, sp, #0
- 80020da:	6078      	str	r0, [r7, #4]
+ 80020c8:	b580      	push	{r7, lr}
+ 80020ca:	b082      	sub	sp, #8
+ 80020cc:	af00      	add	r7, sp, #0
+ 80020ce:	6078      	str	r0, [r7, #4]
 	hal_can_filter_init();
- 80020dc:	6878      	ldr	r0, [r7, #4]
- 80020de:	f000 fa9b 	bl	8002618 <_ZN10CanManager19hal_can_filter_initEv>
+ 80020d0:	6878      	ldr	r0, [r7, #4]
+ 80020d2:	f000 faa1 	bl	8002618 <_ZN10CanManager19hal_can_filter_initEv>
 
 }
- 80020e2:	bf00      	nop
- 80020e4:	3708      	adds	r7, #8
- 80020e6:	46bd      	mov	sp, r7
- 80020e8:	bd80      	pop	{r7, pc}
+ 80020d6:	bf00      	nop
+ 80020d8:	3708      	adds	r7, #8
+ 80020da:	46bd      	mov	sp, r7
+ 80020dc:	bd80      	pop	{r7, pc}
 
-080020ea <_ZN10CanManager7processEv>:
+080020de <_ZN10CanManager7processEv>:
 void CanManager::process(){
- 80020ea:	b580      	push	{r7, lr}
- 80020ec:	b082      	sub	sp, #8
- 80020ee:	af00      	add	r7, sp, #0
- 80020f0:	6078      	str	r0, [r7, #4]
+ 80020de:	b580      	push	{r7, lr}
+ 80020e0:	b082      	sub	sp, #8
+ 80020e2:	af00      	add	r7, sp, #0
+ 80020e4:	6078      	str	r0, [r7, #4]
 	getData_Rx(can_messages.rx_header.StdId,
- 80020f2:	687b      	ldr	r3, [r7, #4]
- 80020f4:	6c59      	ldr	r1, [r3, #68]	; 0x44
- 80020f6:	687b      	ldr	r3, [r7, #4]
- 80020f8:	6e9a      	ldr	r2, [r3, #104]	; 0x68
+ 80020e6:	687b      	ldr	r3, [r7, #4]
+ 80020e8:	6c59      	ldr	r1, [r3, #68]	; 0x44
+ 80020ea:	687b      	ldr	r3, [r7, #4]
+ 80020ec:	6e9a      	ldr	r2, [r3, #104]	; 0x68
 			can_messages.rx_data,
 			can_messages.rx_header.DLC);
- 80020fa:	687b      	ldr	r3, [r7, #4]
- 80020fc:	6d5b      	ldr	r3, [r3, #84]	; 0x54
+ 80020ee:	687b      	ldr	r3, [r7, #4]
+ 80020f0:	6d5b      	ldr	r3, [r3, #84]	; 0x54
 	getData_Rx(can_messages.rx_header.StdId,
- 80020fe:	b2db      	uxtb	r3, r3
+ 80020f2:	b2db      	uxtb	r3, r3
 			can_messages.rx_header.DLC);
- 8002100:	6878      	ldr	r0, [r7, #4]
- 8002102:	f000 f8fd 	bl	8002300 <_ZN10CanManager10getData_RxEmPhh>
+ 80020f4:	6878      	ldr	r0, [r7, #4]
+ 80020f6:	f000 f903 	bl	8002300 <_ZN10CanManager10getData_RxEmPhh>
 }
- 8002106:	bf00      	nop
- 8002108:	3708      	adds	r7, #8
- 800210a:	46bd      	mov	sp, r7
- 800210c:	bd80      	pop	{r7, pc}
+ 80020fa:	bf00      	nop
+ 80020fc:	3708      	adds	r7, #8
+ 80020fe:	46bd      	mov	sp, r7
+ 8002100:	bd80      	pop	{r7, pc}
 	...
 
-08002110 <_ZN10CanManager10getSign_RxEPh>:
+08002104 <_ZN10CanManager10getSign_RxEPh>:
 /////////////////////////RX PART///////////////////////////////////////////
 
 float CanManager::getSign_Rx(uint8_t * data){
- 8002110:	b580      	push	{r7, lr}
- 8002112:	b084      	sub	sp, #16
- 8002114:	af00      	add	r7, sp, #0
- 8002116:	6078      	str	r0, [r7, #4]
- 8002118:	6039      	str	r1, [r7, #0]
+ 8002104:	b580      	push	{r7, lr}
+ 8002106:	b084      	sub	sp, #16
+ 8002108:	af00      	add	r7, sp, #0
+ 800210a:	6078      	str	r0, [r7, #4]
+ 800210c:	6039      	str	r1, [r7, #0]
 	uint16_t sign = uint8_To_uint16(data, 0);
- 800211a:	2200      	movs	r2, #0
- 800211c:	6839      	ldr	r1, [r7, #0]
- 800211e:	6878      	ldr	r0, [r7, #4]
- 8002120:	f000 f896 	bl	8002250 <_ZN10CanManager15uint8_To_uint16EPhh>
- 8002124:	4603      	mov	r3, r0
- 8002126:	81fb      	strh	r3, [r7, #14]
+ 800210e:	2200      	movs	r2, #0
+ 8002110:	6839      	ldr	r1, [r7, #0]
+ 8002112:	6878      	ldr	r0, [r7, #4]
+ 8002114:	f000 f89c 	bl	8002250 <_ZN10CanManager15uint8_To_uint16EPhh>
+ 8002118:	4603      	mov	r3, r0
+ 800211a:	81fb      	strh	r3, [r7, #14]
 	if(sign == 	NEGATIVE_SIGN) return -1.f;
- 8002128:	89fb      	ldrh	r3, [r7, #14]
- 800212a:	2b00      	cmp	r3, #0
- 800212c:	d101      	bne.n	8002132 <_ZN10CanManager10getSign_RxEPh+0x22>
- 800212e:	4b04      	ldr	r3, [pc, #16]	; (8002140 <_ZN10CanManager10getSign_RxEPh+0x30>)
- 8002130:	e001      	b.n	8002136 <_ZN10CanManager10getSign_RxEPh+0x26>
+ 800211c:	89fb      	ldrh	r3, [r7, #14]
+ 800211e:	2b00      	cmp	r3, #0
+ 8002120:	d101      	bne.n	8002126 <_ZN10CanManager10getSign_RxEPh+0x22>
+ 8002122:	4b04      	ldr	r3, [pc, #16]	; (8002134 <_ZN10CanManager10getSign_RxEPh+0x30>)
+ 8002124:	e001      	b.n	800212a <_ZN10CanManager10getSign_RxEPh+0x26>
 	else					   return 1.f;
- 8002132:	f04f 537e 	mov.w	r3, #1065353216	; 0x3f800000
+ 8002126:	f04f 537e 	mov.w	r3, #1065353216	; 0x3f800000
 }
- 8002136:	4618      	mov	r0, r3
- 8002138:	3710      	adds	r7, #16
- 800213a:	46bd      	mov	sp, r7
- 800213c:	bd80      	pop	{r7, pc}
- 800213e:	bf00      	nop
- 8002140:	bf800000 	.word	0xbf800000
+ 800212a:	4618      	mov	r0, r3
+ 800212c:	3710      	adds	r7, #16
+ 800212e:	46bd      	mov	sp, r7
+ 8002130:	bd80      	pop	{r7, pc}
+ 8002132:	bf00      	nop
+ 8002134:	bf800000 	.word	0xbf800000
 
-08002144 <_ZN10CanManager26convertVelocityTurnData_RxEPh>:
+08002138 <_ZN10CanManager26convertVelocityTurnData_RxEPh>:
 
 float CanManager::convertVelocityTurnData_Rx(uint8_t * data){
- 8002144:	b590      	push	{r4, r7, lr}
- 8002146:	b085      	sub	sp, #20
- 8002148:	af00      	add	r7, sp, #0
- 800214a:	6078      	str	r0, [r7, #4]
- 800214c:	6039      	str	r1, [r7, #0]
+ 8002138:	b590      	push	{r4, r7, lr}
+ 800213a:	b085      	sub	sp, #20
+ 800213c:	af00      	add	r7, sp, #0
+ 800213e:	6078      	str	r0, [r7, #4]
+ 8002140:	6039      	str	r1, [r7, #0]
 	uint16_t rawData = uint8_To_uint16(data, 2); // because value start from 2 byte
- 800214e:	2202      	movs	r2, #2
+ 8002142:	2202      	movs	r2, #2
+ 8002144:	6839      	ldr	r1, [r7, #0]
+ 8002146:	6878      	ldr	r0, [r7, #4]
+ 8002148:	f000 f882 	bl	8002250 <_ZN10CanManager15uint8_To_uint16EPhh>
+ 800214c:	4603      	mov	r3, r0
+ 800214e:	81fb      	strh	r3, [r7, #14]
+	return  getSign_Rx(data) * (float)(rawData / MAX_CANVALUE)*100.f; // PERCENTAGE CALCULATE
  8002150:	6839      	ldr	r1, [r7, #0]
  8002152:	6878      	ldr	r0, [r7, #4]
- 8002154:	f000 f87c 	bl	8002250 <_ZN10CanManager15uint8_To_uint16EPhh>
- 8002158:	4603      	mov	r3, r0
- 800215a:	81fb      	strh	r3, [r7, #14]
-	return  getSign_Rx(data) * (float)(rawData / MAX_CANVALUE)*100.f; // PERCENTAGE CALCULATE
- 800215c:	6839      	ldr	r1, [r7, #0]
- 800215e:	6878      	ldr	r0, [r7, #4]
- 8002160:	f7ff ffd6 	bl	8002110 <_ZN10CanManager10getSign_RxEPh>
- 8002164:	4604      	mov	r4, r0
- 8002166:	89fb      	ldrh	r3, [r7, #14]
- 8002168:	4a0b      	ldr	r2, [pc, #44]	; (8002198 <_ZN10CanManager26convertVelocityTurnData_RxEPh+0x54>)
- 800216a:	fba2 2303 	umull	r2, r3, r2, r3
- 800216e:	0b9b      	lsrs	r3, r3, #14
- 8002170:	b29b      	uxth	r3, r3
- 8002172:	4618      	mov	r0, r3
- 8002174:	f7fe fda4 	bl	8000cc0 <__aeabi_i2f>
- 8002178:	4603      	mov	r3, r0
- 800217a:	4619      	mov	r1, r3
- 800217c:	4620      	mov	r0, r4
- 800217e:	f7fe fdf3 	bl	8000d68 <__aeabi_fmul>
- 8002182:	4603      	mov	r3, r0
- 8002184:	4905      	ldr	r1, [pc, #20]	; (800219c <_ZN10CanManager26convertVelocityTurnData_RxEPh+0x58>)
- 8002186:	4618      	mov	r0, r3
- 8002188:	f7fe fdee 	bl	8000d68 <__aeabi_fmul>
- 800218c:	4603      	mov	r3, r0
+ 8002154:	f7ff ffd6 	bl	8002104 <_ZN10CanManager10getSign_RxEPh>
+ 8002158:	4604      	mov	r4, r0
+ 800215a:	89fb      	ldrh	r3, [r7, #14]
+ 800215c:	4a0b      	ldr	r2, [pc, #44]	; (800218c <_ZN10CanManager26convertVelocityTurnData_RxEPh+0x54>)
+ 800215e:	fba2 2303 	umull	r2, r3, r2, r3
+ 8002162:	0b9b      	lsrs	r3, r3, #14
+ 8002164:	b29b      	uxth	r3, r3
+ 8002166:	4618      	mov	r0, r3
+ 8002168:	f7fe fdaa 	bl	8000cc0 <__aeabi_i2f>
+ 800216c:	4603      	mov	r3, r0
+ 800216e:	4619      	mov	r1, r3
+ 8002170:	4620      	mov	r0, r4
+ 8002172:	f7fe fdf9 	bl	8000d68 <__aeabi_fmul>
+ 8002176:	4603      	mov	r3, r0
+ 8002178:	4905      	ldr	r1, [pc, #20]	; (8002190 <_ZN10CanManager26convertVelocityTurnData_RxEPh+0x58>)
+ 800217a:	4618      	mov	r0, r3
+ 800217c:	f7fe fdf4 	bl	8000d68 <__aeabi_fmul>
+ 8002180:	4603      	mov	r3, r0
 }
- 800218e:	4618      	mov	r0, r3
- 8002190:	3714      	adds	r7, #20
- 8002192:	46bd      	mov	sp, r7
- 8002194:	bd90      	pop	{r4, r7, pc}
- 8002196:	bf00      	nop
- 8002198:	51eb851f 	.word	0x51eb851f
- 800219c:	42c80000 	.word	0x42c80000
+ 8002182:	4618      	mov	r0, r3
+ 8002184:	3714      	adds	r7, #20
+ 8002186:	46bd      	mov	sp, r7
+ 8002188:	bd90      	pop	{r4, r7, pc}
+ 800218a:	bf00      	nop
+ 800218c:	51eb851f 	.word	0x51eb851f
+ 8002190:	42c80000 	.word	0x42c80000
 
-080021a0 <_ZN10CanManager20convertStatusData_RxEPh>:
+08002194 <_ZN10CanManager20convertStatusData_RxEPh>:
 
 void CanManager::convertStatusData_Rx(uint8_t * data){
- 80021a0:	b590      	push	{r4, r7, lr}
- 80021a2:	b085      	sub	sp, #20
- 80021a4:	af00      	add	r7, sp, #0
- 80021a6:	6078      	str	r0, [r7, #4]
- 80021a8:	6039      	str	r1, [r7, #0]
+ 8002194:	b590      	push	{r4, r7, lr}
+ 8002196:	b085      	sub	sp, #20
+ 8002198:	af00      	add	r7, sp, #0
+ 800219a:	6078      	str	r0, [r7, #4]
+ 800219c:	6039      	str	r1, [r7, #0]
+	HAL_GPIO_TogglePin(BLUE_LED_GPIO_Port, BLUE_LED_Pin);
+ 800219e:	f44f 4180 	mov.w	r1, #16384	; 0x4000
+ 80021a2:	480f      	ldr	r0, [pc, #60]	; (80021e0 <_ZN10CanManager20convertStatusData_RxEPh+0x4c>)
+ 80021a4:	f002 fb89 	bl	80048ba <HAL_GPIO_TogglePin>
 	uint8_t status = data[STATUS_MODE_BYTE];
- 80021aa:	683b      	ldr	r3, [r7, #0]
- 80021ac:	781b      	ldrb	r3, [r3, #0]
- 80021ae:	73fb      	strb	r3, [r7, #15]
+ 80021a8:	683b      	ldr	r3, [r7, #0]
+ 80021aa:	781b      	ldrb	r3, [r3, #0]
+ 80021ac:	73fb      	strb	r3, [r7, #15]
 	uint8_t permition = data[STATUS_PERMITION_BYTE];
- 80021b0:	683b      	ldr	r3, [r7, #0]
- 80021b2:	785b      	ldrb	r3, [r3, #1]
- 80021b4:	73bb      	strb	r3, [r7, #14]
+ 80021ae:	683b      	ldr	r3, [r7, #0]
+ 80021b0:	785b      	ldrb	r3, [r3, #1]
+ 80021b2:	73bb      	strb	r3, [r7, #14]
 	modeManager.statusUpdate(getRCmodeStatus_Rx( status ), getDriveModestatus_Rx( permition ) );
- 80021b6:	7bfb      	ldrb	r3, [r7, #15]
- 80021b8:	4619      	mov	r1, r3
- 80021ba:	6878      	ldr	r0, [r7, #4]
- 80021bc:	f000 f814 	bl	80021e8 <_ZN10CanManager18getRCmodeStatus_RxEh>
- 80021c0:	4603      	mov	r3, r0
- 80021c2:	461c      	mov	r4, r3
- 80021c4:	7bbb      	ldrb	r3, [r7, #14]
- 80021c6:	4619      	mov	r1, r3
- 80021c8:	6878      	ldr	r0, [r7, #4]
- 80021ca:	f000 f82c 	bl	8002226 <_ZN10CanManager21getDriveModestatus_RxEh>
- 80021ce:	4603      	mov	r3, r0
- 80021d0:	461a      	mov	r2, r3
- 80021d2:	4621      	mov	r1, r4
- 80021d4:	4803      	ldr	r0, [pc, #12]	; (80021e4 <_ZN10CanManager20convertStatusData_RxEPh+0x44>)
- 80021d6:	f000 fe47 	bl	8002e68 <_ZN11ModeManager12statusUpdateENS_7RC_MODEENS_10DRIVE_MODEE>
+ 80021b4:	7bfb      	ldrb	r3, [r7, #15]
+ 80021b6:	4619      	mov	r1, r3
+ 80021b8:	6878      	ldr	r0, [r7, #4]
+ 80021ba:	f000 f815 	bl	80021e8 <_ZN10CanManager18getRCmodeStatus_RxEh>
+ 80021be:	4603      	mov	r3, r0
+ 80021c0:	461c      	mov	r4, r3
+ 80021c2:	7bbb      	ldrb	r3, [r7, #14]
+ 80021c4:	4619      	mov	r1, r3
+ 80021c6:	6878      	ldr	r0, [r7, #4]
+ 80021c8:	f000 f82d 	bl	8002226 <_ZN10CanManager21getDriveModestatus_RxEh>
+ 80021cc:	4603      	mov	r3, r0
+ 80021ce:	461a      	mov	r2, r3
+ 80021d0:	4621      	mov	r1, r4
+ 80021d2:	4804      	ldr	r0, [pc, #16]	; (80021e4 <_ZN10CanManager20convertStatusData_RxEPh+0x50>)
+ 80021d4:	f000 fe48 	bl	8002e68 <_ZN11ModeManager12statusUpdateENS_7RC_MODEENS_10DRIVE_MODEE>
 }
- 80021da:	bf00      	nop
- 80021dc:	3714      	adds	r7, #20
- 80021de:	46bd      	mov	sp, r7
- 80021e0:	bd90      	pop	{r4, r7, pc}
- 80021e2:	bf00      	nop
+ 80021d8:	bf00      	nop
+ 80021da:	3714      	adds	r7, #20
+ 80021dc:	46bd      	mov	sp, r7
+ 80021de:	bd90      	pop	{r4, r7, pc}
+ 80021e0:	40011000 	.word	0x40011000
  80021e4:	200001b4 	.word	0x200001b4
 
 080021e8 <_ZN10CanManager18getRCmodeStatus_RxEh>:
@@ -3486,7 +3487,7 @@ void CanManager::getData_Rx(uint32_t frame_id, uint8_t* data, uint8_t dlc){
  8002316:	d104      	bne.n	8002322 <_ZN10CanManager10getData_RxEmPhh+0x22>
  8002318:	6879      	ldr	r1, [r7, #4]
  800231a:	68f8      	ldr	r0, [r7, #12]
- 800231c:	f7ff ff40 	bl	80021a0 <_ZN10CanManager20convertStatusData_RxEPh>
+ 800231c:	f7ff ff3a 	bl	8002194 <_ZN10CanManager20convertStatusData_RxEPh>
 	else if ( frame_id == VELOCITY_FRAME_ID ) 		setVelocity( convertVelocityTurnData_Rx( data ), ModeManager::RC );
 	else if ( frame_id == I3_VELOCITY_FRAME_ID )	setVelocity( convertVelocityTurnData_Rx( data ),ModeManager::I3  );
 	else if ( frame_id == TURN_FRAME_ID )			setTurn( convertVelocityTurnData_Rx( data ), ModeManager::RC  );
@@ -3500,7 +3501,7 @@ void CanManager::getData_Rx(uint32_t frame_id, uint8_t* data, uint8_t dlc){
  800232a:	d10a      	bne.n	8002342 <_ZN10CanManager10getData_RxEmPhh+0x42>
  800232c:	6879      	ldr	r1, [r7, #4]
  800232e:	68f8      	ldr	r0, [r7, #12]
- 8002330:	f7ff ff08 	bl	8002144 <_ZN10CanManager26convertVelocityTurnData_RxEPh>
+ 8002330:	f7ff ff02 	bl	8002138 <_ZN10CanManager26convertVelocityTurnData_RxEPh>
  8002334:	4603      	mov	r3, r0
  8002336:	2200      	movs	r2, #0
  8002338:	4619      	mov	r1, r3
@@ -3515,7 +3516,7 @@ void CanManager::getData_Rx(uint32_t frame_id, uint8_t* data, uint8_t dlc){
  800234a:	d10a      	bne.n	8002362 <_ZN10CanManager10getData_RxEmPhh+0x62>
  800234c:	6879      	ldr	r1, [r7, #4]
  800234e:	68f8      	ldr	r0, [r7, #12]
- 8002350:	f7ff fef8 	bl	8002144 <_ZN10CanManager26convertVelocityTurnData_RxEPh>
+ 8002350:	f7ff fef2 	bl	8002138 <_ZN10CanManager26convertVelocityTurnData_RxEPh>
  8002354:	4603      	mov	r3, r0
  8002356:	2201      	movs	r2, #1
  8002358:	4619      	mov	r1, r3
@@ -3530,7 +3531,7 @@ void CanManager::getData_Rx(uint32_t frame_id, uint8_t* data, uint8_t dlc){
  800236a:	d10a      	bne.n	8002382 <_ZN10CanManager10getData_RxEmPhh+0x82>
  800236c:	6879      	ldr	r1, [r7, #4]
  800236e:	68f8      	ldr	r0, [r7, #12]
- 8002370:	f7ff fee8 	bl	8002144 <_ZN10CanManager26convertVelocityTurnData_RxEPh>
+ 8002370:	f7ff fee2 	bl	8002138 <_ZN10CanManager26convertVelocityTurnData_RxEPh>
  8002374:	4603      	mov	r3, r0
  8002376:	2200      	movs	r2, #0
  8002378:	4619      	mov	r1, r3
@@ -3545,7 +3546,7 @@ void CanManager::getData_Rx(uint32_t frame_id, uint8_t* data, uint8_t dlc){
  800238a:	d109      	bne.n	80023a0 <_ZN10CanManager10getData_RxEmPhh+0xa0>
  800238c:	6879      	ldr	r1, [r7, #4]
  800238e:	68f8      	ldr	r0, [r7, #12]
- 8002390:	f7ff fed8 	bl	8002144 <_ZN10CanManager26convertVelocityTurnData_RxEPh>
+ 8002390:	f7ff fed2 	bl	8002138 <_ZN10CanManager26convertVelocityTurnData_RxEPh>
  8002394:	4603      	mov	r3, r0
  8002396:	2201      	movs	r2, #1
  8002398:	4619      	mov	r1, r3
@@ -5940,7 +5941,7 @@ void MX_GPIO_Init(void)
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOC, BLUE_LED_Pin|LED_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(BLUE_LED_GPIO_Port, BLUE_LED_Pin, GPIO_PIN_RESET);
  80032b0:	4f48      	ldr	r7, [pc, #288]	; (80033d4 <MX_GPIO_Init+0x13c>)
   __HAL_RCC_GPIOC_CLK_ENABLE();
  80032b2:	699a      	ldr	r2, [r3, #24]
@@ -5952,7 +5953,7 @@ void MX_GPIO_Init(void)
  80032b6:	ea42 0208 	orr.w	r2, r2, r8
  80032ba:	619a      	str	r2, [r3, #24]
  80032bc:	699a      	ldr	r2, [r3, #24]
-  HAL_GPIO_WritePin(GPIOC, BLUE_LED_Pin|LED_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(BLUE_LED_GPIO_Port, BLUE_LED_Pin, GPIO_PIN_RESET);
  80032be:	4638      	mov	r0, r7
   __HAL_RCC_GPIOC_CLK_ENABLE();
  80032c0:	ea02 0208 	and.w	r2, r2, r8
@@ -5960,17 +5961,17 @@ void MX_GPIO_Init(void)
  80032c6:	9a00      	ldr	r2, [sp, #0]
   __HAL_RCC_GPIOD_CLK_ENABLE();
  80032c8:	699a      	ldr	r2, [r3, #24]
-  HAL_GPIO_WritePin(GPIOC, BLUE_LED_Pin|LED_Pin, GPIO_PIN_RESET);
- 80032ca:	f44f 4188 	mov.w	r1, #17408	; 0x4400
+  HAL_GPIO_WritePin(BLUE_LED_GPIO_Port, BLUE_LED_Pin, GPIO_PIN_RESET);
+ 80032ca:	f44f 4180 	mov.w	r1, #16384	; 0x4000
   __HAL_RCC_GPIOD_CLK_ENABLE();
  80032ce:	f042 0220 	orr.w	r2, r2, #32
  80032d2:	619a      	str	r2, [r3, #24]
  80032d4:	699a      	ldr	r2, [r3, #24]
 
   /*Configure GPIO pins : PCPin PCPin PCPin PCPin 
-                           PCPin */
-  GPIO_InitStruct.Pin = BUTTON_6_Pin|BUTTON_1_Pin|BUTTON_2_Pin|BUTTON_4_Pin 
-                          |BUTTON_5_Pin;
+                           PCPin PCPin */
+  GPIO_InitStruct.Pin = BUTTON_6_Pin|BUTTON_1_Pin|BUTTON_2_Pin|BUTTON_3_Pin 
+                          |BUTTON_4_Pin|BUTTON_5_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
  80032d6:	2400      	movs	r4, #0
   __HAL_RCC_GPIOD_CLK_ENABLE();
@@ -5982,8 +5983,8 @@ void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : PCPin PCPin */
-  GPIO_InitStruct.Pin = BLUE_LED_Pin|LED_Pin;
+  /*Configure GPIO pin : PtPin */
+  GPIO_InitStruct.Pin = BLUE_LED_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
  80032e2:	f04f 0a01 	mov.w	sl, #1
   __HAL_RCC_GPIOA_CLK_ENABLE();
@@ -6010,30 +6011,30 @@ void MX_GPIO_Init(void)
  80032fe:	f042 0208 	orr.w	r2, r2, #8
  8003302:	619a      	str	r2, [r3, #24]
  8003304:	699b      	ldr	r3, [r3, #24]
-  HAL_GPIO_WritePin(GPIOC, BLUE_LED_Pin|LED_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(BLUE_LED_GPIO_Port, BLUE_LED_Pin, GPIO_PIN_RESET);
  8003306:	2200      	movs	r2, #0
   __HAL_RCC_GPIOB_CLK_ENABLE();
  8003308:	f003 0308 	and.w	r3, r3, #8
  800330c:	9303      	str	r3, [sp, #12]
  800330e:	9b03      	ldr	r3, [sp, #12]
-  HAL_GPIO_WritePin(GPIOC, BLUE_LED_Pin|LED_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(BLUE_LED_GPIO_Port, BLUE_LED_Pin, GPIO_PIN_RESET);
  8003310:	f001 face 	bl	80048b0 <HAL_GPIO_WritePin>
   HAL_GPIO_WritePin(TP_CS_GPIO_Port, TP_CS_Pin, GPIO_PIN_SET);
  8003314:	4628      	mov	r0, r5
  8003316:	2201      	movs	r2, #1
  8003318:	2104      	movs	r1, #4
  800331a:	f001 fac9 	bl	80048b0 <HAL_GPIO_WritePin>
-  HAL_GPIO_WritePin(GPIOA, BL_CTRL_Pin|GPIO18_Pin|GPIO4_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, BL_CTRL_Pin|LED_Pin|GPIO18_Pin|GPIO4_Pin, GPIO_PIN_RESET);
  800331e:	2200      	movs	r2, #0
  8003320:	4628      	mov	r0, r5
- 8003322:	f248 1108 	movw	r1, #33032	; 0x8108
+ 8003322:	f248 1128 	movw	r1, #33064	; 0x8128
  8003326:	f001 fac3 	bl	80048b0 <HAL_GPIO_WritePin>
-  GPIO_InitStruct.Pin = BUTTON_6_Pin|BUTTON_1_Pin|BUTTON_2_Pin|BUTTON_4_Pin 
- 800332a:	f44f 536c 	mov.w	r3, #15104	; 0x3b00
+  GPIO_InitStruct.Pin = BUTTON_6_Pin|BUTTON_1_Pin|BUTTON_2_Pin|BUTTON_3_Pin 
+ 800332a:	f44f 537c 	mov.w	r3, #16128	; 0x3f00
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
  800332e:	eb0d 0108 	add.w	r1, sp, r8
  8003332:	4638      	mov	r0, r7
-  GPIO_InitStruct.Pin = BUTTON_6_Pin|BUTTON_1_Pin|BUTTON_2_Pin|BUTTON_4_Pin 
+  GPIO_InitStruct.Pin = BUTTON_6_Pin|BUTTON_1_Pin|BUTTON_2_Pin|BUTTON_3_Pin 
  8003334:	9304      	str	r3, [sp, #16]
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
  8003336:	9405      	str	r4, [sp, #20]
@@ -6041,12 +6042,12 @@ void MX_GPIO_Init(void)
  8003338:	9406      	str	r4, [sp, #24]
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
  800333a:	f001 f9cd 	bl	80046d8 <HAL_GPIO_Init>
-  GPIO_InitStruct.Pin = BLUE_LED_Pin|LED_Pin;
- 800333e:	f44f 4388 	mov.w	r3, #17408	; 0x4400
-  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+  GPIO_InitStruct.Pin = BLUE_LED_Pin;
+ 800333e:	f44f 4380 	mov.w	r3, #16384	; 0x4000
+  HAL_GPIO_Init(BLUE_LED_GPIO_Port, &GPIO_InitStruct);
  8003342:	eb0d 0108 	add.w	r1, sp, r8
  8003346:	4638      	mov	r0, r7
-  GPIO_InitStruct.Pin = BLUE_LED_Pin|LED_Pin;
+  GPIO_InitStruct.Pin = BLUE_LED_Pin;
  8003348:	9304      	str	r3, [sp, #16]
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
  800334a:	f8cd a014 	str.w	sl, [sp, #20]
@@ -6054,7 +6055,7 @@ void MX_GPIO_Init(void)
  800334e:	9406      	str	r4, [sp, #24]
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
  8003350:	f8cd 901c 	str.w	r9, [sp, #28]
-  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+  HAL_GPIO_Init(BLUE_LED_GPIO_Port, &GPIO_InitStruct);
  8003354:	f001 f9c0 	bl	80046d8 <HAL_GPIO_Init>
   GPIO_InitStruct.Pin = GPIO_PIN_15|GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_2 
  8003358:	f248 03cf 	movw	r3, #32975	; 0x80cf
@@ -6068,16 +6069,18 @@ void MX_GPIO_Init(void)
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
  8003366:	f001 f9b7 	bl	80046d8 <HAL_GPIO_Init>
 
-  /*Configure GPIO pins : PAPin PAPin PAPin PAPin */
-  GPIO_InitStruct.Pin = TP_CS_Pin|BL_CTRL_Pin|GPIO18_Pin|GPIO4_Pin;
- 800336a:	f248 130c 	movw	r3, #33036	; 0x810c
+  /*Configure GPIO pins : PAPin PAPin PAPin PAPin 
+                           PAPin */
+  GPIO_InitStruct.Pin = TP_CS_Pin|BL_CTRL_Pin|LED_Pin|GPIO18_Pin 
+ 800336a:	f248 132c 	movw	r3, #33068	; 0x812c
+                          |GPIO4_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
  800336e:	eb0d 0108 	add.w	r1, sp, r8
  8003372:	4628      	mov	r0, r5
-  GPIO_InitStruct.Pin = TP_CS_Pin|BL_CTRL_Pin|GPIO18_Pin|GPIO4_Pin;
+  GPIO_InitStruct.Pin = TP_CS_Pin|BL_CTRL_Pin|LED_Pin|GPIO18_Pin 
  8003374:	9304      	str	r3, [sp, #16]
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
  8003376:	f8cd a014 	str.w	sl, [sp, #20]
@@ -6104,14 +6107,14 @@ void MX_GPIO_Init(void)
   HAL_GPIO_Init(TP_IRQ_GPIO_Port, &GPIO_InitStruct);
  8003392:	f001 f9a1 	bl	80046d8 <HAL_GPIO_Init>
 
-  /*Configure GPIO pins : PA5 PA6 PA7 */
-  GPIO_InitStruct.Pin = GPIO_PIN_5|GPIO_PIN_6|GPIO_PIN_7;
- 8003396:	23e0      	movs	r3, #224	; 0xe0
+  /*Configure GPIO pins : PA6 PA7 */
+  GPIO_InitStruct.Pin = GPIO_PIN_6|GPIO_PIN_7;
+ 8003396:	23c0      	movs	r3, #192	; 0xc0
   GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
  8003398:	eb0d 0108 	add.w	r1, sp, r8
  800339c:	4628      	mov	r0, r5
-  GPIO_InitStruct.Pin = GPIO_PIN_5|GPIO_PIN_6|GPIO_PIN_7;
+  GPIO_InitStruct.Pin = GPIO_PIN_6|GPIO_PIN_7;
  800339e:	9304      	str	r3, [sp, #16]
   GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
  80033a0:	9605      	str	r6, [sp, #20]
@@ -6212,7 +6215,7 @@ int main(void)
  8003410:	f7ff fc94 	bl	8002d3c <_ZN11ModeManager4initEv>
   canManager.init();
  8003414:	4803      	ldr	r0, [pc, #12]	; (8003424 <main+0x40>)
- 8003416:	f7fe fe5d 	bl	80020d4 <_ZN10CanManager4initEv>
+ 8003416:	f7fe fe57 	bl	80020c8 <_ZN10CanManager4initEv>
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -6737,72 +6740,71 @@ void MX_TIM3_Init(void)
  8003654:	2300      	movs	r3, #0
 
   htim3.Instance = TIM3;
-  htim3.Init.Prescaler = 28-1;
- 8003656:	221b      	movs	r2, #27
+  htim3.Init.Prescaler = 280-1;
+ 8003656:	f240 1217 	movw	r2, #279	; 0x117
   htim3.Instance = TIM3;
- 8003658:	4814      	ldr	r0, [pc, #80]	; (80036ac <MX_TIM3_Init+0x64>)
-  htim3.Init.Prescaler = 28-1;
- 800365a:	4915      	ldr	r1, [pc, #84]	; (80036b0 <MX_TIM3_Init+0x68>)
+ 800365a:	4814      	ldr	r0, [pc, #80]	; (80036ac <MX_TIM3_Init+0x64>)
+  htim3.Init.Prescaler = 280-1;
+ 800365c:	4914      	ldr	r1, [pc, #80]	; (80036b0 <MX_TIM3_Init+0x68>)
   TIM_MasterConfigTypeDef sMasterConfig = {0};
- 800365c:	9300      	str	r3, [sp, #0]
- 800365e:	9301      	str	r3, [sp, #4]
-  htim3.Init.Prescaler = 28-1;
- 8003660:	e880 0006 	stmia.w	r0, {r1, r2}
+ 800365e:	9300      	str	r3, [sp, #0]
+ 8003660:	9301      	str	r3, [sp, #4]
+  htim3.Init.Prescaler = 280-1;
+ 8003662:	e880 0006 	stmia.w	r0, {r1, r2}
   htim3.Init.CounterMode = TIM_COUNTERMODE_UP;
- 8003664:	6083      	str	r3, [r0, #8]
+ 8003666:	6083      	str	r3, [r0, #8]
   htim3.Init.Period = 1000;
- 8003666:	f44f 727a 	mov.w	r2, #1000	; 0x3e8
+ 8003668:	f44f 727a 	mov.w	r2, #1000	; 0x3e8
   htim3.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
- 800366a:	6103      	str	r3, [r0, #16]
+ 800366c:	6103      	str	r3, [r0, #16]
   htim3.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_ENABLE;
- 800366c:	2380      	movs	r3, #128	; 0x80
+ 800366e:	2380      	movs	r3, #128	; 0x80
   htim3.Init.Period = 1000;
- 800366e:	60c2      	str	r2, [r0, #12]
+ 8003670:	60c2      	str	r2, [r0, #12]
   htim3.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_ENABLE;
- 8003670:	6183      	str	r3, [r0, #24]
+ 8003672:	6183      	str	r3, [r0, #24]
   if (HAL_TIM_Base_Init(&htim3) != HAL_OK)
- 8003672:	f001 fd51 	bl	8005118 <HAL_TIM_Base_Init>
- 8003676:	b108      	cbz	r0, 800367c <MX_TIM3_Init+0x34>
+ 8003674:	f001 fd50 	bl	8005118 <HAL_TIM_Base_Init>
+ 8003678:	b108      	cbz	r0, 800367e <MX_TIM3_Init+0x36>
   {
     Error_Handler();
- 8003678:	f7ff ff3c 	bl	80034f4 <Error_Handler>
+ 800367a:	f7ff ff3b 	bl	80034f4 <Error_Handler>
   }
   sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
- 800367c:	f44f 5380 	mov.w	r3, #4096	; 0x1000
+ 800367e:	f44f 5380 	mov.w	r3, #4096	; 0x1000
   if (HAL_TIM_ConfigClockSource(&htim3, &sClockSourceConfig) != HAL_OK)
- 8003680:	a902      	add	r1, sp, #8
- 8003682:	480a      	ldr	r0, [pc, #40]	; (80036ac <MX_TIM3_Init+0x64>)
+ 8003682:	a902      	add	r1, sp, #8
+ 8003684:	4809      	ldr	r0, [pc, #36]	; (80036ac <MX_TIM3_Init+0x64>)
   sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
- 8003684:	9302      	str	r3, [sp, #8]
+ 8003686:	9302      	str	r3, [sp, #8]
   if (HAL_TIM_ConfigClockSource(&htim3, &sClockSourceConfig) != HAL_OK)
- 8003686:	f001 fd6b 	bl	8005160 <HAL_TIM_ConfigClockSource>
- 800368a:	b108      	cbz	r0, 8003690 <MX_TIM3_Init+0x48>
+ 8003688:	f001 fd6a 	bl	8005160 <HAL_TIM_ConfigClockSource>
+ 800368c:	b108      	cbz	r0, 8003692 <MX_TIM3_Init+0x4a>
   {
     Error_Handler();
- 800368c:	f7ff ff32 	bl	80034f4 <Error_Handler>
+ 800368e:	f7ff ff31 	bl	80034f4 <Error_Handler>
   }
   sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
- 8003690:	2300      	movs	r3, #0
+ 8003692:	2300      	movs	r3, #0
   sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
   if (HAL_TIMEx_MasterConfigSynchronization(&htim3, &sMasterConfig) != HAL_OK)
- 8003692:	4669      	mov	r1, sp
- 8003694:	4805      	ldr	r0, [pc, #20]	; (80036ac <MX_TIM3_Init+0x64>)
+ 8003694:	4669      	mov	r1, sp
+ 8003696:	4805      	ldr	r0, [pc, #20]	; (80036ac <MX_TIM3_Init+0x64>)
   sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
- 8003696:	9300      	str	r3, [sp, #0]
+ 8003698:	9300      	str	r3, [sp, #0]
   sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
- 8003698:	9301      	str	r3, [sp, #4]
+ 800369a:	9301      	str	r3, [sp, #4]
   if (HAL_TIMEx_MasterConfigSynchronization(&htim3, &sMasterConfig) != HAL_OK)
- 800369a:	f001 fdf5 	bl	8005288 <HAL_TIMEx_MasterConfigSynchronization>
- 800369e:	b108      	cbz	r0, 80036a4 <MX_TIM3_Init+0x5c>
+ 800369c:	f001 fdf4 	bl	8005288 <HAL_TIMEx_MasterConfigSynchronization>
+ 80036a0:	b108      	cbz	r0, 80036a6 <MX_TIM3_Init+0x5e>
   {
     Error_Handler();
- 80036a0:	f7ff ff28 	bl	80034f4 <Error_Handler>
+ 80036a2:	f7ff ff27 	bl	80034f4 <Error_Handler>
   }
 
 }
- 80036a4:	b007      	add	sp, #28
- 80036a6:	f85d fb04 	ldr.w	pc, [sp], #4
- 80036aa:	bf00      	nop
+ 80036a6:	b007      	add	sp, #28
+ 80036a8:	f85d fb04 	ldr.w	pc, [sp], #4
  80036ac:	200002a4 	.word	0x200002a4
  80036b0:	40000400 	.word	0x40000400
 
@@ -8889,7 +8891,7 @@ __weak void HAL_CAN_ErrorCallback(CAN_HandleTypeDef *hcan)
  800422a:	d002      	beq.n	8004232 <HAL_CAN_IRQHandler+0xe0>
       HAL_CAN_RxFifo1MsgPendingCallback(hcan);
  800422c:	4628      	mov	r0, r5
- 800422e:	f7fd ff3b 	bl	80020a8 <HAL_CAN_RxFifo1MsgPendingCallback>
+ 800422e:	f7fd ff35 	bl	800209c <HAL_CAN_RxFifo1MsgPendingCallback>
   if ((interrupts & CAN_IT_SLEEP_ACK) != 0U)
  8004232:	03b1      	lsls	r1, r6, #14
  8004234:	d508      	bpl.n	8004248 <HAL_CAN_IRQHandler+0xf6>

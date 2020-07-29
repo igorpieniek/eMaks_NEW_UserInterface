@@ -32,6 +32,7 @@ float CanManager::convertVelocityTurnData_Rx(uint8_t * data){
 }
 
 void CanManager::convertStatusData_Rx(uint8_t * data){
+	HAL_GPIO_TogglePin(BLUE_LED_GPIO_Port, BLUE_LED_Pin);
 	uint8_t status = data[STATUS_MODE_BYTE];
 	uint8_t permition = data[STATUS_PERMITION_BYTE];
 	modeManager.statusUpdate(getRCmodeStatus_Rx( status ), getDriveModestatus_Rx( permition ) );
