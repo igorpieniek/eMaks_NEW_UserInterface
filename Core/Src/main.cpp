@@ -63,27 +63,7 @@ extern "C" void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
-  if (htim->Instance == TIM6) {
-	  canManager.stopAllMotors();
-  }
-  if (htim->Instance == TIM3) {
-	  HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
-	  if (modeManager.isJoystickMode()){
-		joystick.process();
-	  }
-  }
-}
 
-void HAL_CAN_RxFifo1MsgPendingCallback (CAN_HandleTypeDef* hcan ){
-
-	HAL_CAN_GetRxMessage(hcan,CAN_RX_FIFO0,
-			&canManager.can_messages.rx_header,
-			canManager.can_messages.rx_data );
-
-	canManager.process();
-
-}
 /* USER CODE END 0 */
 
 /**
@@ -120,7 +100,6 @@ int main(void)
 //  MX_SPI1_Init();
   MX_TIM3_Init();
   MX_USART1_UART_Init();
-  MX_TIM6_Init();
   /* USER CODE BEGIN 2 */
   joystick.init();
   modeManager.init();

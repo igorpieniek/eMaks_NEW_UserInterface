@@ -13,7 +13,7 @@
 #include "stm32f1xx_hal_tim.h"
 
 
-#define IDLE_TIMER htim6
+#define IDLE_TIMER htim4
 #define PROCESS_TIMER htim3
 
 class ModeManager {
