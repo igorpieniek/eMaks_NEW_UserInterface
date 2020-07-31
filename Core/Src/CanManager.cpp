@@ -6,6 +6,7 @@
  */
 
 #include "CanManager.h"
+#include <math.h>
 
 CanManager canManager;
 
@@ -88,9 +89,15 @@ uint8_t CanManager::getSign_Tx(float value){
 }
 
 uint16_t CanManager::convertFloatToUint16t(float maxValue, float value){
-	float percentage = value/maxValue;
-	if (percentage > 1) percentage = 1;
-	return (uint16_t)(MAX_CANVALUE * percentage);
+//	float percentage = value/maxValue;
+//	if (percentage > 1) percentage = 1;
+//	return (uint16_t)(MAX_CANVALUE * percentage); // to tez daje dobre wyniki
+	float range = 128;
+	if( value > range){
+		return range;
+	}
+	return(uint16_t)(value * pow(2, 16) /range);
+
 }
 
 uint8_t * CanManager::convertToFrame_Tx(uint8_t sign, uint16_t value, SEND_MODE mode){
@@ -133,14 +140,14 @@ void CanManager::stopAllMotors(){
 
 void CanManager::hal_can_send(uint16_t frame_id, uint8_t dlc, uint8_t* data){
 	HAL_GPIO_WritePin(BLUE_LED_GPIO_Port, BLUE_LED_Pin, GPIO_PIN_RESET);
-	hal_can_messageTx can_messages;
-	can_messages.data = data;
-	can_messages.header.DLC = dlc;
-	can_messages.header.RTR = CAN_RTR_DATA;
-	can_messages.header.IDE  = CAN_ID_STD;
-	can_messages.header.StdId = frame_id;
+	hal_can_messageTx canMsgTx;
+	canMsgTx.data = data;
+	canMsgTx.header.DLC = dlc;
+	canMsgTx.header.RTR = CAN_RTR_DATA;
+	canMsgTx.header.IDE  = CAN_ID_STD;
+	canMsgTx.header.StdId = frame_id;
 
-	HAL_CAN_AddTxMessage(&hcan, &(can_messages.header),can_messages.data,&(can_messages.mailbox));
+	HAL_CAN_AddTxMessage(&hcan, &(canMsgTx.header),canMsgTx.data,&(canMsgTx.mailbox));
 
 }
 
