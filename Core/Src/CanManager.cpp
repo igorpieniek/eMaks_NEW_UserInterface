@@ -21,17 +21,6 @@ void CanManager::process(){
 }
 /////////////////////////RX PART///////////////////////////////////////////
 
-//float CanManager::getSign_Rx(uint8_t * data){
-//	uint16_t sign = uint8_To_uint16(data, 0);
-//	if(sign == 	NEGATIVE_SIGN) return -1.f;
-//	else					   return 1.f;
-//}
-
-//float CanManager::convertVelocityTurnData_Rx(uint8_t * data){
-//	uint16_t rawData = uint8_To_uint16(data, 2); // because value start from 2 byte
-//	return  getSign_Rx(data) * (float)(rawData / MAX_CANVALUE)*100.f; // PERCENTAGE CALCULATE
-//}
-
 void CanManager::convertStatusData_Rx(uint8_t * data){
 
 	uint8_t status = data[STATUS_MODE_BYTE];
@@ -83,10 +72,10 @@ void CanManager::sendMsg(SEND_MODE mode, uint8_t * msgData){
 	}
 }
 
-uint8_t CanManager::getSign_Tx(float value){
-	if (value >=0) return POSITIVE_SIGN;
-	else return NEGATIVE_SIGN;
-}
+//uint8_t CanManager::getSign_Tx(float value){
+//	if (value >=0) return POSITIVE_SIGN;
+//	else return NEGATIVE_SIGN;
+//}
 
 uint16_t CanManager::convertFloatToUint16t(float maxValue, float value){
 //	float percentage = value/maxValue;
@@ -109,7 +98,7 @@ uint8_t * CanManager::convertToFrame_Tx(uint8_t sign, uint16_t value, SEND_MODE 
 				(uint8_t) value,
 		};
 		return encode_frame_big_endian(data_to_encode,STEERING_FRAME_LENGTH);
-	}
+	}else{return 0;}
 }
 
 uint8_t* CanManager::encode_frame_big_endian(uint8_t* data , uint8_t data_length){
@@ -119,22 +108,22 @@ uint8_t* CanManager::encode_frame_big_endian(uint8_t* data , uint8_t data_length
 	}
 	return encoded_data;
 }
-void CanManager::convertVelocityTurnData_Tx(float value, SEND_MODE mode){
-	uint8_t sign = getSign_Tx(value);
-	if (sign == NEGATIVE_SIGN){ value *= -1; } //Change signt to positive after check
+void CanManager::convertVelocityTurnData_Tx(float value, uint8_t sign, SEND_MODE mode){
+//	uint8_t sign = getSign_Tx(value);
+//	if (sign == NEGATIVE_SIGN){ value *= -1; } //Change signt to positive after check
 	uint16_t convertedData = convertFloatToUint16t(MAX_PERCERTAGE_VALUE,value);
 	sendMsg(mode, convertToFrame_Tx(sign, convertedData , mode) );
 }
-void CanManager::sendVelocity(float vel){
-	convertVelocityTurnData_Tx(vel, VELOCITY);
+void CanManager::sendVelocity(float vel, uint8_t sign){
+	convertVelocityTurnData_Tx(vel, sign, VELOCITY);
 }
-void CanManager::sendTurn(float turn){
-	convertVelocityTurnData_Tx(turn, TURN);
+void CanManager::sendTurn(float turn, uint8_t sign){
+	convertVelocityTurnData_Tx(turn, sign, TURN);
 }
 
 void CanManager::stopAllMotors(){
-	convertVelocityTurnData_Tx(0.f, VELOCITY);
-	convertVelocityTurnData_Tx(0.f, TURN);
+	convertVelocityTurnData_Tx(0.f, 0,VELOCITY);
+	convertVelocityTurnData_Tx(0.f, 0,TURN);
 }
 
 

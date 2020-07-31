@@ -90,8 +90,10 @@ void Joystick::calculate_joy_data(void){
 void Joystick::sendToCan(void){
 	float vel = joy.measurements[X_AXIS_INDEX].percentage_value;
 	float turn = joy.measurements[Y_AXIS_INDEX].percentage_value;
-	canManager.sendTurn(turn);
-	canManager.sendVelocity(vel);
+	uint8_t signV = joy.measurements[X_AXIS_INDEX].sign;
+	uint8_t signT = joy.measurements[Y_AXIS_INDEX].sign;
+	canManager.sendTurn(turn, signT);
+	canManager.sendVelocity(vel, signV);
 
 }
 
