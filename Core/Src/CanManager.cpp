@@ -40,11 +40,6 @@ ModeManager::DRIVE_MODE CanManager::getDriveModestatus_Rx(uint8_t permition){
 	else if(permition ==  DISABLE_DRIVE_MSG ) 	return ModeManager::DISABLE;
 }
 
-
-uint16_t CanManager::uint8_To_uint16(uint8_t* data, uint8_t start_byte){
-	return ((uint16_t)data[start_byte + 1] << 8) | (uint16_t)data[start_byte]; //copy from can_frrames.c
-}
-
 void CanManager::setVelocity(uint8_t* vel, ModeManager::MSG_ORIGIN origin){
 	if (modeManager.velocityPermission(origin)) sendMsg(VELOCITY, vel);
 
@@ -72,21 +67,12 @@ void CanManager::sendMsg(SEND_MODE mode, uint8_t * msgData){
 	}
 }
 
-//uint8_t CanManager::getSign_Tx(float value){
-//	if (value >=0) return POSITIVE_SIGN;
-//	else return NEGATIVE_SIGN;
-//}
-
 uint16_t CanManager::convertFloatToUint16t(float maxValue, float value){
-//	float percentage = value/maxValue;
-//	if (percentage > 1) percentage = 1;
-//	return (uint16_t)(MAX_CANVALUE * percentage); // to tez daje dobre wyniki
 	float range = 128;
 	if( value > range){
 		return range;
 	}
 	return(uint16_t)(value * pow(2, 16) /range);
-
 }
 
 uint8_t * CanManager::convertToFrame_Tx(uint8_t sign, uint16_t value, SEND_MODE mode){
@@ -109,8 +95,6 @@ uint8_t* CanManager::encode_frame_big_endian(uint8_t* data , uint8_t data_length
 	return encoded_data;
 }
 void CanManager::convertVelocityTurnData_Tx(float value, uint8_t sign, SEND_MODE mode){
-//	uint8_t sign = getSign_Tx(value);
-//	if (sign == NEGATIVE_SIGN){ value *= -1; } //Change signt to positive after check
 	uint16_t convertedData = convertFloatToUint16t(MAX_PERCERTAGE_VALUE,value);
 	sendMsg(mode, convertToFrame_Tx(sign, convertedData , mode) );
 }
@@ -125,7 +109,6 @@ void CanManager::stopAllMotors(){
 	convertVelocityTurnData_Tx(0.f, 0,VELOCITY);
 	convertVelocityTurnData_Tx(0.f, 0,TURN);
 }
-
 
 void CanManager::hal_can_send(uint16_t frame_id, uint8_t dlc, uint8_t* data){
 	HAL_GPIO_WritePin(BLUE_LED_GPIO_Port, BLUE_LED_Pin, GPIO_PIN_RESET);

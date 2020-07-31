@@ -48,13 +48,9 @@
 
 class CanManager {
 private:
-	//void sendConfirmation();
-	float getSign_Rx(uint8_t * data);
-	float convertVelocityTurnData_Rx(uint8_t * data);
 	void convertStatusData_Rx(uint8_t * data);
 	ModeManager::RC_MODE getRCmodeStatus_Rx(uint8_t data);
 	ModeManager::DRIVE_MODE getDriveModestatus_Rx(uint8_t data);
-	uint16_t uint8_To_uint16(uint8_t* data, uint8_t start_byte);
 
 	// Tx part
 	enum SEND_MODE{
@@ -63,7 +59,6 @@ private:
 		STATUS
 	};
 	void sendMsg(SEND_MODE mode, uint8_t * msgData);
-	uint8_t getSign_Tx(float value);
 	uint16_t convertFloatToUint16t(float maxValue, float value);
 	uint8_t * convertToFrame_Tx(uint8_t sign, uint16_t value, SEND_MODE mode);
 	uint8_t* encode_frame_big_endian(uint8_t* data , uint8_t data_length);

@@ -25,23 +25,23 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   ALLOC
  10 .ARM.attributes 00000029  00000000  00000000  00020078  2**0
                   CONTENTS, READONLY
- 11 .debug_info   00017eb5  00000000  00000000  000200a1  2**0
+ 11 .debug_info   00017de4  00000000  00000000  000200a1  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_abbrev 00003f84  00000000  00000000  00037f56  2**0
+ 12 .debug_abbrev 00003f84  00000000  00000000  00037e85  2**0
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_aranges 00000e60  00000000  00000000  0003bee0  2**3
+ 13 .debug_aranges 00000e58  00000000  00000000  0003be10  2**3
                   CONTENTS, READONLY, DEBUGGING
- 14 .debug_ranges 00001100  00000000  00000000  0003cd40  2**3
+ 14 .debug_ranges 000010f8  00000000  00000000  0003cc68  2**3
                   CONTENTS, READONLY, DEBUGGING
- 15 .debug_line   000087d0  00000000  00000000  0003de40  2**0
+ 15 .debug_line   000087be  00000000  00000000  0003dd60  2**0
                   CONTENTS, READONLY, DEBUGGING
- 16 .debug_str    00005aea  00000000  00000000  00046610  2**0
+ 16 .debug_str    00005a0d  00000000  00000000  0004651e  2**0
                   CONTENTS, READONLY, DEBUGGING
- 17 .comment      0000007c  00000000  00000000  0004c0fa  2**0
+ 17 .comment      0000007c  00000000  00000000  0004bf2b  2**0
                   CONTENTS, READONLY
- 18 .debug_frame  00003604  00000000  00000000  0004c178  2**2
+ 18 .debug_frame  000035dc  00000000  00000000  0004bfa8  2**2
                   CONTENTS, READONLY, DEBUGGING
- 19 .debug_loc    00007d47  00000000  00000000  0004f77c  2**0
+ 19 .debug_loc    00007d47  00000000  00000000  0004f584  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -3298,10 +3298,6 @@ ModeManager::DRIVE_MODE CanManager::getDriveModestatus_Rx(uint8_t permition){
 
 080021c4 <_ZN10CanManager11setVelocityEPhN11ModeManager10MSG_ORIGINE>:
 
-uint16_t CanManager::uint8_To_uint16(uint8_t* data, uint8_t start_byte){
-	return ((uint16_t)data[start_byte + 1] << 8) | (uint16_t)data[start_byte]; //copy from can_frrames.c
-}
-
 void CanManager::setVelocity(uint8_t* vel, ModeManager::MSG_ORIGIN origin){
  80021c4:	b580      	push	{r7, lr}
  80021c6:	b084      	sub	sp, #16
@@ -3487,10 +3483,6 @@ void CanManager::sendMsg(SEND_MODE mode, uint8_t * msgData){
  8002302:	bd80      	pop	{r7, pc}
 
 08002304 <_ZN10CanManager21convertFloatToUint16tEff>:
-//uint8_t CanManager::getSign_Tx(float value){
-//	if (value >=0) return POSITIVE_SIGN;
-//	else return NEGATIVE_SIGN;
-//}
 
 uint16_t CanManager::convertFloatToUint16t(float maxValue, float value){
  8002304:	b5b0      	push	{r4, r5, r7, lr}
@@ -3499,9 +3491,6 @@ uint16_t CanManager::convertFloatToUint16t(float maxValue, float value){
  800230a:	60f8      	str	r0, [r7, #12]
  800230c:	60b9      	str	r1, [r7, #8]
  800230e:	607a      	str	r2, [r7, #4]
-//	float percentage = value/maxValue;
-//	if (percentage > 1) percentage = 1;
-//	return (uint16_t)(MAX_CANVALUE * percentage); // to tez daje dobre wyniki
 	float range = 128;
  8002310:	f04f 4386 	mov.w	r3, #1124073472	; 0x43000000
  8002314:	617b      	str	r3, [r7, #20]
@@ -3550,7 +3539,6 @@ uint16_t CanManager::convertFloatToUint16t(float maxValue, float value){
  8002370:	f7fe fbcc 	bl	8000b0c <__aeabi_d2uiz>
  8002374:	4603      	mov	r3, r0
  8002376:	b29b      	uxth	r3, r3
-
 }
  8002378:	4618      	mov	r0, r3
  800237a:	3718      	adds	r7, #24
@@ -3680,8 +3668,6 @@ void CanManager::convertVelocityTurnData_Tx(float value, uint8_t sign, SEND_MODE
  800243c:	71fb      	strb	r3, [r7, #7]
  800243e:	4613      	mov	r3, r2
  8002440:	71bb      	strb	r3, [r7, #6]
-//	uint8_t sign = getSign_Tx(value);
-//	if (sign == NEGATIVE_SIGN){ value *= -1; } //Change signt to positive after check
 	uint16_t convertedData = convertFloatToUint16t(MAX_PERCERTAGE_VALUE,value);
  8002442:	68ba      	ldr	r2, [r7, #8]
  8002444:	490a      	ldr	r1, [pc, #40]	; (8002470 <_ZN10CanManager26convertVelocityTurnData_TxEfhNS_9SEND_MODEE+0x44>)
@@ -3775,7 +3761,6 @@ void CanManager::stopAllMotors(){
  80024e2:	bd80      	pop	{r7, pc}
 
 080024e4 <_ZN10CanManager12hal_can_sendEthPh>:
-
 
 void CanManager::hal_can_send(uint16_t frame_id, uint8_t dlc, uint8_t* data){
  80024e4:	b580      	push	{r7, lr}
