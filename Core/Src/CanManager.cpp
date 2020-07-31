@@ -14,9 +14,9 @@ void CanManager::init(){
 
 }
 void CanManager::process(){
-	getData_Rx(can_messages.rx_header.StdId,
-			can_messages.rx_data,
-			can_messages.rx_header.DLC);
+	getData_Rx(canMsgRx.header.StdId,
+			canMsgRx.data,
+			canMsgRx.header.DLC);
 }
 /////////////////////////RX PART///////////////////////////////////////////
 
@@ -32,7 +32,7 @@ float CanManager::convertVelocityTurnData_Rx(uint8_t * data){
 }
 
 void CanManager::convertStatusData_Rx(uint8_t * data){
-	HAL_GPIO_TogglePin(BLUE_LED_GPIO_Port, BLUE_LED_Pin);
+
 	uint8_t status = data[STATUS_MODE_BYTE];
 	uint8_t permition = data[STATUS_PERMITION_BYTE];
 	modeManager.statusUpdate(getRCmodeStatus_Rx( status ), getDriveModestatus_Rx( permition ) );
@@ -132,13 +132,15 @@ void CanManager::stopAllMotors(){
 
 
 void CanManager::hal_can_send(uint16_t frame_id, uint8_t dlc, uint8_t* data){
-	can_messages.tx_data = data;
-	can_messages.tx_header.DLC = dlc;
-	can_messages.tx_header.RTR = CAN_RTR_DATA;
-	can_messages.tx_header.IDE  = CAN_ID_STD;
-	can_messages.tx_header.StdId = frame_id;
+	HAL_GPIO_WritePin(BLUE_LED_GPIO_Port, BLUE_LED_Pin, GPIO_PIN_RESET);
+	hal_can_messageTx can_messages;
+	can_messages.data = data;
+	can_messages.header.DLC = dlc;
+	can_messages.header.RTR = CAN_RTR_DATA;
+	can_messages.header.IDE  = CAN_ID_STD;
+	can_messages.header.StdId = frame_id;
 
-	HAL_CAN_AddTxMessage(&hcan, &(can_messages.tx_header),can_messages.tx_data,&(can_messages.mailbox));
+	HAL_CAN_AddTxMessage(&hcan, &(can_messages.header),can_messages.data,&(can_messages.mailbox));
 
 }
 

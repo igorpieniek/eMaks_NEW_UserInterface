@@ -21,6 +21,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
   if (htim->Instance == TIM3) {
 
 	  if (modeManager.isJoystickMode()){
+		  HAL_GPIO_WritePin(BLUE_LED_GPIO_Port, BLUE_LED_Pin, GPIO_PIN_SET);
 		joystick.process();
 	  }
   }
@@ -29,8 +30,8 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
 void HAL_CAN_RxFifo1MsgPendingCallback (CAN_HandleTypeDef* hcan ){
 
 	HAL_CAN_GetRxMessage(hcan,CAN_RX_FIFO0,
-			&canManager.can_messages.rx_header,
-			canManager.can_messages.rx_data );
+			&canManager.canMsgRx.header,
+			canManager.canMsgRx.data );
 
 	canManager.process();
 

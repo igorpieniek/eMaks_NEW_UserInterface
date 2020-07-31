@@ -13,18 +13,18 @@
 #include "adc.h"
 #include "math.h"
 #include "canManager.h"
-#define X_AXIS_INDEX   1
-#define Y_AXIS_INDEX   2
+#define X_AXIS_INDEX   2
+#define Y_AXIS_INDEX   1
 #define AXIS_NUMBER    2
 
 
 // configurable defines al in V:
-#define V_NEUTRAL_X_AXIS 2.1f
-#define V_NEUTRAL_Y_AXIS 2.1f
+#define V_NEUTRAL_X_AXIS 1.2f
+#define V_NEUTRAL_Y_AXIS 1.2f
 #define V_MAX_X_AXIS     3.0f
-#define V_MIN_X_AXIS     1.2f
+#define V_MIN_X_AXIS     0.1f
 #define V_MAX_Y_AXIS     3.0f
-#define V_MIN_Y_AXIS     1.2f
+#define V_MIN_Y_AXIS     0.1f
 #define MEASUREMENT_ERROR 0.06f
 
 #define NUMBER_OF_CHANNELS     4

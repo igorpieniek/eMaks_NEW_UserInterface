@@ -93,17 +93,15 @@ public:
 		CAN_TxHeaderTypeDef     header;
 		uint32_t 				mailbox;
 		uint8_t*				data;
-	}hal_can_message;
+	}hal_can_messageTx;
 
 	typedef struct{
-		CAN_TxHeaderTypeDef     tx_header;
-		CAN_RxHeaderTypeDef	    rx_header;
+		CAN_RxHeaderTypeDef	    header;
 		uint32_t 				mailbox;
-		uint8_t*				tx_data;
-		uint8_t*				rx_data;
-	}hal_can_messages;
+		uint8_t*				data;
+	}hal_can_messageRx;
 
-	hal_can_messages can_messages;
+	hal_can_messageRx canMsgRx;
 
 	CanManager();
 	virtual ~CanManager();
