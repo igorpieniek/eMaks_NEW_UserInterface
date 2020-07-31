@@ -21,16 +21,16 @@ void CanManager::process(){
 }
 /////////////////////////RX PART///////////////////////////////////////////
 
-float CanManager::getSign_Rx(uint8_t * data){
-	uint16_t sign = uint8_To_uint16(data, 0);
-	if(sign == 	NEGATIVE_SIGN) return -1.f;
-	else					   return 1.f;
-}
+//float CanManager::getSign_Rx(uint8_t * data){
+//	uint16_t sign = uint8_To_uint16(data, 0);
+//	if(sign == 	NEGATIVE_SIGN) return -1.f;
+//	else					   return 1.f;
+//}
 
-float CanManager::convertVelocityTurnData_Rx(uint8_t * data){
-	uint16_t rawData = uint8_To_uint16(data, 2); // because value start from 2 byte
-	return  getSign_Rx(data) * (float)(rawData / MAX_CANVALUE)*100.f; // PERCENTAGE CALCULATE
-}
+//float CanManager::convertVelocityTurnData_Rx(uint8_t * data){
+//	uint16_t rawData = uint8_To_uint16(data, 2); // because value start from 2 byte
+//	return  getSign_Rx(data) * (float)(rawData / MAX_CANVALUE)*100.f; // PERCENTAGE CALCULATE
+//}
 
 void CanManager::convertStatusData_Rx(uint8_t * data){
 
@@ -56,20 +56,20 @@ uint16_t CanManager::uint8_To_uint16(uint8_t* data, uint8_t start_byte){
 	return ((uint16_t)data[start_byte + 1] << 8) | (uint16_t)data[start_byte]; //copy from can_frrames.c
 }
 
-void CanManager::setVelocity(float vel, ModeManager::MSG_ORIGIN origin){
-	if (modeManager.velocityPermission(origin)) sendVelocity(vel);
+void CanManager::setVelocity(uint8_t* vel, ModeManager::MSG_ORIGIN origin){
+	if (modeManager.velocityPermission(origin)) sendMsg(VELOCITY, vel);
 
 }
-void CanManager::setTurn(float turn, ModeManager::MSG_ORIGIN origin){
-	if (modeManager.turnPermission(origin)) sendTurn(turn);
+void CanManager::setTurn(uint8_t* turn, ModeManager::MSG_ORIGIN origin){
+	if (modeManager.turnPermission(origin)) sendMsg(TURN,turn);
 }
 
 void CanManager::getData_Rx(uint32_t frame_id, uint8_t* data, uint8_t dlc){
 	if (frame_id == STATUS_FRAME_ID) convertStatusData_Rx( data); // function also update status in modemanager
-	else if ( frame_id == VELOCITY_FRAME_ID ) 		setVelocity( convertVelocityTurnData_Rx( data ), ModeManager::RC );
-	else if ( frame_id == I3_VELOCITY_FRAME_ID )	setVelocity( convertVelocityTurnData_Rx( data ),ModeManager::I3  );
-	else if ( frame_id == TURN_FRAME_ID )			setTurn( convertVelocityTurnData_Rx( data ), ModeManager::RC  );
-	else if ( frame_id == I3_TURN_FRAME_ID )	 	setTurn( convertVelocityTurnData_Rx( data ), ModeManager::I3  );
+	else if ( frame_id == VELOCITY_FRAME_ID ) 		setVelocity( data , ModeManager::RC );
+	else if ( frame_id == I3_VELOCITY_FRAME_ID )	setVelocity( data ,ModeManager::I3  );
+	else if ( frame_id == TURN_FRAME_ID )			setTurn( data, ModeManager::RC  );
+	else if ( frame_id == I3_TURN_FRAME_ID )	 	setTurn( data, ModeManager::I3  );
 }
 
 /////////////////////////TX PART///////////////////////////////////////////

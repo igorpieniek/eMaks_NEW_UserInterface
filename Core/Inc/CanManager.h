@@ -70,8 +70,8 @@ private:
 	void convertVelocityTurnData_Tx(float value,SEND_MODE mode);
 
 	//Tx part
-	void setVelocity(float vel, ModeManager::MSG_ORIGIN origin);
-	void setTurn(float turn, ModeManager::MSG_ORIGIN origin);
+	void setVelocity(uint8_t*vel, ModeManager::MSG_ORIGIN origin);
+	void setTurn(uint8_t* turn, ModeManager::MSG_ORIGIN origin);
 
 
 	void hal_can_send(uint16_t frame_id, uint8_t dlc, uint8_t* data);
