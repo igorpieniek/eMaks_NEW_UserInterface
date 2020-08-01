@@ -112,7 +112,7 @@ void CanManager::stopAllMotors(){
 }
 
 void CanManager::hal_can_send(uint16_t frame_id, uint8_t dlc, uint8_t* data){
-	HAL_GPIO_WritePin(BLUE_LED_GPIO_Port, BLUE_LED_Pin, GPIO_PIN_RESET);
+//	HAL_GPIO_WritePin(BLUE_LED_GPIO_Port, BLUE_LED_Pin, GPIO_PIN_RESET);
 	hal_can_messageTx canMsgTx;
 	canMsgTx.data = data;
 	canMsgTx.header.DLC = dlc;

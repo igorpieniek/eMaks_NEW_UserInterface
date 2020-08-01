@@ -46,7 +46,7 @@ void MX_CAN_Init(void)
   {
     Error_Handler();
   }
-
+  HAL_CAN_Start(&hcan);
 }
 
 void HAL_CAN_MspInit(CAN_HandleTypeDef* canHandle)

@@ -91,7 +91,7 @@ private:
 		 .size = sizeof(joy_axis_params)/sizeof(ax_params)
 	};
 
-	uint32_t adc_raw_values[NUMBER_OF_CHANNELS];
+	uint32_t adc_raw_values[];
 
 	void calcualate_axis_voltage(ax_params params);
 	uint32_t* get_hal_adc_raw_data(void);

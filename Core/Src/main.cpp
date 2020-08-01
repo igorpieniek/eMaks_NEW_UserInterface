@@ -101,6 +101,7 @@ int main(void)
   MX_TIM3_Init();
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
+
   joystick.init();
   modeManager.init();
   canManager.init();
