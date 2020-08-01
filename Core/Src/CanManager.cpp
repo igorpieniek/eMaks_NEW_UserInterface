@@ -67,7 +67,7 @@ void CanManager::sendMsg(SEND_MODE mode, uint8_t * msgData){
 	}
 }
 
-uint16_t CanManager::convertFloatToUint16t(float maxValue, float value){
+uint16_t CanManager::convertFloatToUint16t(float value){
 	float range = 128;
 	if( value > range){
 		return range;
@@ -95,8 +95,9 @@ uint8_t* CanManager::encode_frame_big_endian(uint8_t* data , uint8_t data_length
 	return encoded_data;
 }
 void CanManager::convertVelocityTurnData_Tx(float value, uint8_t sign, SEND_MODE mode){
-	uint16_t convertedData = convertFloatToUint16t(MAX_PERCERTAGE_VALUE,value);
-	sendMsg(mode, convertToFrame_Tx(sign, convertedData , mode) );
+	uint16_t convertedData = convertFloatToUint16t(value);
+	uint8_t * frameData = convertToFrame_Tx(sign, convertedData , mode);
+	sendMsg(mode, frameData );
 }
 void CanManager::sendVelocity(float vel, uint8_t sign){
 	convertVelocityTurnData_Tx(vel, sign, VELOCITY);

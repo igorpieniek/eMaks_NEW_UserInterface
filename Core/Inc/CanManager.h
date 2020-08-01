@@ -59,7 +59,7 @@ private:
 		STATUS
 	};
 	void sendMsg(SEND_MODE mode, uint8_t * msgData);
-	uint16_t convertFloatToUint16t(float maxValue, float value);
+	uint16_t convertFloatToUint16t(float value);
 	uint8_t * convertToFrame_Tx(uint8_t sign, uint16_t value, SEND_MODE mode);
 	uint8_t* encode_frame_big_endian(uint8_t* data , uint8_t data_length);
 	void convertVelocityTurnData_Tx(float value, uint8_t sign, SEND_MODE mode);
