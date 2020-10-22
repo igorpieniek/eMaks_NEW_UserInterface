@@ -120,6 +120,10 @@ uint8_t * CanManager::convertToFrame_Tx(uint8_t sign, uint16_t value, SEND_MODE 
 
 
 void CanManager::stopAllMotors(){
+	uint8_t* data = (uint8_t*)calloc(8, sizeof(uint8_t)); // create array[8] and fill with 0
+	fill_frame(data);
+	sendMsg(VELOCITY, data);
+	free(data);
 
 }
 
