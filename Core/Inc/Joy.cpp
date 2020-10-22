@@ -9,20 +9,26 @@
 
 
 
-Joy::Joy(float max, float min, float neutral, uint8_t res, float ref, float n_err):
-		v_max(max), v_min(min), v_neutral(neutral),
-		bit_resolution(res), v_ref(ref),
-		neutral_error(n_err)
-{
-	v_max_normalized = v_max - v_neutral;
-	v_min_normalized = v_min - v_neutral;
-	max_number_levels = pow(2, bit_resolution);
-}
+Joy::Joy(): v_max(0), v_min(0), v_neutral(0),
+		    bit_resolution(0), v_ref(0),
+		    neutral_error(0){}
 
 Joy::~Joy() {
 	// TODO Auto-generated destructor stub
 }
 
+void Joy::init(float max, float min, float neutral, uint8_t res, float ref, float n_err){
+	v_max = max;
+	v_min = min;
+	v_neutral = neutral;
+	bit_resolution = res;
+	v_ref = ref;
+	neutral_error = n_err;
+	v_max_normalized = v_max - v_neutral;
+	v_min_normalized = v_min - v_neutral;
+	max_number_levels = pow(2, bit_resolution);
+
+}
 void Joy::calculate_data(uint32_t raw){
 	convert_adc_value(raw);
 	calculate_joy_data();

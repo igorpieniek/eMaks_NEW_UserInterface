@@ -16,10 +16,10 @@ class Joy {
 
 
 public:
-	Joy(float max, float min, float neutral, uint8_t res, float ref, float n_err);
+	Joy();
 	virtual ~Joy();
 
-
+	void init(float max, float min, float neutral, uint8_t res, float ref, float n_err);
 	void calculate_data(uint32_t raw);
 	uint8_t getSign() const{ return sign;};
 	float getPercentage() const {return percentage_value;};

@@ -22,7 +22,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
 
 	  if (modeManager.isJoystickMode()){
 		  HAL_GPIO_WritePin(BLUE_LED_GPIO_Port, BLUE_LED_Pin, GPIO_PIN_SET);
-		joystick.process();
+		joystick.update_measurments();
 	  }
   }
 }
