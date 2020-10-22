@@ -17,12 +17,13 @@
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
   if (htim->Instance == TIM4) {
 	  canManager.stopAllMotors();
+	  modeManager.stopIdleTimer();
   }
   if (htim->Instance == TIM3) {
-
 	  if (modeManager.isJoystickMode()){
 		  HAL_GPIO_WritePin(BLUE_LED_GPIO_Port, BLUE_LED_Pin, GPIO_PIN_SET);
-		joystick.update_measurments();
+		  joystick.update_measurments();
+		  canManager.joystickSendProcess();
 	  }
   }
 }
@@ -33,6 +34,6 @@ void HAL_CAN_RxFifo1MsgPendingCallback (CAN_HandleTypeDef* hcan ){
 			&canManager.canMsgRx.header,
 			canManager.canMsgRx.data );
 
-	canManager.process();
+	canManager.rewriteFrameProcess(canManager.canMsgRx.header.StdId, canManager.canMsgRx.data);
 
 }

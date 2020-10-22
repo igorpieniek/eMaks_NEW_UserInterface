@@ -44,20 +44,19 @@ class ModeManager {
 		DRIVE_MODE getDriveMode();
 		RC_MODE getRCmode();
 
+		void stopIdleTimer();
+
 		uint8_t isJoystickMode();
 
 		ModeManager();
 		virtual ~ModeManager();
 
 	private:
-//		void sendVelocity(float);
-//		void sendTurn(float);
-//		void stopAll();
+
 		float joystickProcess();
 		void startIdleTimer();
-		void stopIdleTimer();
 		void resetIdleTimer();
-//		void process();
+
 
 		uint8_t isIdleTimerON;
 		DRIVE_MODE driveMode;

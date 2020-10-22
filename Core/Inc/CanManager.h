@@ -11,6 +11,7 @@
 #include "main.h"
 #include "can.h"
 #include "ModeManager.h"
+#include "Joystick.h"
 #include <malloc.h>
 
 
@@ -32,8 +33,8 @@
 
 #define MAX_CANVALUE 0xC800
 
-#define STATUS_MODE_BYTE      0
-#define STATUS_PERMITION_BYTE 1
+#define STATUS_MODE_BYTE      2
+#define STATUS_PERMITION_BYTE 0
 
 #define POSITIVE_SIGN 1
 #define NEGATIVE_SIGN 0
@@ -48,60 +49,58 @@
 
 class CanManager {
 private:
-	//void sendConfirmation();
 	float getSign_Rx(uint8_t * data);
-	float convertVelocityTurnData_Rx(uint8_t * data);
 	void convertStatusData_Rx(uint8_t * data);
 	ModeManager::RC_MODE getRCmodeStatus_Rx(uint8_t data);
 	ModeManager::DRIVE_MODE getDriveModestatus_Rx(uint8_t data);
-	uint16_t uint8_To_uint16(uint8_t* data, uint8_t start_byte);
+	void setVelocity(uint8_t*  vel, ModeManager::MSG_ORIGIN origin);
+	void setTurn(uint8_t*  turn, ModeManager::MSG_ORIGIN origin);
+	void fill_frame(uint8_t* data);
+	void clearTxBuff();
 
 	// Tx part
 	enum SEND_MODE{
 		TURN = 0,
 		VELOCITY,
-		STATUS
+		STATUS,
+		JOYSTICK_X,
+		JOYSTICK_Y
 	};
-	void sendMsg(SEND_MODE mode, uint8_t * msgData);
+	void sendMsg(SEND_MODE mode);
 	uint8_t getSign_Tx(float value);
-	uint16_t convertFloatToUint16t(float maxValue, float value);
-	uint8_t * convertToFrame_Tx(uint8_t sign, uint16_t value, SEND_MODE mode);
-	uint8_t* encode_frame_big_endian(uint8_t* data , uint8_t data_length);
-	void convertVelocityTurnData_Tx(float value,SEND_MODE mode);
-
-	//Tx part
-	void setVelocity(float vel, ModeManager::MSG_ORIGIN origin);
-	void setTurn(float turn, ModeManager::MSG_ORIGIN origin);
+	uint16_t convertFloatToUint16t( float value);
+	void convertToFrame_Tx(uint8_t sign, uint16_t value);
+	void encode_frame_big_endian(uint8_t data_length);
 
 
-	void hal_can_send(uint16_t frame_id, uint8_t dlc, uint8_t* data);
+	void hal_can_send(uint16_t frame_id, uint8_t dlc);
 	CAN_FilterTypeDef hcan_filter;
 	void hal_can_filter_init(void);
 
 public:
 	// RX part
 	void init();
-	void process();
+	void joystickSendProcess();
 
-	void getData_Rx(uint32_t frame_id, uint8_t* data, uint8_t dlc);
-	void sendVelocity(float vel);
-	void sendTurn(float turn);
+
+	void rewriteFrameProcess(uint32_t frame_id, uint8_t* data);
 	void stopAllMotors();
 
 
 	typedef struct{
 		CAN_TxHeaderTypeDef     header;
 		uint32_t 				mailbox;
-		uint8_t*				data;
+		uint8_t				    data[8];
 	}hal_can_messageTx;
 
 	typedef struct{
 		CAN_RxHeaderTypeDef	    header;
 		uint32_t 				mailbox;
-		uint8_t*				data;
+		uint8_t				    data[8];
 	}hal_can_messageRx;
 
-	hal_can_messageRx canMsgRx;
+	hal_can_messageRx  canMsgRx;
+	hal_can_messageTx  canMsgTx;
 
 	CanManager();
 	virtual ~CanManager();
