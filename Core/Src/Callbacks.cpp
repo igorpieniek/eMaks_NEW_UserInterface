@@ -33,6 +33,6 @@ void HAL_CAN_RxFifo1MsgPendingCallback (CAN_HandleTypeDef* hcan ){
 			&canManager.canMsgRx.header,
 			canManager.canMsgRx.data );
 
-	canManager.process();
+	canManager.rewriteFrameProcess(canManager.canMsgRx.header.StdId, canManager.canMsgRx.data);
 
 }

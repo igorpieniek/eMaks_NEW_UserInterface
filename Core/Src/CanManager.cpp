@@ -20,14 +20,12 @@ void CanManager::init(){
 	HAL_CAN_ActivateNotification(&hcan,CAN_IT_RX_FIFO0_MSG_PENDING);
 
 }
-void CanManager::process(){
-	getData_Rx(canMsgRx.header.StdId,
-			canMsgRx.data,
-			canMsgRx.header.DLC);
+void CanManager::joystickSendProcess(){
+
 }
 /////////////////////////RX PART///////////////////////////////////////////
 
-void CanManager::getData_Rx(uint32_t frame_id, uint8_t* data, uint8_t dlc){
+void CanManager::rewriteFrameProcess(uint32_t frame_id, uint8_t* data){
 	if (frame_id == STATUS_FRAME_ID) convertStatusData_Rx( data); // function also update status in modemanager
 	else if ( frame_id == VELOCITY_FRAME_ID ) 		setVelocity( data, ModeManager::RC );
 	else if ( frame_id == I3_VELOCITY_FRAME_ID )	setVelocity( data, ModeManager::I3  );
@@ -87,6 +85,11 @@ void CanManager::sendMsg(SEND_MODE mode){
 	}
 }
 
+
+
+
+
+/////////////////////////////////////////////////////////////////
 uint8_t CanManager::getSign_Tx(float value){
 	if (value >=0) return POSITIVE_SIGN;
 	else return NEGATIVE_SIGN;
@@ -117,12 +120,12 @@ uint8_t * CanManager::convertToFrame_Tx(uint8_t sign, uint16_t value, SEND_MODE 
 }
 
 
-
+/////////////////////////////////////////////////////////////////////
 
 void CanManager::stopAllMotors(){
 	uint8_t* data = (uint8_t*)calloc(8, sizeof(uint8_t)); // create array[8] and fill with 0
 	fill_frame(data);
-	sendMsg(VELOCITY, data);
+	sendMsg(VELOCITY);
 	free(data);
 
 }

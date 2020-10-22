@@ -67,7 +67,7 @@ private:
 	uint16_t convertFloatToUint16t(float maxValue, float value);
 	uint8_t * convertToFrame_Tx(uint8_t sign, uint16_t value, SEND_MODE mode);
 	uint8_t* encode_frame_big_endian(uint8_t* data , uint8_t data_length);
-	void convertVelocityTurnData_Tx(float value,SEND_MODE mode);
+//	void convertVelocityTurnData_Tx(float value,SEND_MODE mode);
 
 	//Tx part
 
@@ -80,9 +80,10 @@ private:
 public:
 	// RX part
 	void init();
-	void process();
+	void joystickSendProcess();
 
-	void getData_Rx(uint32_t frame_id, uint8_t* data, uint8_t dlc);
+
+	void rewriteFrameProcess(uint32_t frame_id, uint8_t* data);
 	void stopAllMotors();
 
 
