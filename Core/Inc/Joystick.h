@@ -72,13 +72,26 @@ public:
 	void calculate_joy_data(void);
 	void get_adc_data(joystick_data* joy,uint32_t* data);
 	uint8_t is_joy_near_neautral(ax_params params);
+	//////////////////////////////////////////////////////////
+//	void init();
+//	void get_data(); //TODO: plan again best way of getting data
 
+	///////////////////////////////////////////
 	void process(void);
 
 	Joystick();
-	virtual ~Joystick();
+	~Joystick();
 
 private:
+//	void add_joy();
+//
+//	uint32_t adc_raw_values[NUMBER_OF_CHANNELS];
+//	uint8_t bit_resolution;
+//	float reference_voltage;
+
+
+
+	////////////////////////////////
 	joystick_data joy;
 
 	ax_params joy_axis_params[2] = {
