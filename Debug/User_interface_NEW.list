@@ -25,23 +25,23 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   ALLOC
  10 .ARM.attributes 00000029  00000000  00000000  00020078  2**0
                   CONTENTS, READONLY
- 11 .debug_info   00019412  00000000  00000000  000200a1  2**0
+ 11 .debug_info   00019491  00000000  00000000  000200a1  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_abbrev 00004438  00000000  00000000  000394b3  2**0
+ 12 .debug_abbrev 0000444b  00000000  00000000  00039532  2**0
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_aranges 00000ec8  00000000  00000000  0003d8f0  2**3
+ 13 .debug_aranges 00000ed0  00000000  00000000  0003d980  2**3
                   CONTENTS, READONLY, DEBUGGING
- 14 .debug_ranges 00001158  00000000  00000000  0003e7b8  2**3
+ 14 .debug_ranges 00001160  00000000  00000000  0003e850  2**3
                   CONTENTS, READONLY, DEBUGGING
- 15 .debug_line   00008d22  00000000  00000000  0003f910  2**0
+ 15 .debug_line   00008d4b  00000000  00000000  0003f9b0  2**0
                   CONTENTS, READONLY, DEBUGGING
- 16 .debug_str    00005c11  00000000  00000000  00048632  2**0
+ 16 .debug_str    00005c54  00000000  00000000  000486fb  2**0
                   CONTENTS, READONLY, DEBUGGING
- 17 .comment      0000007c  00000000  00000000  0004e243  2**0
+ 17 .comment      0000007c  00000000  00000000  0004e34f  2**0
                   CONTENTS, READONLY
- 18 .debug_frame  00003794  00000000  00000000  0004e2c0  2**2
+ 18 .debug_frame  000037bc  00000000  00000000  0004e3cc  2**2
                   CONTENTS, READONLY, DEBUGGING
- 19 .debug_loc    00007d47  00000000  00000000  00051a54  2**0
+ 19 .debug_loc    00007d47  00000000  00000000  00051b88  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -3046,1149 +3046,1154 @@ Disassembly of section .text:
  800203a:	f7ff fff9 	bl	8002030 <_Unwind_GetTextRelBase>
  800203e:	bf00      	nop
 
-08002040 <_ZSt3powIihEN9__gnu_cxx11__promote_2IT_T0_NS0_9__promoteIS2_XsrSt12__is_integerIS2_E7__valueEE6__typeENS4_IS3_XsrS5_IS3_E7__valueEE6__typeEE6__typeES2_S3_>:
+08002040 <_ZSt4fabsf>:
+  using ::fabs;
+
+#ifndef __CORRECT_ISO_CPP_MATH_H_PROTO
+  inline _GLIBCXX_CONSTEXPR float
+  fabs(float __x)
+  { return __builtin_fabsf(__x); }
+ 8002040:	b480      	push	{r7}
+ 8002042:	b083      	sub	sp, #12
+ 8002044:	af00      	add	r7, sp, #0
+ 8002046:	6078      	str	r0, [r7, #4]
+ 8002048:	687b      	ldr	r3, [r7, #4]
+ 800204a:	f023 4300 	bic.w	r3, r3, #2147483648	; 0x80000000
+ 800204e:	4618      	mov	r0, r3
+ 8002050:	370c      	adds	r7, #12
+ 8002052:	46bd      	mov	sp, r7
+ 8002054:	bc80      	pop	{r7}
+ 8002056:	4770      	bx	lr
+
+08002058 <_ZSt3powIihEN9__gnu_cxx11__promote_2IT_T0_NS0_9__promoteIS2_XsrSt12__is_integerIS2_E7__valueEE6__typeENS4_IS3_XsrS5_IS3_E7__valueEE6__typeEE6__typeES2_S3_>:
 #endif
 
   template<typename _Tp, typename _Up>
     inline _GLIBCXX_CONSTEXPR
     typename __gnu_cxx::__promote_2<_Tp, _Up>::__type
     pow(_Tp __x, _Up __y)
- 8002040:	b5b0      	push	{r4, r5, r7, lr}
- 8002042:	b082      	sub	sp, #8
- 8002044:	af00      	add	r7, sp, #0
- 8002046:	6078      	str	r0, [r7, #4]
- 8002048:	460b      	mov	r3, r1
- 800204a:	70fb      	strb	r3, [r7, #3]
+ 8002058:	b5b0      	push	{r4, r5, r7, lr}
+ 800205a:	b082      	sub	sp, #8
+ 800205c:	af00      	add	r7, sp, #0
+ 800205e:	6078      	str	r0, [r7, #4]
+ 8002060:	460b      	mov	r3, r1
+ 8002062:	70fb      	strb	r3, [r7, #3]
     {
       typedef typename __gnu_cxx::__promote_2<_Tp, _Up>::__type __type;
       return pow(__type(__x), __type(__y));
- 800204c:	6878      	ldr	r0, [r7, #4]
- 800204e:	f7fe fa47 	bl	80004e0 <__aeabi_i2d>
- 8002052:	4604      	mov	r4, r0
- 8002054:	460d      	mov	r5, r1
- 8002056:	78fb      	ldrb	r3, [r7, #3]
- 8002058:	4618      	mov	r0, r3
- 800205a:	f7fe fa31 	bl	80004c0 <__aeabi_ui2d>
- 800205e:	4602      	mov	r2, r0
- 8002060:	460b      	mov	r3, r1
- 8002062:	4620      	mov	r0, r4
- 8002064:	4629      	mov	r1, r5
- 8002066:	f003 faf3 	bl	8005650 <pow>
- 800206a:	4603      	mov	r3, r0
- 800206c:	460c      	mov	r4, r1
+ 8002064:	6878      	ldr	r0, [r7, #4]
+ 8002066:	f7fe fa3b 	bl	80004e0 <__aeabi_i2d>
+ 800206a:	4604      	mov	r4, r0
+ 800206c:	460d      	mov	r5, r1
+ 800206e:	78fb      	ldrb	r3, [r7, #3]
+ 8002070:	4618      	mov	r0, r3
+ 8002072:	f7fe fa25 	bl	80004c0 <__aeabi_ui2d>
+ 8002076:	4602      	mov	r2, r0
+ 8002078:	460b      	mov	r3, r1
+ 800207a:	4620      	mov	r0, r4
+ 800207c:	4629      	mov	r1, r5
+ 800207e:	f003 fae7 	bl	8005650 <pow>
+ 8002082:	4603      	mov	r3, r0
+ 8002084:	460c      	mov	r4, r1
     }
- 800206e:	4618      	mov	r0, r3
- 8002070:	4621      	mov	r1, r4
- 8002072:	3708      	adds	r7, #8
- 8002074:	46bd      	mov	sp, r7
- 8002076:	bdb0      	pop	{r4, r5, r7, pc}
+ 8002086:	4618      	mov	r0, r3
+ 8002088:	4621      	mov	r1, r4
+ 800208a:	3708      	adds	r7, #8
+ 800208c:	46bd      	mov	sp, r7
+ 800208e:	bdb0      	pop	{r4, r5, r7, pc}
 
-08002078 <HAL_TIM_PeriodElapsedCallback>:
+08002090 <HAL_TIM_PeriodElapsedCallback>:
 
 #include "CanManager.h"
 #include "ModeManager.h"
 #include "Joystick.h"
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
- 8002078:	b580      	push	{r7, lr}
- 800207a:	b082      	sub	sp, #8
- 800207c:	af00      	add	r7, sp, #0
- 800207e:	6078      	str	r0, [r7, #4]
+ 8002090:	b580      	push	{r7, lr}
+ 8002092:	b082      	sub	sp, #8
+ 8002094:	af00      	add	r7, sp, #0
+ 8002096:	6078      	str	r0, [r7, #4]
   if (htim->Instance == TIM4) {
- 8002080:	687b      	ldr	r3, [r7, #4]
- 8002082:	681b      	ldr	r3, [r3, #0]
- 8002084:	4a11      	ldr	r2, [pc, #68]	; (80020cc <HAL_TIM_PeriodElapsedCallback+0x54>)
- 8002086:	4293      	cmp	r3, r2
- 8002088:	d102      	bne.n	8002090 <HAL_TIM_PeriodElapsedCallback+0x18>
+ 8002098:	687b      	ldr	r3, [r7, #4]
+ 800209a:	681b      	ldr	r3, [r3, #0]
+ 800209c:	4a11      	ldr	r2, [pc, #68]	; (80020e4 <HAL_TIM_PeriodElapsedCallback+0x54>)
+ 800209e:	4293      	cmp	r3, r2
+ 80020a0:	d102      	bne.n	80020a8 <HAL_TIM_PeriodElapsedCallback+0x18>
 	  canManager.stopAllMotors();
- 800208a:	4811      	ldr	r0, [pc, #68]	; (80020d0 <HAL_TIM_PeriodElapsedCallback+0x58>)
- 800208c:	f000 fabc 	bl	8002608 <_ZN10CanManager13stopAllMotorsEv>
+ 80020a2:	4811      	ldr	r0, [pc, #68]	; (80020e8 <HAL_TIM_PeriodElapsedCallback+0x58>)
+ 80020a4:	f000 fabc 	bl	8002620 <_ZN10CanManager13stopAllMotorsEv>
   }
   if (htim->Instance == TIM3) {
- 8002090:	687b      	ldr	r3, [r7, #4]
- 8002092:	681b      	ldr	r3, [r3, #0]
- 8002094:	4a0f      	ldr	r2, [pc, #60]	; (80020d4 <HAL_TIM_PeriodElapsedCallback+0x5c>)
- 8002096:	4293      	cmp	r3, r2
- 8002098:	d113      	bne.n	80020c2 <HAL_TIM_PeriodElapsedCallback+0x4a>
+ 80020a8:	687b      	ldr	r3, [r7, #4]
+ 80020aa:	681b      	ldr	r3, [r3, #0]
+ 80020ac:	4a0f      	ldr	r2, [pc, #60]	; (80020ec <HAL_TIM_PeriodElapsedCallback+0x5c>)
+ 80020ae:	4293      	cmp	r3, r2
+ 80020b0:	d113      	bne.n	80020da <HAL_TIM_PeriodElapsedCallback+0x4a>
 
 	  if (modeManager.isJoystickMode()){
- 800209a:	480f      	ldr	r0, [pc, #60]	; (80020d8 <HAL_TIM_PeriodElapsedCallback+0x60>)
- 800209c:	f000 ff64 	bl	8002f68 <_ZN11ModeManager14isJoystickModeEv>
- 80020a0:	4603      	mov	r3, r0
- 80020a2:	2b00      	cmp	r3, #0
- 80020a4:	bf14      	ite	ne
- 80020a6:	2301      	movne	r3, #1
- 80020a8:	2300      	moveq	r3, #0
- 80020aa:	b2db      	uxtb	r3, r3
- 80020ac:	2b00      	cmp	r3, #0
- 80020ae:	d008      	beq.n	80020c2 <HAL_TIM_PeriodElapsedCallback+0x4a>
+ 80020b2:	480f      	ldr	r0, [pc, #60]	; (80020f0 <HAL_TIM_PeriodElapsedCallback+0x60>)
+ 80020b4:	f000 ff58 	bl	8002f68 <_ZN11ModeManager14isJoystickModeEv>
+ 80020b8:	4603      	mov	r3, r0
+ 80020ba:	2b00      	cmp	r3, #0
+ 80020bc:	bf14      	ite	ne
+ 80020be:	2301      	movne	r3, #1
+ 80020c0:	2300      	moveq	r3, #0
+ 80020c2:	b2db      	uxtb	r3, r3
+ 80020c4:	2b00      	cmp	r3, #0
+ 80020c6:	d008      	beq.n	80020da <HAL_TIM_PeriodElapsedCallback+0x4a>
 		  HAL_GPIO_WritePin(BLUE_LED_GPIO_Port, BLUE_LED_Pin, GPIO_PIN_SET);
- 80020b0:	2201      	movs	r2, #1
- 80020b2:	f44f 4180 	mov.w	r1, #16384	; 0x4000
- 80020b6:	4809      	ldr	r0, [pc, #36]	; (80020dc <HAL_TIM_PeriodElapsedCallback+0x64>)
- 80020b8:	f002 fc20 	bl	80048fc <HAL_GPIO_WritePin>
+ 80020c8:	2201      	movs	r2, #1
+ 80020ca:	f44f 4180 	mov.w	r1, #16384	; 0x4000
+ 80020ce:	4809      	ldr	r0, [pc, #36]	; (80020f4 <HAL_TIM_PeriodElapsedCallback+0x64>)
+ 80020d0:	f002 fc14 	bl	80048fc <HAL_GPIO_WritePin>
 		joystick.process();
- 80020bc:	4808      	ldr	r0, [pc, #32]	; (80020e0 <HAL_TIM_PeriodElapsedCallback+0x68>)
- 80020be:	f000 fded 	bl	8002c9c <_ZN8Joystick7processEv>
+ 80020d4:	4808      	ldr	r0, [pc, #32]	; (80020f8 <HAL_TIM_PeriodElapsedCallback+0x68>)
+ 80020d6:	f000 fde1 	bl	8002c9c <_ZN8Joystick7processEv>
 	  }
   }
 }
- 80020c2:	bf00      	nop
- 80020c4:	3708      	adds	r7, #8
- 80020c6:	46bd      	mov	sp, r7
- 80020c8:	bd80      	pop	{r7, pc}
- 80020ca:	bf00      	nop
- 80020cc:	40000800 	.word	0x40000800
- 80020d0:	20000094 	.word	0x20000094
- 80020d4:	40000400 	.word	0x40000400
- 80020d8:	20000194 	.word	0x20000194
- 80020dc:	40011000 	.word	0x40011000
- 80020e0:	200000e4 	.word	0x200000e4
+ 80020da:	bf00      	nop
+ 80020dc:	3708      	adds	r7, #8
+ 80020de:	46bd      	mov	sp, r7
+ 80020e0:	bd80      	pop	{r7, pc}
+ 80020e2:	bf00      	nop
+ 80020e4:	40000800 	.word	0x40000800
+ 80020e8:	20000094 	.word	0x20000094
+ 80020ec:	40000400 	.word	0x40000400
+ 80020f0:	20000194 	.word	0x20000194
+ 80020f4:	40011000 	.word	0x40011000
+ 80020f8:	200000e4 	.word	0x200000e4
 
-080020e4 <HAL_CAN_RxFifo1MsgPendingCallback>:
+080020fc <HAL_CAN_RxFifo1MsgPendingCallback>:
 
 void HAL_CAN_RxFifo1MsgPendingCallback (CAN_HandleTypeDef* hcan ){
- 80020e4:	b580      	push	{r7, lr}
- 80020e6:	b082      	sub	sp, #8
- 80020e8:	af00      	add	r7, sp, #0
- 80020ea:	6078      	str	r0, [r7, #4]
+ 80020fc:	b580      	push	{r7, lr}
+ 80020fe:	b082      	sub	sp, #8
+ 8002100:	af00      	add	r7, sp, #0
+ 8002102:	6078      	str	r0, [r7, #4]
 
 	HAL_CAN_GetRxMessage(hcan,CAN_RX_FIFO0,
- 80020ec:	4b06      	ldr	r3, [pc, #24]	; (8002108 <HAL_CAN_RxFifo1MsgPendingCallback+0x24>)
- 80020ee:	6cdb      	ldr	r3, [r3, #76]	; 0x4c
+ 8002104:	4b06      	ldr	r3, [pc, #24]	; (8002120 <HAL_CAN_RxFifo1MsgPendingCallback+0x24>)
+ 8002106:	6cdb      	ldr	r3, [r3, #76]	; 0x4c
 			&canManager.canMsgRx.header,
 			canManager.canMsgRx.data );
- 80020f0:	4a06      	ldr	r2, [pc, #24]	; (800210c <HAL_CAN_RxFifo1MsgPendingCallback+0x28>)
- 80020f2:	2100      	movs	r1, #0
- 80020f4:	6878      	ldr	r0, [r7, #4]
- 80020f6:	f001 ffd0 	bl	800409a <HAL_CAN_GetRxMessage>
+ 8002108:	4a06      	ldr	r2, [pc, #24]	; (8002124 <HAL_CAN_RxFifo1MsgPendingCallback+0x28>)
+ 800210a:	2100      	movs	r1, #0
+ 800210c:	6878      	ldr	r0, [r7, #4]
+ 800210e:	f001 ffc4 	bl	800409a <HAL_CAN_GetRxMessage>
 
 	canManager.process();
- 80020fa:	4803      	ldr	r0, [pc, #12]	; (8002108 <HAL_CAN_RxFifo1MsgPendingCallback+0x24>)
- 80020fc:	f000 f813 	bl	8002126 <_ZN10CanManager7processEv>
+ 8002112:	4803      	ldr	r0, [pc, #12]	; (8002120 <HAL_CAN_RxFifo1MsgPendingCallback+0x24>)
+ 8002114:	f000 f813 	bl	800213e <_ZN10CanManager7processEv>
 
 }
- 8002100:	bf00      	nop
- 8002102:	3708      	adds	r7, #8
- 8002104:	46bd      	mov	sp, r7
- 8002106:	bd80      	pop	{r7, pc}
- 8002108:	20000094 	.word	0x20000094
- 800210c:	200000c0 	.word	0x200000c0
+ 8002118:	bf00      	nop
+ 800211a:	3708      	adds	r7, #8
+ 800211c:	46bd      	mov	sp, r7
+ 800211e:	bd80      	pop	{r7, pc}
+ 8002120:	20000094 	.word	0x20000094
+ 8002124:	200000c0 	.word	0x200000c0
 
-08002110 <_ZN10CanManager4initEv>:
+08002128 <_ZN10CanManager4initEv>:
 #include "CanManager.h"
 #include <math.h>
 
 CanManager canManager;
 
 void CanManager::init(){
- 8002110:	b580      	push	{r7, lr}
- 8002112:	b082      	sub	sp, #8
- 8002114:	af00      	add	r7, sp, #0
- 8002116:	6078      	str	r0, [r7, #4]
+ 8002128:	b580      	push	{r7, lr}
+ 800212a:	b082      	sub	sp, #8
+ 800212c:	af00      	add	r7, sp, #0
+ 800212e:	6078      	str	r0, [r7, #4]
 	hal_can_filter_init();
- 8002118:	6878      	ldr	r0, [r7, #4]
- 800211a:	f000 fab3 	bl	8002684 <_ZN10CanManager19hal_can_filter_initEv>
+ 8002130:	6878      	ldr	r0, [r7, #4]
+ 8002132:	f000 fab3 	bl	800269c <_ZN10CanManager19hal_can_filter_initEv>
 
 }
- 800211e:	bf00      	nop
- 8002120:	3708      	adds	r7, #8
- 8002122:	46bd      	mov	sp, r7
- 8002124:	bd80      	pop	{r7, pc}
+ 8002136:	bf00      	nop
+ 8002138:	3708      	adds	r7, #8
+ 800213a:	46bd      	mov	sp, r7
+ 800213c:	bd80      	pop	{r7, pc}
 
-08002126 <_ZN10CanManager7processEv>:
+0800213e <_ZN10CanManager7processEv>:
 void CanManager::process(){
- 8002126:	b580      	push	{r7, lr}
- 8002128:	b082      	sub	sp, #8
- 800212a:	af00      	add	r7, sp, #0
- 800212c:	6078      	str	r0, [r7, #4]
+ 800213e:	b580      	push	{r7, lr}
+ 8002140:	b082      	sub	sp, #8
+ 8002142:	af00      	add	r7, sp, #0
+ 8002144:	6078      	str	r0, [r7, #4]
 	getData_Rx(canMsgRx.header.StdId,
- 800212e:	687b      	ldr	r3, [r7, #4]
- 8002130:	6ad9      	ldr	r1, [r3, #44]	; 0x2c
- 8002132:	687b      	ldr	r3, [r7, #4]
- 8002134:	6cda      	ldr	r2, [r3, #76]	; 0x4c
+ 8002146:	687b      	ldr	r3, [r7, #4]
+ 8002148:	6ad9      	ldr	r1, [r3, #44]	; 0x2c
+ 800214a:	687b      	ldr	r3, [r7, #4]
+ 800214c:	6cda      	ldr	r2, [r3, #76]	; 0x4c
 			canMsgRx.data,
 			canMsgRx.header.DLC);
- 8002136:	687b      	ldr	r3, [r7, #4]
- 8002138:	6bdb      	ldr	r3, [r3, #60]	; 0x3c
+ 800214e:	687b      	ldr	r3, [r7, #4]
+ 8002150:	6bdb      	ldr	r3, [r3, #60]	; 0x3c
 	getData_Rx(canMsgRx.header.StdId,
- 800213a:	b2db      	uxtb	r3, r3
+ 8002152:	b2db      	uxtb	r3, r3
 			canMsgRx.header.DLC);
- 800213c:	6878      	ldr	r0, [r7, #4]
- 800213e:	f000 f8fd 	bl	800233c <_ZN10CanManager10getData_RxEmPhh>
+ 8002154:	6878      	ldr	r0, [r7, #4]
+ 8002156:	f000 f8fd 	bl	8002354 <_ZN10CanManager10getData_RxEmPhh>
 }
- 8002142:	bf00      	nop
- 8002144:	3708      	adds	r7, #8
- 8002146:	46bd      	mov	sp, r7
- 8002148:	bd80      	pop	{r7, pc}
+ 800215a:	bf00      	nop
+ 800215c:	3708      	adds	r7, #8
+ 800215e:	46bd      	mov	sp, r7
+ 8002160:	bd80      	pop	{r7, pc}
 	...
 
-0800214c <_ZN10CanManager10getSign_RxEPh>:
+08002164 <_ZN10CanManager10getSign_RxEPh>:
 /////////////////////////RX PART///////////////////////////////////////////
 
 float CanManager::getSign_Rx(uint8_t * data){
- 800214c:	b580      	push	{r7, lr}
- 800214e:	b084      	sub	sp, #16
- 8002150:	af00      	add	r7, sp, #0
- 8002152:	6078      	str	r0, [r7, #4]
- 8002154:	6039      	str	r1, [r7, #0]
+ 8002164:	b580      	push	{r7, lr}
+ 8002166:	b084      	sub	sp, #16
+ 8002168:	af00      	add	r7, sp, #0
+ 800216a:	6078      	str	r0, [r7, #4]
+ 800216c:	6039      	str	r1, [r7, #0]
 	uint16_t sign = uint8_To_uint16(data, 0);
- 8002156:	2200      	movs	r2, #0
- 8002158:	6839      	ldr	r1, [r7, #0]
- 800215a:	6878      	ldr	r0, [r7, #4]
- 800215c:	f000 f896 	bl	800228c <_ZN10CanManager15uint8_To_uint16EPhh>
- 8002160:	4603      	mov	r3, r0
- 8002162:	81fb      	strh	r3, [r7, #14]
+ 800216e:	2200      	movs	r2, #0
+ 8002170:	6839      	ldr	r1, [r7, #0]
+ 8002172:	6878      	ldr	r0, [r7, #4]
+ 8002174:	f000 f896 	bl	80022a4 <_ZN10CanManager15uint8_To_uint16EPhh>
+ 8002178:	4603      	mov	r3, r0
+ 800217a:	81fb      	strh	r3, [r7, #14]
 	if(sign == 	NEGATIVE_SIGN) return -1.f;
- 8002164:	89fb      	ldrh	r3, [r7, #14]
- 8002166:	2b00      	cmp	r3, #0
- 8002168:	d101      	bne.n	800216e <_ZN10CanManager10getSign_RxEPh+0x22>
- 800216a:	4b04      	ldr	r3, [pc, #16]	; (800217c <_ZN10CanManager10getSign_RxEPh+0x30>)
- 800216c:	e001      	b.n	8002172 <_ZN10CanManager10getSign_RxEPh+0x26>
+ 800217c:	89fb      	ldrh	r3, [r7, #14]
+ 800217e:	2b00      	cmp	r3, #0
+ 8002180:	d101      	bne.n	8002186 <_ZN10CanManager10getSign_RxEPh+0x22>
+ 8002182:	4b04      	ldr	r3, [pc, #16]	; (8002194 <_ZN10CanManager10getSign_RxEPh+0x30>)
+ 8002184:	e001      	b.n	800218a <_ZN10CanManager10getSign_RxEPh+0x26>
 	else					   return 1.f;
- 800216e:	f04f 537e 	mov.w	r3, #1065353216	; 0x3f800000
+ 8002186:	f04f 537e 	mov.w	r3, #1065353216	; 0x3f800000
 }
- 8002172:	4618      	mov	r0, r3
- 8002174:	3710      	adds	r7, #16
- 8002176:	46bd      	mov	sp, r7
- 8002178:	bd80      	pop	{r7, pc}
- 800217a:	bf00      	nop
- 800217c:	bf800000 	.word	0xbf800000
+ 800218a:	4618      	mov	r0, r3
+ 800218c:	3710      	adds	r7, #16
+ 800218e:	46bd      	mov	sp, r7
+ 8002190:	bd80      	pop	{r7, pc}
+ 8002192:	bf00      	nop
+ 8002194:	bf800000 	.word	0xbf800000
 
-08002180 <_ZN10CanManager26convertVelocityTurnData_RxEPh>:
+08002198 <_ZN10CanManager26convertVelocityTurnData_RxEPh>:
 
 float CanManager::convertVelocityTurnData_Rx(uint8_t * data){
- 8002180:	b590      	push	{r4, r7, lr}
- 8002182:	b085      	sub	sp, #20
- 8002184:	af00      	add	r7, sp, #0
- 8002186:	6078      	str	r0, [r7, #4]
- 8002188:	6039      	str	r1, [r7, #0]
+ 8002198:	b590      	push	{r4, r7, lr}
+ 800219a:	b085      	sub	sp, #20
+ 800219c:	af00      	add	r7, sp, #0
+ 800219e:	6078      	str	r0, [r7, #4]
+ 80021a0:	6039      	str	r1, [r7, #0]
 	uint16_t rawData = uint8_To_uint16(data, 2); // because value start from 2 byte
- 800218a:	2202      	movs	r2, #2
- 800218c:	6839      	ldr	r1, [r7, #0]
- 800218e:	6878      	ldr	r0, [r7, #4]
- 8002190:	f000 f87c 	bl	800228c <_ZN10CanManager15uint8_To_uint16EPhh>
- 8002194:	4603      	mov	r3, r0
- 8002196:	81fb      	strh	r3, [r7, #14]
+ 80021a2:	2202      	movs	r2, #2
+ 80021a4:	6839      	ldr	r1, [r7, #0]
+ 80021a6:	6878      	ldr	r0, [r7, #4]
+ 80021a8:	f000 f87c 	bl	80022a4 <_ZN10CanManager15uint8_To_uint16EPhh>
+ 80021ac:	4603      	mov	r3, r0
+ 80021ae:	81fb      	strh	r3, [r7, #14]
 	return  getSign_Rx(data) * (float)(rawData / MAX_CANVALUE)*100.f; // PERCENTAGE CALCULATE
- 8002198:	6839      	ldr	r1, [r7, #0]
- 800219a:	6878      	ldr	r0, [r7, #4]
- 800219c:	f7ff ffd6 	bl	800214c <_ZN10CanManager10getSign_RxEPh>
- 80021a0:	4604      	mov	r4, r0
- 80021a2:	89fb      	ldrh	r3, [r7, #14]
- 80021a4:	4a0b      	ldr	r2, [pc, #44]	; (80021d4 <_ZN10CanManager26convertVelocityTurnData_RxEPh+0x54>)
- 80021a6:	fba2 2303 	umull	r2, r3, r2, r3
- 80021aa:	0b9b      	lsrs	r3, r3, #14
- 80021ac:	b29b      	uxth	r3, r3
- 80021ae:	4618      	mov	r0, r3
- 80021b0:	f7fe fd86 	bl	8000cc0 <__aeabi_i2f>
- 80021b4:	4603      	mov	r3, r0
- 80021b6:	4619      	mov	r1, r3
- 80021b8:	4620      	mov	r0, r4
- 80021ba:	f7fe fdd5 	bl	8000d68 <__aeabi_fmul>
- 80021be:	4603      	mov	r3, r0
- 80021c0:	4905      	ldr	r1, [pc, #20]	; (80021d8 <_ZN10CanManager26convertVelocityTurnData_RxEPh+0x58>)
- 80021c2:	4618      	mov	r0, r3
- 80021c4:	f7fe fdd0 	bl	8000d68 <__aeabi_fmul>
- 80021c8:	4603      	mov	r3, r0
+ 80021b0:	6839      	ldr	r1, [r7, #0]
+ 80021b2:	6878      	ldr	r0, [r7, #4]
+ 80021b4:	f7ff ffd6 	bl	8002164 <_ZN10CanManager10getSign_RxEPh>
+ 80021b8:	4604      	mov	r4, r0
+ 80021ba:	89fb      	ldrh	r3, [r7, #14]
+ 80021bc:	4a0b      	ldr	r2, [pc, #44]	; (80021ec <_ZN10CanManager26convertVelocityTurnData_RxEPh+0x54>)
+ 80021be:	fba2 2303 	umull	r2, r3, r2, r3
+ 80021c2:	0b9b      	lsrs	r3, r3, #14
+ 80021c4:	b29b      	uxth	r3, r3
+ 80021c6:	4618      	mov	r0, r3
+ 80021c8:	f7fe fd7a 	bl	8000cc0 <__aeabi_i2f>
+ 80021cc:	4603      	mov	r3, r0
+ 80021ce:	4619      	mov	r1, r3
+ 80021d0:	4620      	mov	r0, r4
+ 80021d2:	f7fe fdc9 	bl	8000d68 <__aeabi_fmul>
+ 80021d6:	4603      	mov	r3, r0
+ 80021d8:	4905      	ldr	r1, [pc, #20]	; (80021f0 <_ZN10CanManager26convertVelocityTurnData_RxEPh+0x58>)
+ 80021da:	4618      	mov	r0, r3
+ 80021dc:	f7fe fdc4 	bl	8000d68 <__aeabi_fmul>
+ 80021e0:	4603      	mov	r3, r0
 }
- 80021ca:	4618      	mov	r0, r3
- 80021cc:	3714      	adds	r7, #20
- 80021ce:	46bd      	mov	sp, r7
- 80021d0:	bd90      	pop	{r4, r7, pc}
- 80021d2:	bf00      	nop
- 80021d4:	51eb851f 	.word	0x51eb851f
- 80021d8:	42c80000 	.word	0x42c80000
+ 80021e2:	4618      	mov	r0, r3
+ 80021e4:	3714      	adds	r7, #20
+ 80021e6:	46bd      	mov	sp, r7
+ 80021e8:	bd90      	pop	{r4, r7, pc}
+ 80021ea:	bf00      	nop
+ 80021ec:	51eb851f 	.word	0x51eb851f
+ 80021f0:	42c80000 	.word	0x42c80000
 
-080021dc <_ZN10CanManager20convertStatusData_RxEPh>:
+080021f4 <_ZN10CanManager20convertStatusData_RxEPh>:
 
 void CanManager::convertStatusData_Rx(uint8_t * data){
- 80021dc:	b590      	push	{r4, r7, lr}
- 80021de:	b085      	sub	sp, #20
- 80021e0:	af00      	add	r7, sp, #0
- 80021e2:	6078      	str	r0, [r7, #4]
- 80021e4:	6039      	str	r1, [r7, #0]
+ 80021f4:	b590      	push	{r4, r7, lr}
+ 80021f6:	b085      	sub	sp, #20
+ 80021f8:	af00      	add	r7, sp, #0
+ 80021fa:	6078      	str	r0, [r7, #4]
+ 80021fc:	6039      	str	r1, [r7, #0]
 
 	uint8_t status = data[STATUS_MODE_BYTE];
- 80021e6:	683b      	ldr	r3, [r7, #0]
- 80021e8:	781b      	ldrb	r3, [r3, #0]
- 80021ea:	73fb      	strb	r3, [r7, #15]
+ 80021fe:	683b      	ldr	r3, [r7, #0]
+ 8002200:	781b      	ldrb	r3, [r3, #0]
+ 8002202:	73fb      	strb	r3, [r7, #15]
 	uint8_t permition = data[STATUS_PERMITION_BYTE];
- 80021ec:	683b      	ldr	r3, [r7, #0]
- 80021ee:	785b      	ldrb	r3, [r3, #1]
- 80021f0:	73bb      	strb	r3, [r7, #14]
+ 8002204:	683b      	ldr	r3, [r7, #0]
+ 8002206:	785b      	ldrb	r3, [r3, #1]
+ 8002208:	73bb      	strb	r3, [r7, #14]
 	modeManager.statusUpdate(getRCmodeStatus_Rx( status ), getDriveModestatus_Rx( permition ) );
- 80021f2:	7bfb      	ldrb	r3, [r7, #15]
- 80021f4:	4619      	mov	r1, r3
- 80021f6:	6878      	ldr	r0, [r7, #4]
- 80021f8:	f000 f814 	bl	8002224 <_ZN10CanManager18getRCmodeStatus_RxEh>
- 80021fc:	4603      	mov	r3, r0
- 80021fe:	461c      	mov	r4, r3
- 8002200:	7bbb      	ldrb	r3, [r7, #14]
- 8002202:	4619      	mov	r1, r3
- 8002204:	6878      	ldr	r0, [r7, #4]
- 8002206:	f000 f82c 	bl	8002262 <_ZN10CanManager21getDriveModestatus_RxEh>
- 800220a:	4603      	mov	r3, r0
- 800220c:	461a      	mov	r2, r3
- 800220e:	4621      	mov	r1, r4
- 8002210:	4803      	ldr	r0, [pc, #12]	; (8002220 <_ZN10CanManager20convertStatusData_RxEPh+0x44>)
- 8002212:	f000 fe41 	bl	8002e98 <_ZN11ModeManager12statusUpdateENS_7RC_MODEENS_10DRIVE_MODEE>
+ 800220a:	7bfb      	ldrb	r3, [r7, #15]
+ 800220c:	4619      	mov	r1, r3
+ 800220e:	6878      	ldr	r0, [r7, #4]
+ 8002210:	f000 f814 	bl	800223c <_ZN10CanManager18getRCmodeStatus_RxEh>
+ 8002214:	4603      	mov	r3, r0
+ 8002216:	461c      	mov	r4, r3
+ 8002218:	7bbb      	ldrb	r3, [r7, #14]
+ 800221a:	4619      	mov	r1, r3
+ 800221c:	6878      	ldr	r0, [r7, #4]
+ 800221e:	f000 f82c 	bl	800227a <_ZN10CanManager21getDriveModestatus_RxEh>
+ 8002222:	4603      	mov	r3, r0
+ 8002224:	461a      	mov	r2, r3
+ 8002226:	4621      	mov	r1, r4
+ 8002228:	4803      	ldr	r0, [pc, #12]	; (8002238 <_ZN10CanManager20convertStatusData_RxEPh+0x44>)
+ 800222a:	f000 fe35 	bl	8002e98 <_ZN11ModeManager12statusUpdateENS_7RC_MODEENS_10DRIVE_MODEE>
 }
- 8002216:	bf00      	nop
- 8002218:	3714      	adds	r7, #20
- 800221a:	46bd      	mov	sp, r7
- 800221c:	bd90      	pop	{r4, r7, pc}
- 800221e:	bf00      	nop
- 8002220:	20000194 	.word	0x20000194
+ 800222e:	bf00      	nop
+ 8002230:	3714      	adds	r7, #20
+ 8002232:	46bd      	mov	sp, r7
+ 8002234:	bd90      	pop	{r4, r7, pc}
+ 8002236:	bf00      	nop
+ 8002238:	20000194 	.word	0x20000194
 
-08002224 <_ZN10CanManager18getRCmodeStatus_RxEh>:
+0800223c <_ZN10CanManager18getRCmodeStatus_RxEh>:
 
 ModeManager::RC_MODE CanManager::getRCmodeStatus_Rx(uint8_t status){
- 8002224:	b480      	push	{r7}
- 8002226:	b083      	sub	sp, #12
- 8002228:	af00      	add	r7, sp, #0
- 800222a:	6078      	str	r0, [r7, #4]
- 800222c:	460b      	mov	r3, r1
- 800222e:	70fb      	strb	r3, [r7, #3]
+ 800223c:	b480      	push	{r7}
+ 800223e:	b083      	sub	sp, #12
+ 8002240:	af00      	add	r7, sp, #0
+ 8002242:	6078      	str	r0, [r7, #4]
+ 8002244:	460b      	mov	r3, r1
+ 8002246:	70fb      	strb	r3, [r7, #3]
 	if (status == JOYSTICK_MODE_MSG ) 		return ModeManager::MODE_JOYSICK;
- 8002230:	78fb      	ldrb	r3, [r7, #3]
- 8002232:	2b00      	cmp	r3, #0
- 8002234:	d101      	bne.n	800223a <_ZN10CanManager18getRCmodeStatus_RxEh+0x16>
- 8002236:	2300      	movs	r3, #0
- 8002238:	e00e      	b.n	8002258 <_ZN10CanManager18getRCmodeStatus_RxEh+0x34>
+ 8002248:	78fb      	ldrb	r3, [r7, #3]
+ 800224a:	2b00      	cmp	r3, #0
+ 800224c:	d101      	bne.n	8002252 <_ZN10CanManager18getRCmodeStatus_RxEh+0x16>
+ 800224e:	2300      	movs	r3, #0
+ 8002250:	e00e      	b.n	8002270 <_ZN10CanManager18getRCmodeStatus_RxEh+0x34>
 	else if(status == ACRO_MODE_MSG ) 		return ModeManager::MODE_ACRO;
- 800223a:	78fb      	ldrb	r3, [r7, #3]
- 800223c:	2b01      	cmp	r3, #1
- 800223e:	d101      	bne.n	8002244 <_ZN10CanManager18getRCmodeStatus_RxEh+0x20>
- 8002240:	2303      	movs	r3, #3
- 8002242:	e009      	b.n	8002258 <_ZN10CanManager18getRCmodeStatus_RxEh+0x34>
+ 8002252:	78fb      	ldrb	r3, [r7, #3]
+ 8002254:	2b01      	cmp	r3, #1
+ 8002256:	d101      	bne.n	800225c <_ZN10CanManager18getRCmodeStatus_RxEh+0x20>
+ 8002258:	2303      	movs	r3, #3
+ 800225a:	e009      	b.n	8002270 <_ZN10CanManager18getRCmodeStatus_RxEh+0x34>
 	else if(status == SEMI_MODE_MSG ) 		return ModeManager::MODE_SEMI;
- 8002244:	78fb      	ldrb	r3, [r7, #3]
- 8002246:	2b02      	cmp	r3, #2
- 8002248:	d101      	bne.n	800224e <_ZN10CanManager18getRCmodeStatus_RxEh+0x2a>
- 800224a:	2302      	movs	r3, #2
- 800224c:	e004      	b.n	8002258 <_ZN10CanManager18getRCmodeStatus_RxEh+0x34>
+ 800225c:	78fb      	ldrb	r3, [r7, #3]
+ 800225e:	2b02      	cmp	r3, #2
+ 8002260:	d101      	bne.n	8002266 <_ZN10CanManager18getRCmodeStatus_RxEh+0x2a>
+ 8002262:	2302      	movs	r3, #2
+ 8002264:	e004      	b.n	8002270 <_ZN10CanManager18getRCmodeStatus_RxEh+0x34>
 	else if(status == AUTONOMOUS_MODE_MSG ) return ModeManager::MODE_AUTONOMOUS;
- 800224e:	78fb      	ldrb	r3, [r7, #3]
- 8002250:	2b03      	cmp	r3, #3
- 8002252:	d101      	bne.n	8002258 <_ZN10CanManager18getRCmodeStatus_RxEh+0x34>
- 8002254:	2301      	movs	r3, #1
- 8002256:	e7ff      	b.n	8002258 <_ZN10CanManager18getRCmodeStatus_RxEh+0x34>
+ 8002266:	78fb      	ldrb	r3, [r7, #3]
+ 8002268:	2b03      	cmp	r3, #3
+ 800226a:	d101      	bne.n	8002270 <_ZN10CanManager18getRCmodeStatus_RxEh+0x34>
+ 800226c:	2301      	movs	r3, #1
+ 800226e:	e7ff      	b.n	8002270 <_ZN10CanManager18getRCmodeStatus_RxEh+0x34>
 }
- 8002258:	4618      	mov	r0, r3
- 800225a:	370c      	adds	r7, #12
- 800225c:	46bd      	mov	sp, r7
- 800225e:	bc80      	pop	{r7}
- 8002260:	4770      	bx	lr
+ 8002270:	4618      	mov	r0, r3
+ 8002272:	370c      	adds	r7, #12
+ 8002274:	46bd      	mov	sp, r7
+ 8002276:	bc80      	pop	{r7}
+ 8002278:	4770      	bx	lr
 
-08002262 <_ZN10CanManager21getDriveModestatus_RxEh>:
+0800227a <_ZN10CanManager21getDriveModestatus_RxEh>:
 
 ModeManager::DRIVE_MODE CanManager::getDriveModestatus_Rx(uint8_t permition){
- 8002262:	b480      	push	{r7}
- 8002264:	b083      	sub	sp, #12
- 8002266:	af00      	add	r7, sp, #0
- 8002268:	6078      	str	r0, [r7, #4]
- 800226a:	460b      	mov	r3, r1
- 800226c:	70fb      	strb	r3, [r7, #3]
+ 800227a:	b480      	push	{r7}
+ 800227c:	b083      	sub	sp, #12
+ 800227e:	af00      	add	r7, sp, #0
+ 8002280:	6078      	str	r0, [r7, #4]
+ 8002282:	460b      	mov	r3, r1
+ 8002284:	70fb      	strb	r3, [r7, #3]
 	if (permition == ENABLE_DRIVE_MSG  ) 		return ModeManager::ENABLE;
- 800226e:	78fb      	ldrb	r3, [r7, #3]
- 8002270:	2b01      	cmp	r3, #1
- 8002272:	d101      	bne.n	8002278 <_ZN10CanManager21getDriveModestatus_RxEh+0x16>
- 8002274:	2301      	movs	r3, #1
- 8002276:	e004      	b.n	8002282 <_ZN10CanManager21getDriveModestatus_RxEh+0x20>
+ 8002286:	78fb      	ldrb	r3, [r7, #3]
+ 8002288:	2b01      	cmp	r3, #1
+ 800228a:	d101      	bne.n	8002290 <_ZN10CanManager21getDriveModestatus_RxEh+0x16>
+ 800228c:	2301      	movs	r3, #1
+ 800228e:	e004      	b.n	800229a <_ZN10CanManager21getDriveModestatus_RxEh+0x20>
 	else if(permition ==  DISABLE_DRIVE_MSG ) 	return ModeManager::DISABLE;
- 8002278:	78fb      	ldrb	r3, [r7, #3]
- 800227a:	2b00      	cmp	r3, #0
- 800227c:	d101      	bne.n	8002282 <_ZN10CanManager21getDriveModestatus_RxEh+0x20>
- 800227e:	2300      	movs	r3, #0
- 8002280:	e7ff      	b.n	8002282 <_ZN10CanManager21getDriveModestatus_RxEh+0x20>
+ 8002290:	78fb      	ldrb	r3, [r7, #3]
+ 8002292:	2b00      	cmp	r3, #0
+ 8002294:	d101      	bne.n	800229a <_ZN10CanManager21getDriveModestatus_RxEh+0x20>
+ 8002296:	2300      	movs	r3, #0
+ 8002298:	e7ff      	b.n	800229a <_ZN10CanManager21getDriveModestatus_RxEh+0x20>
 }
- 8002282:	4618      	mov	r0, r3
- 8002284:	370c      	adds	r7, #12
- 8002286:	46bd      	mov	sp, r7
- 8002288:	bc80      	pop	{r7}
- 800228a:	4770      	bx	lr
+ 800229a:	4618      	mov	r0, r3
+ 800229c:	370c      	adds	r7, #12
+ 800229e:	46bd      	mov	sp, r7
+ 80022a0:	bc80      	pop	{r7}
+ 80022a2:	4770      	bx	lr
 
-0800228c <_ZN10CanManager15uint8_To_uint16EPhh>:
+080022a4 <_ZN10CanManager15uint8_To_uint16EPhh>:
 
 
 uint16_t CanManager::uint8_To_uint16(uint8_t* data, uint8_t start_byte){
- 800228c:	b480      	push	{r7}
- 800228e:	b085      	sub	sp, #20
- 8002290:	af00      	add	r7, sp, #0
- 8002292:	60f8      	str	r0, [r7, #12]
- 8002294:	60b9      	str	r1, [r7, #8]
- 8002296:	4613      	mov	r3, r2
- 8002298:	71fb      	strb	r3, [r7, #7]
+ 80022a4:	b480      	push	{r7}
+ 80022a6:	b085      	sub	sp, #20
+ 80022a8:	af00      	add	r7, sp, #0
+ 80022aa:	60f8      	str	r0, [r7, #12]
+ 80022ac:	60b9      	str	r1, [r7, #8]
+ 80022ae:	4613      	mov	r3, r2
+ 80022b0:	71fb      	strb	r3, [r7, #7]
 	return ((uint16_t)data[start_byte + 1] << 8) | (uint16_t)data[start_byte]; //copy from can_frrames.c
- 800229a:	79fb      	ldrb	r3, [r7, #7]
- 800229c:	3301      	adds	r3, #1
- 800229e:	68ba      	ldr	r2, [r7, #8]
- 80022a0:	4413      	add	r3, r2
- 80022a2:	781b      	ldrb	r3, [r3, #0]
- 80022a4:	021b      	lsls	r3, r3, #8
- 80022a6:	b21a      	sxth	r2, r3
- 80022a8:	79fb      	ldrb	r3, [r7, #7]
- 80022aa:	68b9      	ldr	r1, [r7, #8]
- 80022ac:	440b      	add	r3, r1
- 80022ae:	781b      	ldrb	r3, [r3, #0]
- 80022b0:	b21b      	sxth	r3, r3
- 80022b2:	4313      	orrs	r3, r2
- 80022b4:	b21b      	sxth	r3, r3
- 80022b6:	b29b      	uxth	r3, r3
+ 80022b2:	79fb      	ldrb	r3, [r7, #7]
+ 80022b4:	3301      	adds	r3, #1
+ 80022b6:	68ba      	ldr	r2, [r7, #8]
+ 80022b8:	4413      	add	r3, r2
+ 80022ba:	781b      	ldrb	r3, [r3, #0]
+ 80022bc:	021b      	lsls	r3, r3, #8
+ 80022be:	b21a      	sxth	r2, r3
+ 80022c0:	79fb      	ldrb	r3, [r7, #7]
+ 80022c2:	68b9      	ldr	r1, [r7, #8]
+ 80022c4:	440b      	add	r3, r1
+ 80022c6:	781b      	ldrb	r3, [r3, #0]
+ 80022c8:	b21b      	sxth	r3, r3
+ 80022ca:	4313      	orrs	r3, r2
+ 80022cc:	b21b      	sxth	r3, r3
+ 80022ce:	b29b      	uxth	r3, r3
 }
- 80022b8:	4618      	mov	r0, r3
- 80022ba:	3714      	adds	r7, #20
- 80022bc:	46bd      	mov	sp, r7
- 80022be:	bc80      	pop	{r7}
- 80022c0:	4770      	bx	lr
+ 80022d0:	4618      	mov	r0, r3
+ 80022d2:	3714      	adds	r7, #20
+ 80022d4:	46bd      	mov	sp, r7
+ 80022d6:	bc80      	pop	{r7}
+ 80022d8:	4770      	bx	lr
 	...
 
-080022c4 <_ZN10CanManager11setVelocityEfN11ModeManager10MSG_ORIGINE>:
+080022dc <_ZN10CanManager11setVelocityEfN11ModeManager10MSG_ORIGINE>:
 
 void CanManager::setVelocity(float vel, ModeManager::MSG_ORIGIN origin){
- 80022c4:	b580      	push	{r7, lr}
- 80022c6:	b084      	sub	sp, #16
- 80022c8:	af00      	add	r7, sp, #0
- 80022ca:	60f8      	str	r0, [r7, #12]
- 80022cc:	60b9      	str	r1, [r7, #8]
- 80022ce:	4613      	mov	r3, r2
- 80022d0:	71fb      	strb	r3, [r7, #7]
+ 80022dc:	b580      	push	{r7, lr}
+ 80022de:	b084      	sub	sp, #16
+ 80022e0:	af00      	add	r7, sp, #0
+ 80022e2:	60f8      	str	r0, [r7, #12]
+ 80022e4:	60b9      	str	r1, [r7, #8]
+ 80022e6:	4613      	mov	r3, r2
+ 80022e8:	71fb      	strb	r3, [r7, #7]
 	if (modeManager.velocityPermission(origin)) sendVelocity(vel);
- 80022d2:	79fb      	ldrb	r3, [r7, #7]
- 80022d4:	4619      	mov	r1, r3
- 80022d6:	4809      	ldr	r0, [pc, #36]	; (80022fc <_ZN10CanManager11setVelocityEfN11ModeManager10MSG_ORIGINE+0x38>)
- 80022d8:	f000 fd5c 	bl	8002d94 <_ZN11ModeManager18velocityPermissionENS_10MSG_ORIGINE>
- 80022dc:	4603      	mov	r3, r0
- 80022de:	2b00      	cmp	r3, #0
- 80022e0:	bf14      	ite	ne
- 80022e2:	2301      	movne	r3, #1
- 80022e4:	2300      	moveq	r3, #0
- 80022e6:	b2db      	uxtb	r3, r3
- 80022e8:	2b00      	cmp	r3, #0
- 80022ea:	d003      	beq.n	80022f4 <_ZN10CanManager11setVelocityEfN11ModeManager10MSG_ORIGINE+0x30>
- 80022ec:	68b9      	ldr	r1, [r7, #8]
- 80022ee:	68f8      	ldr	r0, [r7, #12]
- 80022f0:	f000 f96e 	bl	80025d0 <_ZN10CanManager12sendVelocityEf>
+ 80022ea:	79fb      	ldrb	r3, [r7, #7]
+ 80022ec:	4619      	mov	r1, r3
+ 80022ee:	4809      	ldr	r0, [pc, #36]	; (8002314 <_ZN10CanManager11setVelocityEfN11ModeManager10MSG_ORIGINE+0x38>)
+ 80022f0:	f000 fd50 	bl	8002d94 <_ZN11ModeManager18velocityPermissionENS_10MSG_ORIGINE>
+ 80022f4:	4603      	mov	r3, r0
+ 80022f6:	2b00      	cmp	r3, #0
+ 80022f8:	bf14      	ite	ne
+ 80022fa:	2301      	movne	r3, #1
+ 80022fc:	2300      	moveq	r3, #0
+ 80022fe:	b2db      	uxtb	r3, r3
+ 8002300:	2b00      	cmp	r3, #0
+ 8002302:	d003      	beq.n	800230c <_ZN10CanManager11setVelocityEfN11ModeManager10MSG_ORIGINE+0x30>
+ 8002304:	68b9      	ldr	r1, [r7, #8]
+ 8002306:	68f8      	ldr	r0, [r7, #12]
+ 8002308:	f000 f96e 	bl	80025e8 <_ZN10CanManager12sendVelocityEf>
 
 }
- 80022f4:	bf00      	nop
- 80022f6:	3710      	adds	r7, #16
- 80022f8:	46bd      	mov	sp, r7
- 80022fa:	bd80      	pop	{r7, pc}
- 80022fc:	20000194 	.word	0x20000194
+ 800230c:	bf00      	nop
+ 800230e:	3710      	adds	r7, #16
+ 8002310:	46bd      	mov	sp, r7
+ 8002312:	bd80      	pop	{r7, pc}
+ 8002314:	20000194 	.word	0x20000194
 
-08002300 <_ZN10CanManager7setTurnEfN11ModeManager10MSG_ORIGINE>:
+08002318 <_ZN10CanManager7setTurnEfN11ModeManager10MSG_ORIGINE>:
 void CanManager::setTurn(float turn, ModeManager::MSG_ORIGIN origin){
- 8002300:	b580      	push	{r7, lr}
- 8002302:	b084      	sub	sp, #16
- 8002304:	af00      	add	r7, sp, #0
- 8002306:	60f8      	str	r0, [r7, #12]
- 8002308:	60b9      	str	r1, [r7, #8]
- 800230a:	4613      	mov	r3, r2
- 800230c:	71fb      	strb	r3, [r7, #7]
+ 8002318:	b580      	push	{r7, lr}
+ 800231a:	b084      	sub	sp, #16
+ 800231c:	af00      	add	r7, sp, #0
+ 800231e:	60f8      	str	r0, [r7, #12]
+ 8002320:	60b9      	str	r1, [r7, #8]
+ 8002322:	4613      	mov	r3, r2
+ 8002324:	71fb      	strb	r3, [r7, #7]
 	if (modeManager.turnPermission(origin)) sendTurn(turn);
- 800230e:	79fb      	ldrb	r3, [r7, #7]
- 8002310:	4619      	mov	r1, r3
- 8002312:	4809      	ldr	r0, [pc, #36]	; (8002338 <_ZN10CanManager7setTurnEfN11ModeManager10MSG_ORIGINE+0x38>)
- 8002314:	f000 fd7f 	bl	8002e16 <_ZN11ModeManager14turnPermissionENS_10MSG_ORIGINE>
- 8002318:	4603      	mov	r3, r0
- 800231a:	2b00      	cmp	r3, #0
- 800231c:	bf14      	ite	ne
- 800231e:	2301      	movne	r3, #1
- 8002320:	2300      	moveq	r3, #0
- 8002322:	b2db      	uxtb	r3, r3
- 8002324:	2b00      	cmp	r3, #0
- 8002326:	d003      	beq.n	8002330 <_ZN10CanManager7setTurnEfN11ModeManager10MSG_ORIGINE+0x30>
- 8002328:	68b9      	ldr	r1, [r7, #8]
- 800232a:	68f8      	ldr	r0, [r7, #12]
- 800232c:	f000 f95e 	bl	80025ec <_ZN10CanManager8sendTurnEf>
+ 8002326:	79fb      	ldrb	r3, [r7, #7]
+ 8002328:	4619      	mov	r1, r3
+ 800232a:	4809      	ldr	r0, [pc, #36]	; (8002350 <_ZN10CanManager7setTurnEfN11ModeManager10MSG_ORIGINE+0x38>)
+ 800232c:	f000 fd73 	bl	8002e16 <_ZN11ModeManager14turnPermissionENS_10MSG_ORIGINE>
+ 8002330:	4603      	mov	r3, r0
+ 8002332:	2b00      	cmp	r3, #0
+ 8002334:	bf14      	ite	ne
+ 8002336:	2301      	movne	r3, #1
+ 8002338:	2300      	moveq	r3, #0
+ 800233a:	b2db      	uxtb	r3, r3
+ 800233c:	2b00      	cmp	r3, #0
+ 800233e:	d003      	beq.n	8002348 <_ZN10CanManager7setTurnEfN11ModeManager10MSG_ORIGINE+0x30>
+ 8002340:	68b9      	ldr	r1, [r7, #8]
+ 8002342:	68f8      	ldr	r0, [r7, #12]
+ 8002344:	f000 f95e 	bl	8002604 <_ZN10CanManager8sendTurnEf>
 }
- 8002330:	bf00      	nop
- 8002332:	3710      	adds	r7, #16
- 8002334:	46bd      	mov	sp, r7
- 8002336:	bd80      	pop	{r7, pc}
- 8002338:	20000194 	.word	0x20000194
+ 8002348:	bf00      	nop
+ 800234a:	3710      	adds	r7, #16
+ 800234c:	46bd      	mov	sp, r7
+ 800234e:	bd80      	pop	{r7, pc}
+ 8002350:	20000194 	.word	0x20000194
 
-0800233c <_ZN10CanManager10getData_RxEmPhh>:
+08002354 <_ZN10CanManager10getData_RxEmPhh>:
 
 void CanManager::getData_Rx(uint32_t frame_id, uint8_t* data, uint8_t dlc){
- 800233c:	b580      	push	{r7, lr}
- 800233e:	b084      	sub	sp, #16
- 8002340:	af00      	add	r7, sp, #0
- 8002342:	60f8      	str	r0, [r7, #12]
- 8002344:	60b9      	str	r1, [r7, #8]
- 8002346:	607a      	str	r2, [r7, #4]
- 8002348:	70fb      	strb	r3, [r7, #3]
+ 8002354:	b580      	push	{r7, lr}
+ 8002356:	b084      	sub	sp, #16
+ 8002358:	af00      	add	r7, sp, #0
+ 800235a:	60f8      	str	r0, [r7, #12]
+ 800235c:	60b9      	str	r1, [r7, #8]
+ 800235e:	607a      	str	r2, [r7, #4]
+ 8002360:	70fb      	strb	r3, [r7, #3]
 	if (frame_id == STATUS_FRAME_ID) convertStatusData_Rx( data); // function also update status in modemanager
- 800234a:	68bb      	ldr	r3, [r7, #8]
- 800234c:	f240 225d 	movw	r2, #605	; 0x25d
- 8002350:	4293      	cmp	r3, r2
- 8002352:	d104      	bne.n	800235e <_ZN10CanManager10getData_RxEmPhh+0x22>
- 8002354:	6879      	ldr	r1, [r7, #4]
- 8002356:	68f8      	ldr	r0, [r7, #12]
- 8002358:	f7ff ff40 	bl	80021dc <_ZN10CanManager20convertStatusData_RxEPh>
+ 8002362:	68bb      	ldr	r3, [r7, #8]
+ 8002364:	f240 225d 	movw	r2, #605	; 0x25d
+ 8002368:	4293      	cmp	r3, r2
+ 800236a:	d104      	bne.n	8002376 <_ZN10CanManager10getData_RxEmPhh+0x22>
+ 800236c:	6879      	ldr	r1, [r7, #4]
+ 800236e:	68f8      	ldr	r0, [r7, #12]
+ 8002370:	f7ff ff40 	bl	80021f4 <_ZN10CanManager20convertStatusData_RxEPh>
 	else if ( frame_id == VELOCITY_FRAME_ID ) 		setVelocity( convertVelocityTurnData_Rx( data ), ModeManager::RC );
 	else if ( frame_id == I3_VELOCITY_FRAME_ID )	setVelocity( convertVelocityTurnData_Rx( data ),ModeManager::I3  );
 	else if ( frame_id == TURN_FRAME_ID )			setTurn( convertVelocityTurnData_Rx( data ), ModeManager::RC  );
 	else if ( frame_id == I3_TURN_FRAME_ID )	 	setTurn( convertVelocityTurnData_Rx( data ), ModeManager::I3  );
 }
- 800235c:	e03e      	b.n	80023dc <_ZN10CanManager10getData_RxEmPhh+0xa0>
+ 8002374:	e03e      	b.n	80023f4 <_ZN10CanManager10getData_RxEmPhh+0xa0>
 	else if ( frame_id == VELOCITY_FRAME_ID ) 		setVelocity( convertVelocityTurnData_Rx( data ), ModeManager::RC );
- 800235e:	68bb      	ldr	r3, [r7, #8]
- 8002360:	f240 223e 	movw	r2, #574	; 0x23e
- 8002364:	4293      	cmp	r3, r2
- 8002366:	d10a      	bne.n	800237e <_ZN10CanManager10getData_RxEmPhh+0x42>
- 8002368:	6879      	ldr	r1, [r7, #4]
- 800236a:	68f8      	ldr	r0, [r7, #12]
- 800236c:	f7ff ff08 	bl	8002180 <_ZN10CanManager26convertVelocityTurnData_RxEPh>
- 8002370:	4603      	mov	r3, r0
- 8002372:	2200      	movs	r2, #0
- 8002374:	4619      	mov	r1, r3
- 8002376:	68f8      	ldr	r0, [r7, #12]
- 8002378:	f7ff ffa4 	bl	80022c4 <_ZN10CanManager11setVelocityEfN11ModeManager10MSG_ORIGINE>
+ 8002376:	68bb      	ldr	r3, [r7, #8]
+ 8002378:	f240 223e 	movw	r2, #574	; 0x23e
+ 800237c:	4293      	cmp	r3, r2
+ 800237e:	d10a      	bne.n	8002396 <_ZN10CanManager10getData_RxEmPhh+0x42>
+ 8002380:	6879      	ldr	r1, [r7, #4]
+ 8002382:	68f8      	ldr	r0, [r7, #12]
+ 8002384:	f7ff ff08 	bl	8002198 <_ZN10CanManager26convertVelocityTurnData_RxEPh>
+ 8002388:	4603      	mov	r3, r0
+ 800238a:	2200      	movs	r2, #0
+ 800238c:	4619      	mov	r1, r3
+ 800238e:	68f8      	ldr	r0, [r7, #12]
+ 8002390:	f7ff ffa4 	bl	80022dc <_ZN10CanManager11setVelocityEfN11ModeManager10MSG_ORIGINE>
 }
- 800237c:	e02e      	b.n	80023dc <_ZN10CanManager10getData_RxEmPhh+0xa0>
+ 8002394:	e02e      	b.n	80023f4 <_ZN10CanManager10getData_RxEmPhh+0xa0>
 	else if ( frame_id == I3_VELOCITY_FRAME_ID )	setVelocity( convertVelocityTurnData_Rx( data ),ModeManager::I3  );
- 800237e:	68bb      	ldr	r3, [r7, #8]
- 8002380:	f240 226d 	movw	r2, #621	; 0x26d
- 8002384:	4293      	cmp	r3, r2
- 8002386:	d10a      	bne.n	800239e <_ZN10CanManager10getData_RxEmPhh+0x62>
- 8002388:	6879      	ldr	r1, [r7, #4]
- 800238a:	68f8      	ldr	r0, [r7, #12]
- 800238c:	f7ff fef8 	bl	8002180 <_ZN10CanManager26convertVelocityTurnData_RxEPh>
- 8002390:	4603      	mov	r3, r0
- 8002392:	2201      	movs	r2, #1
- 8002394:	4619      	mov	r1, r3
- 8002396:	68f8      	ldr	r0, [r7, #12]
- 8002398:	f7ff ff94 	bl	80022c4 <_ZN10CanManager11setVelocityEfN11ModeManager10MSG_ORIGINE>
+ 8002396:	68bb      	ldr	r3, [r7, #8]
+ 8002398:	f240 226d 	movw	r2, #621	; 0x26d
+ 800239c:	4293      	cmp	r3, r2
+ 800239e:	d10a      	bne.n	80023b6 <_ZN10CanManager10getData_RxEmPhh+0x62>
+ 80023a0:	6879      	ldr	r1, [r7, #4]
+ 80023a2:	68f8      	ldr	r0, [r7, #12]
+ 80023a4:	f7ff fef8 	bl	8002198 <_ZN10CanManager26convertVelocityTurnData_RxEPh>
+ 80023a8:	4603      	mov	r3, r0
+ 80023aa:	2201      	movs	r2, #1
+ 80023ac:	4619      	mov	r1, r3
+ 80023ae:	68f8      	ldr	r0, [r7, #12]
+ 80023b0:	f7ff ff94 	bl	80022dc <_ZN10CanManager11setVelocityEfN11ModeManager10MSG_ORIGINE>
 }
- 800239c:	e01e      	b.n	80023dc <_ZN10CanManager10getData_RxEmPhh+0xa0>
+ 80023b4:	e01e      	b.n	80023f4 <_ZN10CanManager10getData_RxEmPhh+0xa0>
 	else if ( frame_id == TURN_FRAME_ID )			setTurn( convertVelocityTurnData_Rx( data ), ModeManager::RC  );
- 800239e:	68bb      	ldr	r3, [r7, #8]
- 80023a0:	f240 224d 	movw	r2, #589	; 0x24d
- 80023a4:	4293      	cmp	r3, r2
- 80023a6:	d10a      	bne.n	80023be <_ZN10CanManager10getData_RxEmPhh+0x82>
- 80023a8:	6879      	ldr	r1, [r7, #4]
- 80023aa:	68f8      	ldr	r0, [r7, #12]
- 80023ac:	f7ff fee8 	bl	8002180 <_ZN10CanManager26convertVelocityTurnData_RxEPh>
- 80023b0:	4603      	mov	r3, r0
- 80023b2:	2200      	movs	r2, #0
- 80023b4:	4619      	mov	r1, r3
- 80023b6:	68f8      	ldr	r0, [r7, #12]
- 80023b8:	f7ff ffa2 	bl	8002300 <_ZN10CanManager7setTurnEfN11ModeManager10MSG_ORIGINE>
+ 80023b6:	68bb      	ldr	r3, [r7, #8]
+ 80023b8:	f240 224d 	movw	r2, #589	; 0x24d
+ 80023bc:	4293      	cmp	r3, r2
+ 80023be:	d10a      	bne.n	80023d6 <_ZN10CanManager10getData_RxEmPhh+0x82>
+ 80023c0:	6879      	ldr	r1, [r7, #4]
+ 80023c2:	68f8      	ldr	r0, [r7, #12]
+ 80023c4:	f7ff fee8 	bl	8002198 <_ZN10CanManager26convertVelocityTurnData_RxEPh>
+ 80023c8:	4603      	mov	r3, r0
+ 80023ca:	2200      	movs	r2, #0
+ 80023cc:	4619      	mov	r1, r3
+ 80023ce:	68f8      	ldr	r0, [r7, #12]
+ 80023d0:	f7ff ffa2 	bl	8002318 <_ZN10CanManager7setTurnEfN11ModeManager10MSG_ORIGINE>
 }
- 80023bc:	e00e      	b.n	80023dc <_ZN10CanManager10getData_RxEmPhh+0xa0>
+ 80023d4:	e00e      	b.n	80023f4 <_ZN10CanManager10getData_RxEmPhh+0xa0>
 	else if ( frame_id == I3_TURN_FRAME_ID )	 	setTurn( convertVelocityTurnData_Rx( data ), ModeManager::I3  );
- 80023be:	68bb      	ldr	r3, [r7, #8]
- 80023c0:	f240 227d 	movw	r2, #637	; 0x27d
- 80023c4:	4293      	cmp	r3, r2
- 80023c6:	d109      	bne.n	80023dc <_ZN10CanManager10getData_RxEmPhh+0xa0>
- 80023c8:	6879      	ldr	r1, [r7, #4]
- 80023ca:	68f8      	ldr	r0, [r7, #12]
- 80023cc:	f7ff fed8 	bl	8002180 <_ZN10CanManager26convertVelocityTurnData_RxEPh>
- 80023d0:	4603      	mov	r3, r0
- 80023d2:	2201      	movs	r2, #1
- 80023d4:	4619      	mov	r1, r3
- 80023d6:	68f8      	ldr	r0, [r7, #12]
- 80023d8:	f7ff ff92 	bl	8002300 <_ZN10CanManager7setTurnEfN11ModeManager10MSG_ORIGINE>
+ 80023d6:	68bb      	ldr	r3, [r7, #8]
+ 80023d8:	f240 227d 	movw	r2, #637	; 0x27d
+ 80023dc:	4293      	cmp	r3, r2
+ 80023de:	d109      	bne.n	80023f4 <_ZN10CanManager10getData_RxEmPhh+0xa0>
+ 80023e0:	6879      	ldr	r1, [r7, #4]
+ 80023e2:	68f8      	ldr	r0, [r7, #12]
+ 80023e4:	f7ff fed8 	bl	8002198 <_ZN10CanManager26convertVelocityTurnData_RxEPh>
+ 80023e8:	4603      	mov	r3, r0
+ 80023ea:	2201      	movs	r2, #1
+ 80023ec:	4619      	mov	r1, r3
+ 80023ee:	68f8      	ldr	r0, [r7, #12]
+ 80023f0:	f7ff ff92 	bl	8002318 <_ZN10CanManager7setTurnEfN11ModeManager10MSG_ORIGINE>
 }
- 80023dc:	bf00      	nop
- 80023de:	3710      	adds	r7, #16
- 80023e0:	46bd      	mov	sp, r7
- 80023e2:	bd80      	pop	{r7, pc}
+ 80023f4:	bf00      	nop
+ 80023f6:	3710      	adds	r7, #16
+ 80023f8:	46bd      	mov	sp, r7
+ 80023fa:	bd80      	pop	{r7, pc}
 
-080023e4 <_ZN10CanManager7sendMsgENS_9SEND_MODEEPh>:
+080023fc <_ZN10CanManager7sendMsgENS_9SEND_MODEEPh>:
 
 /////////////////////////TX PART///////////////////////////////////////////
 
 void CanManager::sendMsg(SEND_MODE mode, uint8_t * msgData){
- 80023e4:	b580      	push	{r7, lr}
- 80023e6:	b084      	sub	sp, #16
- 80023e8:	af00      	add	r7, sp, #0
- 80023ea:	60f8      	str	r0, [r7, #12]
- 80023ec:	460b      	mov	r3, r1
- 80023ee:	607a      	str	r2, [r7, #4]
- 80023f0:	72fb      	strb	r3, [r7, #11]
+ 80023fc:	b580      	push	{r7, lr}
+ 80023fe:	b084      	sub	sp, #16
+ 8002400:	af00      	add	r7, sp, #0
+ 8002402:	60f8      	str	r0, [r7, #12]
+ 8002404:	460b      	mov	r3, r1
+ 8002406:	607a      	str	r2, [r7, #4]
+ 8002408:	72fb      	strb	r3, [r7, #11]
 	if (mode == TURN && sizeof(msgData)==STEERING_FRAME_LENGTH ){
- 80023f2:	7afb      	ldrb	r3, [r7, #11]
- 80023f4:	2b00      	cmp	r3, #0
- 80023f6:	d107      	bne.n	8002408 <_ZN10CanManager7sendMsgENS_9SEND_MODEEPh+0x24>
+ 800240a:	7afb      	ldrb	r3, [r7, #11]
+ 800240c:	2b00      	cmp	r3, #0
+ 800240e:	d107      	bne.n	8002420 <_ZN10CanManager7sendMsgENS_9SEND_MODEEPh+0x24>
 		hal_can_send( STEERING_VELOCITY_FRAME_ID, STEERING_FRAME_LENGTH , msgData);
- 80023f8:	687b      	ldr	r3, [r7, #4]
- 80023fa:	2204      	movs	r2, #4
- 80023fc:	f240 211d 	movw	r1, #541	; 0x21d
- 8002400:	68f8      	ldr	r0, [r7, #12]
- 8002402:	f000 f915 	bl	8002630 <_ZN10CanManager12hal_can_sendEthPh>
+ 8002410:	687b      	ldr	r3, [r7, #4]
+ 8002412:	2204      	movs	r2, #4
+ 8002414:	f240 211d 	movw	r1, #541	; 0x21d
+ 8002418:	68f8      	ldr	r0, [r7, #12]
+ 800241a:	f000 f915 	bl	8002648 <_ZN10CanManager12hal_can_sendEthPh>
 	}
 	else if (mode == VELOCITY && sizeof(msgData)==STEERING_FRAME_LENGTH){
 		hal_can_send( STEERING_TURN_FRAME_ID,  STEERING_FRAME_LENGTH , msgData);
 	}
 }
- 8002406:	e009      	b.n	800241c <_ZN10CanManager7sendMsgENS_9SEND_MODEEPh+0x38>
+ 800241e:	e009      	b.n	8002434 <_ZN10CanManager7sendMsgENS_9SEND_MODEEPh+0x38>
 	else if (mode == VELOCITY && sizeof(msgData)==STEERING_FRAME_LENGTH){
- 8002408:	7afb      	ldrb	r3, [r7, #11]
- 800240a:	2b01      	cmp	r3, #1
- 800240c:	d106      	bne.n	800241c <_ZN10CanManager7sendMsgENS_9SEND_MODEEPh+0x38>
+ 8002420:	7afb      	ldrb	r3, [r7, #11]
+ 8002422:	2b01      	cmp	r3, #1
+ 8002424:	d106      	bne.n	8002434 <_ZN10CanManager7sendMsgENS_9SEND_MODEEPh+0x38>
 		hal_can_send( STEERING_TURN_FRAME_ID,  STEERING_FRAME_LENGTH , msgData);
- 800240e:	687b      	ldr	r3, [r7, #4]
- 8002410:	2204      	movs	r2, #4
- 8002412:	f240 212d 	movw	r1, #557	; 0x22d
- 8002416:	68f8      	ldr	r0, [r7, #12]
- 8002418:	f000 f90a 	bl	8002630 <_ZN10CanManager12hal_can_sendEthPh>
+ 8002426:	687b      	ldr	r3, [r7, #4]
+ 8002428:	2204      	movs	r2, #4
+ 800242a:	f240 212d 	movw	r1, #557	; 0x22d
+ 800242e:	68f8      	ldr	r0, [r7, #12]
+ 8002430:	f000 f90a 	bl	8002648 <_ZN10CanManager12hal_can_sendEthPh>
 }
- 800241c:	bf00      	nop
- 800241e:	3710      	adds	r7, #16
- 8002420:	46bd      	mov	sp, r7
- 8002422:	bd80      	pop	{r7, pc}
+ 8002434:	bf00      	nop
+ 8002436:	3710      	adds	r7, #16
+ 8002438:	46bd      	mov	sp, r7
+ 800243a:	bd80      	pop	{r7, pc}
 
-08002424 <_ZN10CanManager10getSign_TxEf>:
+0800243c <_ZN10CanManager10getSign_TxEf>:
 
 uint8_t CanManager::getSign_Tx(float value){
- 8002424:	b580      	push	{r7, lr}
- 8002426:	b082      	sub	sp, #8
- 8002428:	af00      	add	r7, sp, #0
- 800242a:	6078      	str	r0, [r7, #4]
- 800242c:	6039      	str	r1, [r7, #0]
+ 800243c:	b580      	push	{r7, lr}
+ 800243e:	b082      	sub	sp, #8
+ 8002440:	af00      	add	r7, sp, #0
+ 8002442:	6078      	str	r0, [r7, #4]
+ 8002444:	6039      	str	r1, [r7, #0]
 	if (value >=0) return POSITIVE_SIGN;
- 800242e:	f04f 0100 	mov.w	r1, #0
- 8002432:	6838      	ldr	r0, [r7, #0]
- 8002434:	f7fe fe4a 	bl	80010cc <__aeabi_fcmpge>
- 8002438:	4603      	mov	r3, r0
- 800243a:	2b00      	cmp	r3, #0
- 800243c:	d001      	beq.n	8002442 <_ZN10CanManager10getSign_TxEf+0x1e>
- 800243e:	2301      	movs	r3, #1
- 8002440:	e000      	b.n	8002444 <_ZN10CanManager10getSign_TxEf+0x20>
+ 8002446:	f04f 0100 	mov.w	r1, #0
+ 800244a:	6838      	ldr	r0, [r7, #0]
+ 800244c:	f7fe fe3e 	bl	80010cc <__aeabi_fcmpge>
+ 8002450:	4603      	mov	r3, r0
+ 8002452:	2b00      	cmp	r3, #0
+ 8002454:	d001      	beq.n	800245a <_ZN10CanManager10getSign_TxEf+0x1e>
+ 8002456:	2301      	movs	r3, #1
+ 8002458:	e000      	b.n	800245c <_ZN10CanManager10getSign_TxEf+0x20>
 	else return NEGATIVE_SIGN;
- 8002442:	2300      	movs	r3, #0
+ 800245a:	2300      	movs	r3, #0
 }
- 8002444:	4618      	mov	r0, r3
- 8002446:	3708      	adds	r7, #8
- 8002448:	46bd      	mov	sp, r7
- 800244a:	bd80      	pop	{r7, pc}
+ 800245c:	4618      	mov	r0, r3
+ 800245e:	3708      	adds	r7, #8
+ 8002460:	46bd      	mov	sp, r7
+ 8002462:	bd80      	pop	{r7, pc}
 
-0800244c <_ZN10CanManager21convertFloatToUint16tEff>:
+08002464 <_ZN10CanManager21convertFloatToUint16tEff>:
 
 uint16_t CanManager::convertFloatToUint16t(float maxValue, float value){
- 800244c:	b5b0      	push	{r4, r5, r7, lr}
- 800244e:	b086      	sub	sp, #24
- 8002450:	af00      	add	r7, sp, #0
- 8002452:	60f8      	str	r0, [r7, #12]
- 8002454:	60b9      	str	r1, [r7, #8]
- 8002456:	607a      	str	r2, [r7, #4]
+ 8002464:	b5b0      	push	{r4, r5, r7, lr}
+ 8002466:	b086      	sub	sp, #24
+ 8002468:	af00      	add	r7, sp, #0
+ 800246a:	60f8      	str	r0, [r7, #12]
+ 800246c:	60b9      	str	r1, [r7, #8]
+ 800246e:	607a      	str	r2, [r7, #4]
 //	float percentage = value/maxValue;
 //	if (percentage > 1) percentage = 1;
 //	return (uint16_t)(MAX_CANVALUE * percentage); // to tez daje dobre wyniki
 	float range = 128;
- 8002458:	f04f 4386 	mov.w	r3, #1124073472	; 0x43000000
- 800245c:	617b      	str	r3, [r7, #20]
+ 8002470:	f04f 4386 	mov.w	r3, #1124073472	; 0x43000000
+ 8002474:	617b      	str	r3, [r7, #20]
 	if( value > range){
- 800245e:	6979      	ldr	r1, [r7, #20]
- 8002460:	6878      	ldr	r0, [r7, #4]
- 8002462:	f7fe fe3d 	bl	80010e0 <__aeabi_fcmpgt>
- 8002466:	4603      	mov	r3, r0
- 8002468:	2b00      	cmp	r3, #0
- 800246a:	d005      	beq.n	8002478 <_ZN10CanManager21convertFloatToUint16tEff+0x2c>
+ 8002476:	6979      	ldr	r1, [r7, #20]
+ 8002478:	6878      	ldr	r0, [r7, #4]
+ 800247a:	f7fe fe31 	bl	80010e0 <__aeabi_fcmpgt>
+ 800247e:	4603      	mov	r3, r0
+ 8002480:	2b00      	cmp	r3, #0
+ 8002482:	d005      	beq.n	8002490 <_ZN10CanManager21convertFloatToUint16tEff+0x2c>
 		return range;
- 800246c:	6978      	ldr	r0, [r7, #20]
- 800246e:	f7fe fe41 	bl	80010f4 <__aeabi_f2uiz>
- 8002472:	4603      	mov	r3, r0
- 8002474:	b29b      	uxth	r3, r3
- 8002476:	e023      	b.n	80024c0 <_ZN10CanManager21convertFloatToUint16tEff+0x74>
+ 8002484:	6978      	ldr	r0, [r7, #20]
+ 8002486:	f7fe fe35 	bl	80010f4 <__aeabi_f2uiz>
+ 800248a:	4603      	mov	r3, r0
+ 800248c:	b29b      	uxth	r3, r3
+ 800248e:	e023      	b.n	80024d8 <_ZN10CanManager21convertFloatToUint16tEff+0x74>
 	}
 	return(uint16_t)(value * pow(2, 16) /range);
- 8002478:	6878      	ldr	r0, [r7, #4]
- 800247a:	f7fe f843 	bl	8000504 <__aeabi_f2d>
- 800247e:	4604      	mov	r4, r0
- 8002480:	460d      	mov	r5, r1
- 8002482:	2110      	movs	r1, #16
- 8002484:	2002      	movs	r0, #2
- 8002486:	f000 f952 	bl	800272e <_ZSt3powIiiEN9__gnu_cxx11__promote_2IT_T0_NS0_9__promoteIS2_XsrSt12__is_integerIS2_E7__valueEE6__typeENS4_IS3_XsrS5_IS3_E7__valueEE6__typeEE6__typeES2_S3_>
- 800248a:	4602      	mov	r2, r0
- 800248c:	460b      	mov	r3, r1
- 800248e:	4620      	mov	r0, r4
- 8002490:	4629      	mov	r1, r5
- 8002492:	f7fe f88b 	bl	80005ac <__aeabi_dmul>
- 8002496:	4603      	mov	r3, r0
- 8002498:	460c      	mov	r4, r1
- 800249a:	4625      	mov	r5, r4
- 800249c:	461c      	mov	r4, r3
- 800249e:	6978      	ldr	r0, [r7, #20]
- 80024a0:	f7fe f830 	bl	8000504 <__aeabi_f2d>
- 80024a4:	4602      	mov	r2, r0
- 80024a6:	460b      	mov	r3, r1
- 80024a8:	4620      	mov	r0, r4
- 80024aa:	4629      	mov	r1, r5
- 80024ac:	f7fe f9a8 	bl	8000800 <__aeabi_ddiv>
- 80024b0:	4603      	mov	r3, r0
- 80024b2:	460c      	mov	r4, r1
- 80024b4:	4618      	mov	r0, r3
- 80024b6:	4621      	mov	r1, r4
- 80024b8:	f7fe fb28 	bl	8000b0c <__aeabi_d2uiz>
- 80024bc:	4603      	mov	r3, r0
- 80024be:	b29b      	uxth	r3, r3
+ 8002490:	6878      	ldr	r0, [r7, #4]
+ 8002492:	f7fe f837 	bl	8000504 <__aeabi_f2d>
+ 8002496:	4604      	mov	r4, r0
+ 8002498:	460d      	mov	r5, r1
+ 800249a:	2110      	movs	r1, #16
+ 800249c:	2002      	movs	r0, #2
+ 800249e:	f000 f952 	bl	8002746 <_ZSt3powIiiEN9__gnu_cxx11__promote_2IT_T0_NS0_9__promoteIS2_XsrSt12__is_integerIS2_E7__valueEE6__typeENS4_IS3_XsrS5_IS3_E7__valueEE6__typeEE6__typeES2_S3_>
+ 80024a2:	4602      	mov	r2, r0
+ 80024a4:	460b      	mov	r3, r1
+ 80024a6:	4620      	mov	r0, r4
+ 80024a8:	4629      	mov	r1, r5
+ 80024aa:	f7fe f87f 	bl	80005ac <__aeabi_dmul>
+ 80024ae:	4603      	mov	r3, r0
+ 80024b0:	460c      	mov	r4, r1
+ 80024b2:	4625      	mov	r5, r4
+ 80024b4:	461c      	mov	r4, r3
+ 80024b6:	6978      	ldr	r0, [r7, #20]
+ 80024b8:	f7fe f824 	bl	8000504 <__aeabi_f2d>
+ 80024bc:	4602      	mov	r2, r0
+ 80024be:	460b      	mov	r3, r1
+ 80024c0:	4620      	mov	r0, r4
+ 80024c2:	4629      	mov	r1, r5
+ 80024c4:	f7fe f99c 	bl	8000800 <__aeabi_ddiv>
+ 80024c8:	4603      	mov	r3, r0
+ 80024ca:	460c      	mov	r4, r1
+ 80024cc:	4618      	mov	r0, r3
+ 80024ce:	4621      	mov	r1, r4
+ 80024d0:	f7fe fb1c 	bl	8000b0c <__aeabi_d2uiz>
+ 80024d4:	4603      	mov	r3, r0
+ 80024d6:	b29b      	uxth	r3, r3
 
 }
- 80024c0:	4618      	mov	r0, r3
- 80024c2:	3718      	adds	r7, #24
- 80024c4:	46bd      	mov	sp, r7
- 80024c6:	bdb0      	pop	{r4, r5, r7, pc}
+ 80024d8:	4618      	mov	r0, r3
+ 80024da:	3718      	adds	r7, #24
+ 80024dc:	46bd      	mov	sp, r7
+ 80024de:	bdb0      	pop	{r4, r5, r7, pc}
 
-080024c8 <_ZN10CanManager17convertToFrame_TxEhtNS_9SEND_MODEE>:
+080024e0 <_ZN10CanManager17convertToFrame_TxEhtNS_9SEND_MODEE>:
 
 uint8_t * CanManager::convertToFrame_Tx(uint8_t sign, uint16_t value, SEND_MODE mode){
- 80024c8:	b580      	push	{r7, lr}
- 80024ca:	b084      	sub	sp, #16
- 80024cc:	af00      	add	r7, sp, #0
- 80024ce:	6078      	str	r0, [r7, #4]
- 80024d0:	4608      	mov	r0, r1
- 80024d2:	4611      	mov	r1, r2
- 80024d4:	461a      	mov	r2, r3
- 80024d6:	4603      	mov	r3, r0
- 80024d8:	70fb      	strb	r3, [r7, #3]
- 80024da:	460b      	mov	r3, r1
- 80024dc:	803b      	strh	r3, [r7, #0]
- 80024de:	4613      	mov	r3, r2
- 80024e0:	70bb      	strb	r3, [r7, #2]
+ 80024e0:	b580      	push	{r7, lr}
+ 80024e2:	b084      	sub	sp, #16
+ 80024e4:	af00      	add	r7, sp, #0
+ 80024e6:	6078      	str	r0, [r7, #4]
+ 80024e8:	4608      	mov	r0, r1
+ 80024ea:	4611      	mov	r1, r2
+ 80024ec:	461a      	mov	r2, r3
+ 80024ee:	4603      	mov	r3, r0
+ 80024f0:	70fb      	strb	r3, [r7, #3]
+ 80024f2:	460b      	mov	r3, r1
+ 80024f4:	803b      	strh	r3, [r7, #0]
+ 80024f6:	4613      	mov	r3, r2
+ 80024f8:	70bb      	strb	r3, [r7, #2]
 	if (mode == VELOCITY || mode == TURN ){
- 80024e2:	78bb      	ldrb	r3, [r7, #2]
- 80024e4:	2b01      	cmp	r3, #1
- 80024e6:	d002      	beq.n	80024ee <_ZN10CanManager17convertToFrame_TxEhtNS_9SEND_MODEE+0x26>
- 80024e8:	78bb      	ldrb	r3, [r7, #2]
- 80024ea:	2b00      	cmp	r3, #0
- 80024ec:	d115      	bne.n	800251a <_ZN10CanManager17convertToFrame_TxEhtNS_9SEND_MODEE+0x52>
+ 80024fa:	78bb      	ldrb	r3, [r7, #2]
+ 80024fc:	2b01      	cmp	r3, #1
+ 80024fe:	d002      	beq.n	8002506 <_ZN10CanManager17convertToFrame_TxEhtNS_9SEND_MODEE+0x26>
+ 8002500:	78bb      	ldrb	r3, [r7, #2]
+ 8002502:	2b00      	cmp	r3, #0
+ 8002504:	d115      	bne.n	8002532 <_ZN10CanManager17convertToFrame_TxEhtNS_9SEND_MODEE+0x52>
 		uint8_t data_to_encode[]={
 				(uint8_t)(sign >> 8),
- 80024ee:	78fb      	ldrb	r3, [r7, #3]
- 80024f0:	121b      	asrs	r3, r3, #8
+ 8002506:	78fb      	ldrb	r3, [r7, #3]
+ 8002508:	121b      	asrs	r3, r3, #8
 				(uint8_t) sign,
 				(uint8_t)(value >> 8 ),
 				(uint8_t) value,
 		};
- 80024f2:	b2db      	uxtb	r3, r3
- 80024f4:	733b      	strb	r3, [r7, #12]
- 80024f6:	78fb      	ldrb	r3, [r7, #3]
- 80024f8:	737b      	strb	r3, [r7, #13]
+ 800250a:	b2db      	uxtb	r3, r3
+ 800250c:	733b      	strb	r3, [r7, #12]
+ 800250e:	78fb      	ldrb	r3, [r7, #3]
+ 8002510:	737b      	strb	r3, [r7, #13]
 				(uint8_t)(value >> 8 ),
- 80024fa:	883b      	ldrh	r3, [r7, #0]
- 80024fc:	121b      	asrs	r3, r3, #8
+ 8002512:	883b      	ldrh	r3, [r7, #0]
+ 8002514:	121b      	asrs	r3, r3, #8
 		};
- 80024fe:	b2db      	uxtb	r3, r3
- 8002500:	73bb      	strb	r3, [r7, #14]
- 8002502:	883b      	ldrh	r3, [r7, #0]
- 8002504:	b2db      	uxtb	r3, r3
- 8002506:	73fb      	strb	r3, [r7, #15]
+ 8002516:	b2db      	uxtb	r3, r3
+ 8002518:	73bb      	strb	r3, [r7, #14]
+ 800251a:	883b      	ldrh	r3, [r7, #0]
+ 800251c:	b2db      	uxtb	r3, r3
+ 800251e:	73fb      	strb	r3, [r7, #15]
 		return encode_frame_big_endian(data_to_encode,STEERING_FRAME_LENGTH);
- 8002508:	f107 030c 	add.w	r3, r7, #12
- 800250c:	2204      	movs	r2, #4
- 800250e:	4619      	mov	r1, r3
- 8002510:	6878      	ldr	r0, [r7, #4]
- 8002512:	f000 f806 	bl	8002522 <_ZN10CanManager23encode_frame_big_endianEPhh>
- 8002516:	4603      	mov	r3, r0
- 8002518:	e7ff      	b.n	800251a <_ZN10CanManager17convertToFrame_TxEhtNS_9SEND_MODEE+0x52>
+ 8002520:	f107 030c 	add.w	r3, r7, #12
+ 8002524:	2204      	movs	r2, #4
+ 8002526:	4619      	mov	r1, r3
+ 8002528:	6878      	ldr	r0, [r7, #4]
+ 800252a:	f000 f806 	bl	800253a <_ZN10CanManager23encode_frame_big_endianEPhh>
+ 800252e:	4603      	mov	r3, r0
+ 8002530:	e7ff      	b.n	8002532 <_ZN10CanManager17convertToFrame_TxEhtNS_9SEND_MODEE+0x52>
 	}
 }
- 800251a:	4618      	mov	r0, r3
- 800251c:	3710      	adds	r7, #16
- 800251e:	46bd      	mov	sp, r7
- 8002520:	bd80      	pop	{r7, pc}
+ 8002532:	4618      	mov	r0, r3
+ 8002534:	3710      	adds	r7, #16
+ 8002536:	46bd      	mov	sp, r7
+ 8002538:	bd80      	pop	{r7, pc}
 
-08002522 <_ZN10CanManager23encode_frame_big_endianEPhh>:
+0800253a <_ZN10CanManager23encode_frame_big_endianEPhh>:
 
 uint8_t* CanManager::encode_frame_big_endian(uint8_t* data , uint8_t data_length){
- 8002522:	b580      	push	{r7, lr}
- 8002524:	b086      	sub	sp, #24
- 8002526:	af00      	add	r7, sp, #0
- 8002528:	60f8      	str	r0, [r7, #12]
- 800252a:	60b9      	str	r1, [r7, #8]
- 800252c:	4613      	mov	r3, r2
- 800252e:	71fb      	strb	r3, [r7, #7]
+ 800253a:	b580      	push	{r7, lr}
+ 800253c:	b086      	sub	sp, #24
+ 800253e:	af00      	add	r7, sp, #0
+ 8002540:	60f8      	str	r0, [r7, #12]
+ 8002542:	60b9      	str	r1, [r7, #8]
+ 8002544:	4613      	mov	r3, r2
+ 8002546:	71fb      	strb	r3, [r7, #7]
 	 uint8_t* encoded_data = (uint8_t*)calloc(data_length, sizeof(uint8_t));
- 8002530:	79fb      	ldrb	r3, [r7, #7]
- 8002532:	2101      	movs	r1, #1
- 8002534:	4618      	mov	r0, r3
- 8002536:	f004 f89d 	bl	8006674 <calloc>
- 800253a:	4603      	mov	r3, r0
- 800253c:	613b      	str	r3, [r7, #16]
+ 8002548:	79fb      	ldrb	r3, [r7, #7]
+ 800254a:	2101      	movs	r1, #1
+ 800254c:	4618      	mov	r0, r3
+ 800254e:	f004 f891 	bl	8006674 <calloc>
+ 8002552:	4603      	mov	r3, r0
+ 8002554:	613b      	str	r3, [r7, #16]
 	for( uint8_t i = 1 ; i <= data_length  ;i++){
- 800253e:	2301      	movs	r3, #1
- 8002540:	75fb      	strb	r3, [r7, #23]
- 8002542:	7dfa      	ldrb	r2, [r7, #23]
- 8002544:	79fb      	ldrb	r3, [r7, #7]
- 8002546:	429a      	cmp	r2, r3
- 8002548:	dc0e      	bgt.n	8002568 <_ZN10CanManager23encode_frame_big_endianEPhh+0x46>
+ 8002556:	2301      	movs	r3, #1
+ 8002558:	75fb      	strb	r3, [r7, #23]
+ 800255a:	7dfa      	ldrb	r2, [r7, #23]
+ 800255c:	79fb      	ldrb	r3, [r7, #7]
+ 800255e:	429a      	cmp	r2, r3
+ 8002560:	dc0e      	bgt.n	8002580 <_ZN10CanManager23encode_frame_big_endianEPhh+0x46>
 		encoded_data[i] = data[data_length-i];
- 800254a:	7dfb      	ldrb	r3, [r7, #23]
- 800254c:	693a      	ldr	r2, [r7, #16]
- 800254e:	4413      	add	r3, r2
- 8002550:	79f9      	ldrb	r1, [r7, #7]
- 8002552:	7dfa      	ldrb	r2, [r7, #23]
- 8002554:	1a8a      	subs	r2, r1, r2
- 8002556:	4611      	mov	r1, r2
- 8002558:	68ba      	ldr	r2, [r7, #8]
- 800255a:	440a      	add	r2, r1
- 800255c:	7812      	ldrb	r2, [r2, #0]
- 800255e:	701a      	strb	r2, [r3, #0]
+ 8002562:	7dfb      	ldrb	r3, [r7, #23]
+ 8002564:	693a      	ldr	r2, [r7, #16]
+ 8002566:	4413      	add	r3, r2
+ 8002568:	79f9      	ldrb	r1, [r7, #7]
+ 800256a:	7dfa      	ldrb	r2, [r7, #23]
+ 800256c:	1a8a      	subs	r2, r1, r2
+ 800256e:	4611      	mov	r1, r2
+ 8002570:	68ba      	ldr	r2, [r7, #8]
+ 8002572:	440a      	add	r2, r1
+ 8002574:	7812      	ldrb	r2, [r2, #0]
+ 8002576:	701a      	strb	r2, [r3, #0]
 	for( uint8_t i = 1 ; i <= data_length  ;i++){
- 8002560:	7dfb      	ldrb	r3, [r7, #23]
- 8002562:	3301      	adds	r3, #1
- 8002564:	75fb      	strb	r3, [r7, #23]
- 8002566:	e7ec      	b.n	8002542 <_ZN10CanManager23encode_frame_big_endianEPhh+0x20>
+ 8002578:	7dfb      	ldrb	r3, [r7, #23]
+ 800257a:	3301      	adds	r3, #1
+ 800257c:	75fb      	strb	r3, [r7, #23]
+ 800257e:	e7ec      	b.n	800255a <_ZN10CanManager23encode_frame_big_endianEPhh+0x20>
 	}
 	return encoded_data;
- 8002568:	693b      	ldr	r3, [r7, #16]
+ 8002580:	693b      	ldr	r3, [r7, #16]
 }
- 800256a:	4618      	mov	r0, r3
- 800256c:	3718      	adds	r7, #24
- 800256e:	46bd      	mov	sp, r7
- 8002570:	bd80      	pop	{r7, pc}
+ 8002582:	4618      	mov	r0, r3
+ 8002584:	3718      	adds	r7, #24
+ 8002586:	46bd      	mov	sp, r7
+ 8002588:	bd80      	pop	{r7, pc}
 	...
 
-08002574 <_ZN10CanManager26convertVelocityTurnData_TxEfNS_9SEND_MODEE>:
+0800258c <_ZN10CanManager26convertVelocityTurnData_TxEfNS_9SEND_MODEE>:
 void CanManager::convertVelocityTurnData_Tx(float value, SEND_MODE mode){
- 8002574:	b580      	push	{r7, lr}
- 8002576:	b086      	sub	sp, #24
- 8002578:	af00      	add	r7, sp, #0
- 800257a:	60f8      	str	r0, [r7, #12]
- 800257c:	60b9      	str	r1, [r7, #8]
- 800257e:	4613      	mov	r3, r2
- 8002580:	71fb      	strb	r3, [r7, #7]
+ 800258c:	b580      	push	{r7, lr}
+ 800258e:	b086      	sub	sp, #24
+ 8002590:	af00      	add	r7, sp, #0
+ 8002592:	60f8      	str	r0, [r7, #12]
+ 8002594:	60b9      	str	r1, [r7, #8]
+ 8002596:	4613      	mov	r3, r2
+ 8002598:	71fb      	strb	r3, [r7, #7]
 	uint8_t sign = getSign_Tx(value);
- 8002582:	68b9      	ldr	r1, [r7, #8]
- 8002584:	68f8      	ldr	r0, [r7, #12]
- 8002586:	f7ff ff4d 	bl	8002424 <_ZN10CanManager10getSign_TxEf>
- 800258a:	4603      	mov	r3, r0
- 800258c:	75fb      	strb	r3, [r7, #23]
+ 800259a:	68b9      	ldr	r1, [r7, #8]
+ 800259c:	68f8      	ldr	r0, [r7, #12]
+ 800259e:	f7ff ff4d 	bl	800243c <_ZN10CanManager10getSign_TxEf>
+ 80025a2:	4603      	mov	r3, r0
+ 80025a4:	75fb      	strb	r3, [r7, #23]
 	if (sign == NEGATIVE_SIGN){ value *= -1; } //Change signt to positive after check
- 800258e:	7dfb      	ldrb	r3, [r7, #23]
- 8002590:	2b00      	cmp	r3, #0
- 8002592:	d103      	bne.n	800259c <_ZN10CanManager26convertVelocityTurnData_TxEfNS_9SEND_MODEE+0x28>
- 8002594:	68bb      	ldr	r3, [r7, #8]
- 8002596:	f083 4300 	eor.w	r3, r3, #2147483648	; 0x80000000
- 800259a:	60bb      	str	r3, [r7, #8]
+ 80025a6:	7dfb      	ldrb	r3, [r7, #23]
+ 80025a8:	2b00      	cmp	r3, #0
+ 80025aa:	d103      	bne.n	80025b4 <_ZN10CanManager26convertVelocityTurnData_TxEfNS_9SEND_MODEE+0x28>
+ 80025ac:	68bb      	ldr	r3, [r7, #8]
+ 80025ae:	f083 4300 	eor.w	r3, r3, #2147483648	; 0x80000000
+ 80025b2:	60bb      	str	r3, [r7, #8]
 	uint16_t convertedData = convertFloatToUint16t(MAX_PERCERTAGE_VALUE,value);
- 800259c:	68ba      	ldr	r2, [r7, #8]
- 800259e:	490b      	ldr	r1, [pc, #44]	; (80025cc <_ZN10CanManager26convertVelocityTurnData_TxEfNS_9SEND_MODEE+0x58>)
- 80025a0:	68f8      	ldr	r0, [r7, #12]
- 80025a2:	f7ff ff53 	bl	800244c <_ZN10CanManager21convertFloatToUint16tEff>
- 80025a6:	4603      	mov	r3, r0
- 80025a8:	82bb      	strh	r3, [r7, #20]
+ 80025b4:	68ba      	ldr	r2, [r7, #8]
+ 80025b6:	490b      	ldr	r1, [pc, #44]	; (80025e4 <_ZN10CanManager26convertVelocityTurnData_TxEfNS_9SEND_MODEE+0x58>)
+ 80025b8:	68f8      	ldr	r0, [r7, #12]
+ 80025ba:	f7ff ff53 	bl	8002464 <_ZN10CanManager21convertFloatToUint16tEff>
+ 80025be:	4603      	mov	r3, r0
+ 80025c0:	82bb      	strh	r3, [r7, #20]
 	sendMsg(mode, convertToFrame_Tx(sign, convertedData , mode) );
- 80025aa:	79fb      	ldrb	r3, [r7, #7]
- 80025ac:	8aba      	ldrh	r2, [r7, #20]
- 80025ae:	7df9      	ldrb	r1, [r7, #23]
- 80025b0:	68f8      	ldr	r0, [r7, #12]
- 80025b2:	f7ff ff89 	bl	80024c8 <_ZN10CanManager17convertToFrame_TxEhtNS_9SEND_MODEE>
- 80025b6:	4602      	mov	r2, r0
- 80025b8:	79fb      	ldrb	r3, [r7, #7]
- 80025ba:	4619      	mov	r1, r3
- 80025bc:	68f8      	ldr	r0, [r7, #12]
- 80025be:	f7ff ff11 	bl	80023e4 <_ZN10CanManager7sendMsgENS_9SEND_MODEEPh>
+ 80025c2:	79fb      	ldrb	r3, [r7, #7]
+ 80025c4:	8aba      	ldrh	r2, [r7, #20]
+ 80025c6:	7df9      	ldrb	r1, [r7, #23]
+ 80025c8:	68f8      	ldr	r0, [r7, #12]
+ 80025ca:	f7ff ff89 	bl	80024e0 <_ZN10CanManager17convertToFrame_TxEhtNS_9SEND_MODEE>
+ 80025ce:	4602      	mov	r2, r0
+ 80025d0:	79fb      	ldrb	r3, [r7, #7]
+ 80025d2:	4619      	mov	r1, r3
+ 80025d4:	68f8      	ldr	r0, [r7, #12]
+ 80025d6:	f7ff ff11 	bl	80023fc <_ZN10CanManager7sendMsgENS_9SEND_MODEEPh>
 }
- 80025c2:	bf00      	nop
- 80025c4:	3718      	adds	r7, #24
- 80025c6:	46bd      	mov	sp, r7
- 80025c8:	bd80      	pop	{r7, pc}
- 80025ca:	bf00      	nop
- 80025cc:	42c80000 	.word	0x42c80000
+ 80025da:	bf00      	nop
+ 80025dc:	3718      	adds	r7, #24
+ 80025de:	46bd      	mov	sp, r7
+ 80025e0:	bd80      	pop	{r7, pc}
+ 80025e2:	bf00      	nop
+ 80025e4:	42c80000 	.word	0x42c80000
 
-080025d0 <_ZN10CanManager12sendVelocityEf>:
+080025e8 <_ZN10CanManager12sendVelocityEf>:
 void CanManager::sendVelocity(float vel){
- 80025d0:	b580      	push	{r7, lr}
- 80025d2:	b082      	sub	sp, #8
- 80025d4:	af00      	add	r7, sp, #0
- 80025d6:	6078      	str	r0, [r7, #4]
- 80025d8:	6039      	str	r1, [r7, #0]
+ 80025e8:	b580      	push	{r7, lr}
+ 80025ea:	b082      	sub	sp, #8
+ 80025ec:	af00      	add	r7, sp, #0
+ 80025ee:	6078      	str	r0, [r7, #4]
+ 80025f0:	6039      	str	r1, [r7, #0]
 	convertVelocityTurnData_Tx(vel, VELOCITY);
- 80025da:	2201      	movs	r2, #1
- 80025dc:	6839      	ldr	r1, [r7, #0]
- 80025de:	6878      	ldr	r0, [r7, #4]
- 80025e0:	f7ff ffc8 	bl	8002574 <_ZN10CanManager26convertVelocityTurnData_TxEfNS_9SEND_MODEE>
+ 80025f2:	2201      	movs	r2, #1
+ 80025f4:	6839      	ldr	r1, [r7, #0]
+ 80025f6:	6878      	ldr	r0, [r7, #4]
+ 80025f8:	f7ff ffc8 	bl	800258c <_ZN10CanManager26convertVelocityTurnData_TxEfNS_9SEND_MODEE>
 }
- 80025e4:	bf00      	nop
- 80025e6:	3708      	adds	r7, #8
- 80025e8:	46bd      	mov	sp, r7
- 80025ea:	bd80      	pop	{r7, pc}
+ 80025fc:	bf00      	nop
+ 80025fe:	3708      	adds	r7, #8
+ 8002600:	46bd      	mov	sp, r7
+ 8002602:	bd80      	pop	{r7, pc}
 
-080025ec <_ZN10CanManager8sendTurnEf>:
+08002604 <_ZN10CanManager8sendTurnEf>:
 void CanManager::sendTurn(float turn){
- 80025ec:	b580      	push	{r7, lr}
- 80025ee:	b082      	sub	sp, #8
- 80025f0:	af00      	add	r7, sp, #0
- 80025f2:	6078      	str	r0, [r7, #4]
- 80025f4:	6039      	str	r1, [r7, #0]
+ 8002604:	b580      	push	{r7, lr}
+ 8002606:	b082      	sub	sp, #8
+ 8002608:	af00      	add	r7, sp, #0
+ 800260a:	6078      	str	r0, [r7, #4]
+ 800260c:	6039      	str	r1, [r7, #0]
 	convertVelocityTurnData_Tx(turn, TURN);
- 80025f6:	2200      	movs	r2, #0
- 80025f8:	6839      	ldr	r1, [r7, #0]
- 80025fa:	6878      	ldr	r0, [r7, #4]
- 80025fc:	f7ff ffba 	bl	8002574 <_ZN10CanManager26convertVelocityTurnData_TxEfNS_9SEND_MODEE>
+ 800260e:	2200      	movs	r2, #0
+ 8002610:	6839      	ldr	r1, [r7, #0]
+ 8002612:	6878      	ldr	r0, [r7, #4]
+ 8002614:	f7ff ffba 	bl	800258c <_ZN10CanManager26convertVelocityTurnData_TxEfNS_9SEND_MODEE>
 }
- 8002600:	bf00      	nop
- 8002602:	3708      	adds	r7, #8
- 8002604:	46bd      	mov	sp, r7
- 8002606:	bd80      	pop	{r7, pc}
+ 8002618:	bf00      	nop
+ 800261a:	3708      	adds	r7, #8
+ 800261c:	46bd      	mov	sp, r7
+ 800261e:	bd80      	pop	{r7, pc}
 
-08002608 <_ZN10CanManager13stopAllMotorsEv>:
+08002620 <_ZN10CanManager13stopAllMotorsEv>:
 
 void CanManager::stopAllMotors(){
- 8002608:	b580      	push	{r7, lr}
- 800260a:	b082      	sub	sp, #8
- 800260c:	af00      	add	r7, sp, #0
- 800260e:	6078      	str	r0, [r7, #4]
+ 8002620:	b580      	push	{r7, lr}
+ 8002622:	b082      	sub	sp, #8
+ 8002624:	af00      	add	r7, sp, #0
+ 8002626:	6078      	str	r0, [r7, #4]
 	convertVelocityTurnData_Tx(0.f, VELOCITY);
- 8002610:	2201      	movs	r2, #1
- 8002612:	f04f 0100 	mov.w	r1, #0
- 8002616:	6878      	ldr	r0, [r7, #4]
- 8002618:	f7ff ffac 	bl	8002574 <_ZN10CanManager26convertVelocityTurnData_TxEfNS_9SEND_MODEE>
+ 8002628:	2201      	movs	r2, #1
+ 800262a:	f04f 0100 	mov.w	r1, #0
+ 800262e:	6878      	ldr	r0, [r7, #4]
+ 8002630:	f7ff ffac 	bl	800258c <_ZN10CanManager26convertVelocityTurnData_TxEfNS_9SEND_MODEE>
 	convertVelocityTurnData_Tx(0.f, TURN);
- 800261c:	2200      	movs	r2, #0
- 800261e:	f04f 0100 	mov.w	r1, #0
- 8002622:	6878      	ldr	r0, [r7, #4]
- 8002624:	f7ff ffa6 	bl	8002574 <_ZN10CanManager26convertVelocityTurnData_TxEfNS_9SEND_MODEE>
+ 8002634:	2200      	movs	r2, #0
+ 8002636:	f04f 0100 	mov.w	r1, #0
+ 800263a:	6878      	ldr	r0, [r7, #4]
+ 800263c:	f7ff ffa6 	bl	800258c <_ZN10CanManager26convertVelocityTurnData_TxEfNS_9SEND_MODEE>
 }
- 8002628:	bf00      	nop
- 800262a:	3708      	adds	r7, #8
- 800262c:	46bd      	mov	sp, r7
- 800262e:	bd80      	pop	{r7, pc}
+ 8002640:	bf00      	nop
+ 8002642:	3708      	adds	r7, #8
+ 8002644:	46bd      	mov	sp, r7
+ 8002646:	bd80      	pop	{r7, pc}
 
-08002630 <_ZN10CanManager12hal_can_sendEthPh>:
+08002648 <_ZN10CanManager12hal_can_sendEthPh>:
 
 
 void CanManager::hal_can_send(uint16_t frame_id, uint8_t dlc, uint8_t* data){
- 8002630:	b580      	push	{r7, lr}
- 8002632:	b08c      	sub	sp, #48	; 0x30
- 8002634:	af00      	add	r7, sp, #0
- 8002636:	60f8      	str	r0, [r7, #12]
- 8002638:	607b      	str	r3, [r7, #4]
- 800263a:	460b      	mov	r3, r1
- 800263c:	817b      	strh	r3, [r7, #10]
- 800263e:	4613      	mov	r3, r2
- 8002640:	727b      	strb	r3, [r7, #9]
+ 8002648:	b580      	push	{r7, lr}
+ 800264a:	b08c      	sub	sp, #48	; 0x30
+ 800264c:	af00      	add	r7, sp, #0
+ 800264e:	60f8      	str	r0, [r7, #12]
+ 8002650:	607b      	str	r3, [r7, #4]
+ 8002652:	460b      	mov	r3, r1
+ 8002654:	817b      	strh	r3, [r7, #10]
+ 8002656:	4613      	mov	r3, r2
+ 8002658:	727b      	strb	r3, [r7, #9]
 	HAL_GPIO_WritePin(BLUE_LED_GPIO_Port, BLUE_LED_Pin, GPIO_PIN_RESET);
- 8002642:	2200      	movs	r2, #0
- 8002644:	f44f 4180 	mov.w	r1, #16384	; 0x4000
- 8002648:	480c      	ldr	r0, [pc, #48]	; (800267c <_ZN10CanManager12hal_can_sendEthPh+0x4c>)
- 800264a:	f002 f957 	bl	80048fc <HAL_GPIO_WritePin>
+ 800265a:	2200      	movs	r2, #0
+ 800265c:	f44f 4180 	mov.w	r1, #16384	; 0x4000
+ 8002660:	480c      	ldr	r0, [pc, #48]	; (8002694 <_ZN10CanManager12hal_can_sendEthPh+0x4c>)
+ 8002662:	f002 f94b 	bl	80048fc <HAL_GPIO_WritePin>
 	hal_can_messageTx canMsgTx;
 	canMsgTx.data = data;
- 800264e:	687b      	ldr	r3, [r7, #4]
- 8002650:	62fb      	str	r3, [r7, #44]	; 0x2c
+ 8002666:	687b      	ldr	r3, [r7, #4]
+ 8002668:	62fb      	str	r3, [r7, #44]	; 0x2c
 	canMsgTx.header.DLC = dlc;
- 8002652:	7a7b      	ldrb	r3, [r7, #9]
- 8002654:	623b      	str	r3, [r7, #32]
+ 800266a:	7a7b      	ldrb	r3, [r7, #9]
+ 800266c:	623b      	str	r3, [r7, #32]
 	canMsgTx.header.RTR = CAN_RTR_DATA;
- 8002656:	2300      	movs	r3, #0
- 8002658:	61fb      	str	r3, [r7, #28]
+ 800266e:	2300      	movs	r3, #0
+ 8002670:	61fb      	str	r3, [r7, #28]
 	canMsgTx.header.IDE  = CAN_ID_STD;
- 800265a:	2300      	movs	r3, #0
- 800265c:	61bb      	str	r3, [r7, #24]
+ 8002672:	2300      	movs	r3, #0
+ 8002674:	61bb      	str	r3, [r7, #24]
 	canMsgTx.header.StdId = frame_id;
- 800265e:	897b      	ldrh	r3, [r7, #10]
- 8002660:	613b      	str	r3, [r7, #16]
+ 8002676:	897b      	ldrh	r3, [r7, #10]
+ 8002678:	613b      	str	r3, [r7, #16]
 
 	HAL_CAN_AddTxMessage(&hcan, &(canMsgTx.header),canMsgTx.data,&(canMsgTx.mailbox));
- 8002662:	6afa      	ldr	r2, [r7, #44]	; 0x2c
- 8002664:	f107 0310 	add.w	r3, r7, #16
- 8002668:	3318      	adds	r3, #24
- 800266a:	f107 0110 	add.w	r1, r7, #16
- 800266e:	4804      	ldr	r0, [pc, #16]	; (8002680 <_ZN10CanManager12hal_can_sendEthPh+0x50>)
- 8002670:	f001 fcc5 	bl	8003ffe <HAL_CAN_AddTxMessage>
+ 800267a:	6afa      	ldr	r2, [r7, #44]	; 0x2c
+ 800267c:	f107 0310 	add.w	r3, r7, #16
+ 8002680:	3318      	adds	r3, #24
+ 8002682:	f107 0110 	add.w	r1, r7, #16
+ 8002686:	4804      	ldr	r0, [pc, #16]	; (8002698 <_ZN10CanManager12hal_can_sendEthPh+0x50>)
+ 8002688:	f001 fcb9 	bl	8003ffe <HAL_CAN_AddTxMessage>
 
 }
- 8002674:	bf00      	nop
- 8002676:	3730      	adds	r7, #48	; 0x30
- 8002678:	46bd      	mov	sp, r7
- 800267a:	bd80      	pop	{r7, pc}
- 800267c:	40011000 	.word	0x40011000
- 8002680:	2000021c 	.word	0x2000021c
+ 800268c:	bf00      	nop
+ 800268e:	3730      	adds	r7, #48	; 0x30
+ 8002690:	46bd      	mov	sp, r7
+ 8002692:	bd80      	pop	{r7, pc}
+ 8002694:	40011000 	.word	0x40011000
+ 8002698:	2000021c 	.word	0x2000021c
 
-08002684 <_ZN10CanManager19hal_can_filter_initEv>:
+0800269c <_ZN10CanManager19hal_can_filter_initEv>:
 
 void CanManager::hal_can_filter_init(void){
- 8002684:	b580      	push	{r7, lr}
- 8002686:	b082      	sub	sp, #8
- 8002688:	af00      	add	r7, sp, #0
- 800268a:	6078      	str	r0, [r7, #4]
+ 800269c:	b580      	push	{r7, lr}
+ 800269e:	b082      	sub	sp, #8
+ 80026a0:	af00      	add	r7, sp, #0
+ 80026a2:	6078      	str	r0, [r7, #4]
 	hcan_filter.FilterFIFOAssignment = CAN_FILTER_FIFO0;
- 800268c:	687b      	ldr	r3, [r7, #4]
- 800268e:	2200      	movs	r2, #0
- 8002690:	615a      	str	r2, [r3, #20]
+ 80026a4:	687b      	ldr	r3, [r7, #4]
+ 80026a6:	2200      	movs	r2, #0
+ 80026a8:	615a      	str	r2, [r3, #20]
 	hcan_filter.FilterIdHigh = 0xFFFF;
- 8002692:	687b      	ldr	r3, [r7, #4]
- 8002694:	f64f 72ff 	movw	r2, #65535	; 0xffff
- 8002698:	605a      	str	r2, [r3, #4]
+ 80026aa:	687b      	ldr	r3, [r7, #4]
+ 80026ac:	f64f 72ff 	movw	r2, #65535	; 0xffff
+ 80026b0:	605a      	str	r2, [r3, #4]
 	hcan_filter.FilterIdLow = 0x0;
- 800269a:	687b      	ldr	r3, [r7, #4]
- 800269c:	2200      	movs	r2, #0
- 800269e:	609a      	str	r2, [r3, #8]
-	hcan_filter.FilterIdHigh = 0x0;
- 80026a0:	687b      	ldr	r3, [r7, #4]
- 80026a2:	2200      	movs	r2, #0
- 80026a4:	605a      	str	r2, [r3, #4]
-	hcan_filter.FilterIdLow = 0x0;
- 80026a6:	687b      	ldr	r3, [r7, #4]
- 80026a8:	2200      	movs	r2, #0
- 80026aa:	609a      	str	r2, [r3, #8]
-	hcan_filter.FilterScale = CAN_FILTERSCALE_32BIT;
- 80026ac:	687b      	ldr	r3, [r7, #4]
- 80026ae:	2201      	movs	r2, #1
- 80026b0:	621a      	str	r2, [r3, #32]
-	hcan_filter.FilterActivation = ENABLE;
  80026b2:	687b      	ldr	r3, [r7, #4]
- 80026b4:	2201      	movs	r2, #1
- 80026b6:	625a      	str	r2, [r3, #36]	; 0x24
+ 80026b4:	2200      	movs	r2, #0
+ 80026b6:	609a      	str	r2, [r3, #8]
+	hcan_filter.FilterIdHigh = 0x0;
+ 80026b8:	687b      	ldr	r3, [r7, #4]
+ 80026ba:	2200      	movs	r2, #0
+ 80026bc:	605a      	str	r2, [r3, #4]
+	hcan_filter.FilterIdLow = 0x0;
+ 80026be:	687b      	ldr	r3, [r7, #4]
+ 80026c0:	2200      	movs	r2, #0
+ 80026c2:	609a      	str	r2, [r3, #8]
+	hcan_filter.FilterScale = CAN_FILTERSCALE_32BIT;
+ 80026c4:	687b      	ldr	r3, [r7, #4]
+ 80026c6:	2201      	movs	r2, #1
+ 80026c8:	621a      	str	r2, [r3, #32]
+	hcan_filter.FilterActivation = ENABLE;
+ 80026ca:	687b      	ldr	r3, [r7, #4]
+ 80026cc:	2201      	movs	r2, #1
+ 80026ce:	625a      	str	r2, [r3, #36]	; 0x24
 
 	HAL_CAN_ConfigFilter(&hcan,&hcan_filter);
- 80026b8:	687b      	ldr	r3, [r7, #4]
- 80026ba:	3304      	adds	r3, #4
- 80026bc:	4619      	mov	r1, r3
- 80026be:	4803      	ldr	r0, [pc, #12]	; (80026cc <_ZN10CanManager19hal_can_filter_initEv+0x48>)
- 80026c0:	f001 fc31 	bl	8003f26 <HAL_CAN_ConfigFilter>
+ 80026d0:	687b      	ldr	r3, [r7, #4]
+ 80026d2:	3304      	adds	r3, #4
+ 80026d4:	4619      	mov	r1, r3
+ 80026d6:	4803      	ldr	r0, [pc, #12]	; (80026e4 <_ZN10CanManager19hal_can_filter_initEv+0x48>)
+ 80026d8:	f001 fc25 	bl	8003f26 <HAL_CAN_ConfigFilter>
 }
- 80026c4:	bf00      	nop
- 80026c6:	3708      	adds	r7, #8
- 80026c8:	46bd      	mov	sp, r7
- 80026ca:	bd80      	pop	{r7, pc}
- 80026cc:	2000021c 	.word	0x2000021c
+ 80026dc:	bf00      	nop
+ 80026de:	3708      	adds	r7, #8
+ 80026e0:	46bd      	mov	sp, r7
+ 80026e2:	bd80      	pop	{r7, pc}
+ 80026e4:	2000021c 	.word	0x2000021c
 
-080026d0 <_ZN10CanManagerC1Ev>:
+080026e8 <_ZN10CanManagerC1Ev>:
 CanManager::CanManager() {
- 80026d0:	b480      	push	{r7}
- 80026d2:	b083      	sub	sp, #12
- 80026d4:	af00      	add	r7, sp, #0
- 80026d6:	6078      	str	r0, [r7, #4]
- 80026d8:	4a04      	ldr	r2, [pc, #16]	; (80026ec <_ZN10CanManagerC1Ev+0x1c>)
- 80026da:	687b      	ldr	r3, [r7, #4]
- 80026dc:	601a      	str	r2, [r3, #0]
+ 80026e8:	b480      	push	{r7}
+ 80026ea:	b083      	sub	sp, #12
+ 80026ec:	af00      	add	r7, sp, #0
+ 80026ee:	6078      	str	r0, [r7, #4]
+ 80026f0:	4a04      	ldr	r2, [pc, #16]	; (8002704 <_ZN10CanManagerC1Ev+0x1c>)
+ 80026f2:	687b      	ldr	r3, [r7, #4]
+ 80026f4:	601a      	str	r2, [r3, #0]
 
 }
- 80026de:	687b      	ldr	r3, [r7, #4]
- 80026e0:	4618      	mov	r0, r3
- 80026e2:	370c      	adds	r7, #12
- 80026e4:	46bd      	mov	sp, r7
- 80026e6:	bc80      	pop	{r7}
- 80026e8:	4770      	bx	lr
- 80026ea:	bf00      	nop
- 80026ec:	08006978 	.word	0x08006978
+ 80026f6:	687b      	ldr	r3, [r7, #4]
+ 80026f8:	4618      	mov	r0, r3
+ 80026fa:	370c      	adds	r7, #12
+ 80026fc:	46bd      	mov	sp, r7
+ 80026fe:	bc80      	pop	{r7}
+ 8002700:	4770      	bx	lr
+ 8002702:	bf00      	nop
+ 8002704:	08006978 	.word	0x08006978
 
-080026f0 <_ZN10CanManagerD1Ev>:
+08002708 <_ZN10CanManagerD1Ev>:
 
 CanManager::~CanManager() {
- 80026f0:	b480      	push	{r7}
- 80026f2:	b083      	sub	sp, #12
- 80026f4:	af00      	add	r7, sp, #0
- 80026f6:	6078      	str	r0, [r7, #4]
- 80026f8:	4a04      	ldr	r2, [pc, #16]	; (800270c <_ZN10CanManagerD1Ev+0x1c>)
- 80026fa:	687b      	ldr	r3, [r7, #4]
- 80026fc:	601a      	str	r2, [r3, #0]
+ 8002708:	b480      	push	{r7}
+ 800270a:	b083      	sub	sp, #12
+ 800270c:	af00      	add	r7, sp, #0
+ 800270e:	6078      	str	r0, [r7, #4]
+ 8002710:	4a04      	ldr	r2, [pc, #16]	; (8002724 <_ZN10CanManagerD1Ev+0x1c>)
+ 8002712:	687b      	ldr	r3, [r7, #4]
+ 8002714:	601a      	str	r2, [r3, #0]
 	// TODO Auto-generated destructor stub
 }
- 80026fe:	687b      	ldr	r3, [r7, #4]
- 8002700:	4618      	mov	r0, r3
- 8002702:	370c      	adds	r7, #12
- 8002704:	46bd      	mov	sp, r7
- 8002706:	bc80      	pop	{r7}
- 8002708:	4770      	bx	lr
- 800270a:	bf00      	nop
- 800270c:	08006978 	.word	0x08006978
+ 8002716:	687b      	ldr	r3, [r7, #4]
+ 8002718:	4618      	mov	r0, r3
+ 800271a:	370c      	adds	r7, #12
+ 800271c:	46bd      	mov	sp, r7
+ 800271e:	bc80      	pop	{r7}
+ 8002720:	4770      	bx	lr
+ 8002722:	bf00      	nop
+ 8002724:	08006978 	.word	0x08006978
 
-08002710 <_ZN10CanManagerD0Ev>:
+08002728 <_ZN10CanManagerD0Ev>:
 CanManager::~CanManager() {
- 8002710:	b580      	push	{r7, lr}
- 8002712:	b082      	sub	sp, #8
- 8002714:	af00      	add	r7, sp, #0
- 8002716:	6078      	str	r0, [r7, #4]
+ 8002728:	b580      	push	{r7, lr}
+ 800272a:	b082      	sub	sp, #8
+ 800272c:	af00      	add	r7, sp, #0
+ 800272e:	6078      	str	r0, [r7, #4]
 }
- 8002718:	6878      	ldr	r0, [r7, #4]
- 800271a:	f7ff ffe9 	bl	80026f0 <_ZN10CanManagerD1Ev>
- 800271e:	6878      	ldr	r0, [r7, #4]
- 8002720:	f002 fe7f 	bl	8005422 <_ZdlPv>
- 8002724:	687b      	ldr	r3, [r7, #4]
- 8002726:	4618      	mov	r0, r3
- 8002728:	3708      	adds	r7, #8
- 800272a:	46bd      	mov	sp, r7
- 800272c:	bd80      	pop	{r7, pc}
+ 8002730:	6878      	ldr	r0, [r7, #4]
+ 8002732:	f7ff ffe9 	bl	8002708 <_ZN10CanManagerD1Ev>
+ 8002736:	6878      	ldr	r0, [r7, #4]
+ 8002738:	f002 fe73 	bl	8005422 <_ZdlPv>
+ 800273c:	687b      	ldr	r3, [r7, #4]
+ 800273e:	4618      	mov	r0, r3
+ 8002740:	3708      	adds	r7, #8
+ 8002742:	46bd      	mov	sp, r7
+ 8002744:	bd80      	pop	{r7, pc}
 
-0800272e <_ZSt3powIiiEN9__gnu_cxx11__promote_2IT_T0_NS0_9__promoteIS2_XsrSt12__is_integerIS2_E7__valueEE6__typeENS4_IS3_XsrS5_IS3_E7__valueEE6__typeEE6__typeES2_S3_>:
+08002746 <_ZSt3powIiiEN9__gnu_cxx11__promote_2IT_T0_NS0_9__promoteIS2_XsrSt12__is_integerIS2_E7__valueEE6__typeENS4_IS3_XsrS5_IS3_E7__valueEE6__typeEE6__typeES2_S3_>:
     pow(_Tp __x, _Up __y)
- 800272e:	b5b0      	push	{r4, r5, r7, lr}
- 8002730:	b082      	sub	sp, #8
- 8002732:	af00      	add	r7, sp, #0
- 8002734:	6078      	str	r0, [r7, #4]
- 8002736:	6039      	str	r1, [r7, #0]
+ 8002746:	b5b0      	push	{r4, r5, r7, lr}
+ 8002748:	b082      	sub	sp, #8
+ 800274a:	af00      	add	r7, sp, #0
+ 800274c:	6078      	str	r0, [r7, #4]
+ 800274e:	6039      	str	r1, [r7, #0]
       return pow(__type(__x), __type(__y));
- 8002738:	6878      	ldr	r0, [r7, #4]
- 800273a:	f7fd fed1 	bl	80004e0 <__aeabi_i2d>
- 800273e:	4604      	mov	r4, r0
- 8002740:	460d      	mov	r5, r1
- 8002742:	6838      	ldr	r0, [r7, #0]
- 8002744:	f7fd fecc 	bl	80004e0 <__aeabi_i2d>
- 8002748:	4602      	mov	r2, r0
- 800274a:	460b      	mov	r3, r1
- 800274c:	4620      	mov	r0, r4
- 800274e:	4629      	mov	r1, r5
- 8002750:	f002 ff7e 	bl	8005650 <pow>
- 8002754:	4603      	mov	r3, r0
- 8002756:	460c      	mov	r4, r1
+ 8002750:	6878      	ldr	r0, [r7, #4]
+ 8002752:	f7fd fec5 	bl	80004e0 <__aeabi_i2d>
+ 8002756:	4604      	mov	r4, r0
+ 8002758:	460d      	mov	r5, r1
+ 800275a:	6838      	ldr	r0, [r7, #0]
+ 800275c:	f7fd fec0 	bl	80004e0 <__aeabi_i2d>
+ 8002760:	4602      	mov	r2, r0
+ 8002762:	460b      	mov	r3, r1
+ 8002764:	4620      	mov	r0, r4
+ 8002766:	4629      	mov	r1, r5
+ 8002768:	f002 ff72 	bl	8005650 <pow>
+ 800276c:	4603      	mov	r3, r0
+ 800276e:	460c      	mov	r4, r1
     }
- 8002758:	4618      	mov	r0, r3
- 800275a:	4621      	mov	r1, r4
- 800275c:	3708      	adds	r7, #8
- 800275e:	46bd      	mov	sp, r7
- 8002760:	bdb0      	pop	{r4, r5, r7, pc}
+ 8002770:	4618      	mov	r0, r3
+ 8002772:	4621      	mov	r1, r4
+ 8002774:	3708      	adds	r7, #8
+ 8002776:	46bd      	mov	sp, r7
+ 8002778:	bdb0      	pop	{r4, r5, r7, pc}
 	...
 
-08002764 <_Z41__static_initialization_and_destruction_0ii>:
- 8002764:	b580      	push	{r7, lr}
- 8002766:	b082      	sub	sp, #8
- 8002768:	af00      	add	r7, sp, #0
- 800276a:	6078      	str	r0, [r7, #4]
- 800276c:	6039      	str	r1, [r7, #0]
- 800276e:	687b      	ldr	r3, [r7, #4]
- 8002770:	2b01      	cmp	r3, #1
- 8002772:	d10c      	bne.n	800278e <_Z41__static_initialization_and_destruction_0ii+0x2a>
- 8002774:	683b      	ldr	r3, [r7, #0]
- 8002776:	f64f 72ff 	movw	r2, #65535	; 0xffff
- 800277a:	4293      	cmp	r3, r2
- 800277c:	d107      	bne.n	800278e <_Z41__static_initialization_and_destruction_0ii+0x2a>
+0800277c <_Z41__static_initialization_and_destruction_0ii>:
+ 800277c:	b580      	push	{r7, lr}
+ 800277e:	b082      	sub	sp, #8
+ 8002780:	af00      	add	r7, sp, #0
+ 8002782:	6078      	str	r0, [r7, #4]
+ 8002784:	6039      	str	r1, [r7, #0]
+ 8002786:	687b      	ldr	r3, [r7, #4]
+ 8002788:	2b01      	cmp	r3, #1
+ 800278a:	d10c      	bne.n	80027a6 <_Z41__static_initialization_and_destruction_0ii+0x2a>
+ 800278c:	683b      	ldr	r3, [r7, #0]
+ 800278e:	f64f 72ff 	movw	r2, #65535	; 0xffff
+ 8002792:	4293      	cmp	r3, r2
+ 8002794:	d107      	bne.n	80027a6 <_Z41__static_initialization_and_destruction_0ii+0x2a>
 CanManager canManager;
- 800277e:	4806      	ldr	r0, [pc, #24]	; (8002798 <_Z41__static_initialization_and_destruction_0ii+0x34>)
- 8002780:	f7ff ffa6 	bl	80026d0 <_ZN10CanManagerC1Ev>
- 8002784:	4a05      	ldr	r2, [pc, #20]	; (800279c <_Z41__static_initialization_and_destruction_0ii+0x38>)
- 8002786:	4906      	ldr	r1, [pc, #24]	; (80027a0 <_Z41__static_initialization_and_destruction_0ii+0x3c>)
- 8002788:	4803      	ldr	r0, [pc, #12]	; (8002798 <_Z41__static_initialization_and_destruction_0ii+0x34>)
- 800278a:	f002 fe4c 	bl	8005426 <__aeabi_atexit>
+ 8002796:	4806      	ldr	r0, [pc, #24]	; (80027b0 <_Z41__static_initialization_and_destruction_0ii+0x34>)
+ 8002798:	f7ff ffa6 	bl	80026e8 <_ZN10CanManagerC1Ev>
+ 800279c:	4a05      	ldr	r2, [pc, #20]	; (80027b4 <_Z41__static_initialization_and_destruction_0ii+0x38>)
+ 800279e:	4906      	ldr	r1, [pc, #24]	; (80027b8 <_Z41__static_initialization_and_destruction_0ii+0x3c>)
+ 80027a0:	4803      	ldr	r0, [pc, #12]	; (80027b0 <_Z41__static_initialization_and_destruction_0ii+0x34>)
+ 80027a2:	f002 fe40 	bl	8005426 <__aeabi_atexit>
 }
- 800278e:	bf00      	nop
- 8002790:	3708      	adds	r7, #8
- 8002792:	46bd      	mov	sp, r7
- 8002794:	bd80      	pop	{r7, pc}
- 8002796:	bf00      	nop
- 8002798:	20000094 	.word	0x20000094
- 800279c:	20000000 	.word	0x20000000
- 80027a0:	080026f1 	.word	0x080026f1
+ 80027a6:	bf00      	nop
+ 80027a8:	3708      	adds	r7, #8
+ 80027aa:	46bd      	mov	sp, r7
+ 80027ac:	bd80      	pop	{r7, pc}
+ 80027ae:	bf00      	nop
+ 80027b0:	20000094 	.word	0x20000094
+ 80027b4:	20000000 	.word	0x20000000
+ 80027b8:	08002709 	.word	0x08002709
 
-080027a4 <_GLOBAL__sub_I_canManager>:
- 80027a4:	b580      	push	{r7, lr}
- 80027a6:	af00      	add	r7, sp, #0
- 80027a8:	f64f 71ff 	movw	r1, #65535	; 0xffff
- 80027ac:	2001      	movs	r0, #1
- 80027ae:	f7ff ffd9 	bl	8002764 <_Z41__static_initialization_and_destruction_0ii>
- 80027b2:	bd80      	pop	{r7, pc}
-
-080027b4 <_ZSt4fabsf>:
-  { return __builtin_fabsf(__x); }
- 80027b4:	b480      	push	{r7}
- 80027b6:	b083      	sub	sp, #12
- 80027b8:	af00      	add	r7, sp, #0
- 80027ba:	6078      	str	r0, [r7, #4]
- 80027bc:	687b      	ldr	r3, [r7, #4]
- 80027be:	f023 4300 	bic.w	r3, r3, #2147483648	; 0x80000000
- 80027c2:	4618      	mov	r0, r3
- 80027c4:	370c      	adds	r7, #12
- 80027c6:	46bd      	mov	sp, r7
- 80027c8:	bc80      	pop	{r7}
- 80027ca:	4770      	bx	lr
+080027bc <_GLOBAL__sub_I_canManager>:
+ 80027bc:	b580      	push	{r7, lr}
+ 80027be:	af00      	add	r7, sp, #0
+ 80027c0:	f64f 71ff 	movw	r1, #65535	; 0xffff
+ 80027c4:	2001      	movs	r0, #1
+ 80027c6:	f7ff ffd9 	bl	800277c <_Z41__static_initialization_and_destruction_0ii>
+ 80027ca:	bd80      	pop	{r7, pc}
 
 080027cc <_ZN8Joystick4initEv>:
 
@@ -4385,7 +4390,7 @@ void Joystick::convert_adc_values(void){
  800290e:	f893 3070 	ldrb.w	r3, [r3, #112]	; 0x70
  8002912:	4619      	mov	r1, r3
  8002914:	2002      	movs	r0, #2
- 8002916:	f7ff fb93 	bl	8002040 <_ZSt3powIihEN9__gnu_cxx11__promote_2IT_T0_NS0_9__promoteIS2_XsrSt12__is_integerIS2_E7__valueEE6__typeENS4_IS3_XsrS5_IS3_E7__valueEE6__typeEE6__typeES2_S3_>
+ 8002916:	f7ff fb9f 	bl	8002058 <_ZSt3powIihEN9__gnu_cxx11__promote_2IT_T0_NS0_9__promoteIS2_XsrSt12__is_integerIS2_E7__valueEE6__typeENS4_IS3_XsrS5_IS3_E7__valueEE6__typeEE6__typeES2_S3_>
  800291a:	4603      	mov	r3, r0
  800291c:	460c      	mov	r4, r1
  800291e:	4618      	mov	r0, r3
@@ -4696,7 +4701,7 @@ void Joystick::calcualate_axis_voltage(ax_params params){
  8002b5c:	f7fe f9b8 	bl	8000ed0 <__aeabi_fdiv>
  8002b60:	4603      	mov	r3, r0
  8002b62:	4618      	mov	r0, r3
- 8002b64:	f7ff fe26 	bl	80027b4 <_ZSt4fabsf>
+ 8002b64:	f7ff fa6c 	bl	8002040 <_ZSt4fabsf>
  8002b68:	4603      	mov	r3, r0
 				/ joy.measurements[params.index].v_max_normalized) * 100.0;
  8002b6a:	492f      	ldr	r1, [pc, #188]	; (8002c28 <_ZN8Joystick23calcualate_axis_voltageENS_9ax_paramsE+0x1e0>)
@@ -4764,7 +4769,7 @@ void Joystick::calcualate_axis_voltage(ax_params params){
  8002bda:	f7fe f979 	bl	8000ed0 <__aeabi_fdiv>
  8002bde:	4603      	mov	r3, r0
  8002be0:	4618      	mov	r0, r3
- 8002be2:	f7ff fde7 	bl	80027b4 <_ZSt4fabsf>
+ 8002be2:	f7ff fa2d 	bl	8002040 <_ZSt4fabsf>
  8002be6:	4603      	mov	r3, r0
 				/ joy.measurements[params.index].v_min_normalized) * 100.0;
  8002be8:	490f      	ldr	r1, [pc, #60]	; (8002c28 <_ZN8Joystick23calcualate_axis_voltageENS_9ax_paramsE+0x1e0>)
@@ -4859,11 +4864,11 @@ void Joystick::sendToCan(void){
 	canManager.sendTurn(turn);
  8002c80:	68b9      	ldr	r1, [r7, #8]
  8002c82:	4805      	ldr	r0, [pc, #20]	; (8002c98 <_ZN8Joystick9sendToCanEv+0x2c>)
- 8002c84:	f7ff fcb2 	bl	80025ec <_ZN10CanManager8sendTurnEf>
+ 8002c84:	f7ff fcbe 	bl	8002604 <_ZN10CanManager8sendTurnEf>
 	canManager.sendVelocity(vel);
  8002c88:	68f9      	ldr	r1, [r7, #12]
  8002c8a:	4803      	ldr	r0, [pc, #12]	; (8002c98 <_ZN8Joystick9sendToCanEv+0x2c>)
- 8002c8c:	f7ff fca0 	bl	80025d0 <_ZN10CanManager12sendVelocityEf>
+ 8002c8c:	f7ff fcac 	bl	80025e8 <_ZN10CanManager12sendVelocityEf>
 
 }
  8002c90:	bf00      	nop
@@ -6258,7 +6263,7 @@ int main(void)
  800345c:	f7ff fc84 	bl	8002d68 <_ZN11ModeManager4initEv>
   canManager.init();
  8003460:	4803      	ldr	r0, [pc, #12]	; (8003470 <main+0x40>)
- 8003462:	f7fe fe55 	bl	8002110 <_ZN10CanManager4initEv>
+ 8003462:	f7fe fe61 	bl	8002128 <_ZN10CanManager4initEv>
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -8934,7 +8939,7 @@ __weak void HAL_CAN_ErrorCallback(CAN_HandleTypeDef *hcan)
  8004276:	d002      	beq.n	800427e <HAL_CAN_IRQHandler+0xe0>
       HAL_CAN_RxFifo1MsgPendingCallback(hcan);
  8004278:	4628      	mov	r0, r5
- 800427a:	f7fd ff33 	bl	80020e4 <HAL_CAN_RxFifo1MsgPendingCallback>
+ 800427a:	f7fd ff3f 	bl	80020fc <HAL_CAN_RxFifo1MsgPendingCallback>
   if ((interrupts & CAN_IT_SLEEP_ACK) != 0U)
  800427e:	03b1      	lsls	r1, r6, #14
  8004280:	d508      	bpl.n	8004294 <HAL_CAN_IRQHandler+0xf6>
@@ -11203,7 +11208,7 @@ void HAL_TIM_IRQHandler(TIM_HandleTypeDef *htim)
       __HAL_TIM_CLEAR_IT(htim, TIM_IT_UPDATE);
  8005034:	611a      	str	r2, [r3, #16]
       HAL_TIM_PeriodElapsedCallback(htim);
- 8005036:	f7fd f81f 	bl	8002078 <HAL_TIM_PeriodElapsedCallback>
+ 8005036:	f7fd f82b 	bl	8002090 <HAL_TIM_PeriodElapsedCallback>
 #endif /* USE_HAL_TIM_REGISTER_CALLBACKS */
     }
   }

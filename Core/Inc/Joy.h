@@ -21,6 +21,8 @@ public:
 
 
 	void calculate_data(uint32_t raw);
+	uint8_t getSign() const{ return sign;};
+	float getPercentage() const {return percentage_value;};
 private:
 
 	enum Signs{
@@ -34,8 +36,6 @@ private:
 	float converted_data;
 	float percentage_value;
 	uint8_t  sign;
-
-
 
 	float v_max;
 	float v_min;

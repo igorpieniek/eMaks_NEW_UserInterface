@@ -26,10 +26,7 @@ Joy::~Joy() {
 void Joy::calculate_data(uint32_t raw){
 	convert_adc_value(raw);
 	calculate_joy_data();
-
 }
-
-
 
 void Joy::convert_adc_value(uint32_t raw){
 	raw_data = raw;
@@ -62,4 +59,6 @@ uint8_t Joy::is_joy_near_neautral(){
 	return (converted_data > (v_neutral - neutral_error) &&
 		   converted_data < (v_neutral + neutral_error));
 }
+
+
 
