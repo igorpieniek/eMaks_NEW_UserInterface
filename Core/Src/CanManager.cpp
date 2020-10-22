@@ -130,7 +130,7 @@ uint16_t CanManager::convertFloatToUint16t( float value){
 	if( value > range){
 		return range;
 	}
-	return(uint16_t)(value * pow(2, 16) /range);
+	return(uint16_t)(value * 0xffff /range);// 0xffff = 65536 -> max uint16 value
 }
 
 void CanManager::convertToFrame_Tx(uint8_t sign, uint16_t value){

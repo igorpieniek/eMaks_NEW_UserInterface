@@ -66,6 +66,9 @@ private:
 		JOYSTICK_X,
 		JOYSTICK_Y
 	};
+
+
+
 	void sendMsg(SEND_MODE mode);
 	uint8_t getSign_Tx(float value);
 	uint16_t convertFloatToUint16t( float value);
