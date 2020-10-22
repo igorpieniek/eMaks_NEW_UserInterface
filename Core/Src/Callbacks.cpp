@@ -17,6 +17,7 @@
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
   if (htim->Instance == TIM4) {
 	  canManager.stopAllMotors();
+	  modeManager.stopIdleTimer();
   }
   if (htim->Instance == TIM3) {
 	  if (modeManager.isJoystickMode()){
