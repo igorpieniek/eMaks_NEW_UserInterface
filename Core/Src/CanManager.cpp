@@ -16,11 +16,14 @@ void CanManager::init(){
 	canMsgTx.header.ExtId = 0x01;
 	canMsgTx.header.TransmitGlobalTime = DISABLE;
 
-	clearTxBuff();
+
 
 	hal_can_filter_init();
 	HAL_CAN_Start(&hcan);
 	HAL_CAN_ActivateNotification(&hcan,CAN_IT_RX_FIFO0_MSG_PENDING);
+
+
+	clearTxBuff();
 
 }
 void CanManager::joystickSendProcess(){
@@ -130,7 +133,7 @@ uint16_t CanManager::convertFloatToUint16t( float value){
 	if( value > range){
 		return range;
 	}
-	return(uint16_t)(value * 0xffff /range);// 0xffff = 65536 -> max uint16 value
+	return(uint16_t)(value * 0xffff /range);   // 0xffff = 65536 -> max uint16 value
 }
 
 void CanManager::convertToFrame_Tx(uint8_t sign, uint16_t value){

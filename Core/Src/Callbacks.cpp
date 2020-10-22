@@ -14,6 +14,7 @@
 #include "ModeManager.h"
 #include "Joystick.h"
 
+
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
   if (htim->Instance == TIM4) {
 	  canManager.stopAllMotors();
@@ -21,7 +22,6 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
   }
   if (htim->Instance == TIM3) {
 	  if (modeManager.isJoystickMode()){
-		  HAL_GPIO_WritePin(BLUE_LED_GPIO_Port, BLUE_LED_Pin, GPIO_PIN_SET);
 		  joystick.update_measurments();
 		  canManager.joystickSendProcess();
 	  }
@@ -29,7 +29,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
 }
 
 void HAL_CAN_RxFifo0MsgPendingCallback (CAN_HandleTypeDef* hcan ){
-
+	HAL_GPIO_TogglePin(BLUE_LED_GPIO_Port, BLUE_LED_Pin);
 	HAL_CAN_GetRxMessage(hcan,CAN_RX_FIFO0,
 			&canManager.canMsgRx.header,
 			canManager.canMsgRx.data );

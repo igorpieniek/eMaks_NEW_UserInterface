@@ -13,7 +13,7 @@ void ModeManager::init(){
 	driveMode = ENABLE;
 	RCmode = MODE_JOYSICK;
 	HAL_TIM_Base_Start_IT(&PROCESS_TIMER);
-	isIdleTimerON = 1;
+	isIdleTimerON = 0;
 }
 uint8_t ModeManager::velocityPermission(MSG_ORIGIN origin){
 	resetIdleTimer();
@@ -58,6 +58,7 @@ void ModeManager::statusUpdate(RC_MODE RCstatus, DRIVE_MODE drivestatus){
 void ModeManager::startIdleTimer(){
 	if(!isIdleTimerON){
 		HAL_TIM_Base_Start_IT(&IDLE_TIMER);
+		isIdleTimerON=1;
 	}
 }
 
@@ -65,6 +66,8 @@ void ModeManager::stopIdleTimer(){
 	if(isIdleTimerON){
 		HAL_TIM_Base_Stop_IT(&IDLE_TIMER);
 		resetIdleTimer();
+		RCmode = MODE_JOYSICK;
+		isIdleTimerON = 0;
 	}
 }
 void ModeManager::resetIdleTimer(){

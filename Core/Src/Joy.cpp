@@ -26,7 +26,7 @@ void Joy::init(float max, float min, float neutral, uint8_t res, float ref, floa
 	neutral_error = n_err;
 	v_max_normalized = v_max - v_neutral;
 	v_min_normalized = v_min - v_neutral;
-	max_number_levels = pow(2, bit_resolution);
+	max_number_levels = (2 << (bit_resolution-1));
 
 }
 void Joy::calculate_data(uint32_t raw){
