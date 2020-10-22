@@ -11,7 +11,13 @@
 CanManager canManager;
 
 void CanManager::init(){
+	canMsgTx.header.RTR = CAN_RTR_DATA;
+	canMsgTx.header.IDE  = CAN_ID_STD;
+	canMsgTx.header.ExtId = 0x01;
+	canMsgTx.header.TransmitGlobalTime = DISABLE;
 	hal_can_filter_init();
+	HAL_CAN_Start(&hcan);
+	HAL_CAN_ActivateNotification(&hcan,CAN_IT_RX_FIFO0_MSG_PENDING);
 
 }
 void CanManager::process(){
@@ -21,15 +27,12 @@ void CanManager::process(){
 }
 /////////////////////////RX PART///////////////////////////////////////////
 
-float CanManager::getSign_Rx(uint8_t * data){
-	uint16_t sign = uint8_To_uint16(data, 0);
-	if(sign == 	NEGATIVE_SIGN) return -1.f;
-	else					   return 1.f;
-}
-
-float CanManager::convertVelocityTurnData_Rx(uint8_t * data){
-	uint16_t rawData = uint8_To_uint16(data, 2); // because value start from 2 byte
-	return  getSign_Rx(data) * (float)(rawData / MAX_CANVALUE)*100.f; // PERCENTAGE CALCULATE
+void CanManager::getData_Rx(uint32_t frame_id, uint8_t* data, uint8_t dlc){
+	if (frame_id == STATUS_FRAME_ID) convertStatusData_Rx( data); // function also update status in modemanager
+	else if ( frame_id == VELOCITY_FRAME_ID ) 		setVelocity( data, ModeManager::RC );
+	else if ( frame_id == I3_VELOCITY_FRAME_ID )	setVelocity( data, ModeManager::I3  );
+	else if ( frame_id == TURN_FRAME_ID )			setTurn( data , ModeManager::RC  );
+	else if ( frame_id == I3_TURN_FRAME_ID )	 	setTurn( data , ModeManager::I3  );
 }
 
 void CanManager::convertStatusData_Rx(uint8_t * data){
@@ -52,34 +55,35 @@ ModeManager::DRIVE_MODE CanManager::getDriveModestatus_Rx(uint8_t permition){
 }
 
 
-uint16_t CanManager::uint8_To_uint16(uint8_t* data, uint8_t start_byte){
-	return ((uint16_t)data[start_byte + 1] << 8) | (uint16_t)data[start_byte]; //copy from can_frrames.c
+void CanManager::setVelocity(uint8_t* data, ModeManager::MSG_ORIGIN origin){
+	if (modeManager.velocityPermission(origin)){
+		fill_frame(data);
+		sendMsg(VELOCITY);
+	}
+
+}
+void CanManager::setTurn(uint8_t* data, ModeManager::MSG_ORIGIN origin){
+	if (modeManager.turnPermission(origin)){
+		fill_frame(data);
+		sendMsg(TURN);
+	}
 }
 
-void CanManager::setVelocity(float vel, ModeManager::MSG_ORIGIN origin){
-	if (modeManager.velocityPermission(origin)) sendVelocity(vel);
 
-}
-void CanManager::setTurn(float turn, ModeManager::MSG_ORIGIN origin){
-	if (modeManager.turnPermission(origin)) sendTurn(turn);
-}
-
-void CanManager::getData_Rx(uint32_t frame_id, uint8_t* data, uint8_t dlc){
-	if (frame_id == STATUS_FRAME_ID) convertStatusData_Rx( data); // function also update status in modemanager
-	else if ( frame_id == VELOCITY_FRAME_ID ) 		setVelocity( convertVelocityTurnData_Rx( data ), ModeManager::RC );
-	else if ( frame_id == I3_VELOCITY_FRAME_ID )	setVelocity( convertVelocityTurnData_Rx( data ),ModeManager::I3  );
-	else if ( frame_id == TURN_FRAME_ID )			setTurn( convertVelocityTurnData_Rx( data ), ModeManager::RC  );
-	else if ( frame_id == I3_TURN_FRAME_ID )	 	setTurn( convertVelocityTurnData_Rx( data ), ModeManager::I3  );
+void CanManager::fill_frame(uint8_t* data){
+	for(uint8_t i=0; i <4; i++){
+		canMsgTx.data[i] = data[i];
+	}
 }
 
 /////////////////////////TX PART///////////////////////////////////////////
 
-void CanManager::sendMsg(SEND_MODE mode, uint8_t * msgData){
-	if (mode == TURN && sizeof(msgData)==STEERING_FRAME_LENGTH ){
-		hal_can_send( STEERING_VELOCITY_FRAME_ID, STEERING_FRAME_LENGTH , msgData);
+void CanManager::sendMsg(SEND_MODE mode){
+	if (mode == TURN  ){
+		hal_can_send( STEERING_VELOCITY_FRAME_ID, STEERING_FRAME_LENGTH );
 	}
-	else if (mode == VELOCITY && sizeof(msgData)==STEERING_FRAME_LENGTH){
-		hal_can_send( STEERING_TURN_FRAME_ID,  STEERING_FRAME_LENGTH , msgData);
+	else if (mode == VELOCITY){
+		hal_can_send( STEERING_TURN_FRAME_ID,  STEERING_FRAME_LENGTH );
 	}
 }
 
@@ -112,53 +116,32 @@ uint8_t * CanManager::convertToFrame_Tx(uint8_t sign, uint16_t value, SEND_MODE 
 	}
 }
 
-uint8_t* CanManager::encode_frame_big_endian(uint8_t* data , uint8_t data_length){
-	 uint8_t* encoded_data = (uint8_t*)calloc(data_length, sizeof(uint8_t));
-	for( uint8_t i = 1 ; i <= data_length  ;i++){
-		encoded_data[i] = data[data_length-i];
-	}
-	return encoded_data;
-}
-void CanManager::convertVelocityTurnData_Tx(float value, SEND_MODE mode){
-	uint8_t sign = getSign_Tx(value);
-	if (sign == NEGATIVE_SIGN){ value *= -1; } //Change signt to positive after check
-	uint16_t convertedData = convertFloatToUint16t(MAX_PERCERTAGE_VALUE,value);
-	sendMsg(mode, convertToFrame_Tx(sign, convertedData , mode) );
-}
-void CanManager::sendVelocity(float vel){
-	convertVelocityTurnData_Tx(vel, VELOCITY);
-}
-void CanManager::sendTurn(float turn){
-	convertVelocityTurnData_Tx(turn, TURN);
-}
+
+
 
 void CanManager::stopAllMotors(){
-	convertVelocityTurnData_Tx(0.f, VELOCITY);
-	convertVelocityTurnData_Tx(0.f, TURN);
+
 }
 
 
-void CanManager::hal_can_send(uint16_t frame_id, uint8_t dlc, uint8_t* data){
-	HAL_GPIO_WritePin(BLUE_LED_GPIO_Port, BLUE_LED_Pin, GPIO_PIN_RESET);
-	hal_can_messageTx canMsgTx;
-	canMsgTx.data = data;
-	canMsgTx.header.DLC = dlc;
-	canMsgTx.header.RTR = CAN_RTR_DATA;
-	canMsgTx.header.IDE  = CAN_ID_STD;
-	canMsgTx.header.StdId = frame_id;
-
+void CanManager::hal_can_send(uint16_t frame_id, uint8_t dlc){
+	canMsgTx.header.DLC = (uint32_t)dlc;
+	canMsgTx.header.StdId = (uint32_t)frame_id;
 	HAL_CAN_AddTxMessage(&hcan, &(canMsgTx.header),canMsgTx.data,&(canMsgTx.mailbox));
 
 }
 
 void CanManager::hal_can_filter_init(void){
-	hcan_filter.FilterFIFOAssignment = CAN_FILTER_FIFO0;
-	hcan_filter.FilterIdHigh = 0xFFFF;
-	hcan_filter.FilterIdLow = 0x0;
-	hcan_filter.FilterIdHigh = 0x0;
-	hcan_filter.FilterIdLow = 0x0;
+	hcan_filter.FilterBank = 0;
+	hcan_filter.FilterMode = CAN_FILTERMODE_IDMASK;
 	hcan_filter.FilterScale = CAN_FILTERSCALE_32BIT;
+	hcan_filter.FilterIdHigh = 0x0000;
+	hcan_filter.FilterIdLow = 0x0000;
+	hcan_filter.FilterMaskIdHigh = 0x0000;
+	hcan_filter.FilterMaskIdLow = 0x0000;
+	hcan_filter.FilterFIFOAssignment = CAN_RX_FIFO0;
 	hcan_filter.FilterActivation = ENABLE;
+	hcan_filter.SlaveStartFilterBank = 14;
 
 	HAL_CAN_ConfigFilter(&hcan,&hcan_filter);
 }

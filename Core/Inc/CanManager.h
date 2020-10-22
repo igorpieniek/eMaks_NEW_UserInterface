@@ -48,13 +48,13 @@
 
 class CanManager {
 private:
-	//void sendConfirmation();
 	float getSign_Rx(uint8_t * data);
-	float convertVelocityTurnData_Rx(uint8_t * data);
 	void convertStatusData_Rx(uint8_t * data);
 	ModeManager::RC_MODE getRCmodeStatus_Rx(uint8_t data);
 	ModeManager::DRIVE_MODE getDriveModestatus_Rx(uint8_t data);
-	uint16_t uint8_To_uint16(uint8_t* data, uint8_t start_byte);
+	void setVelocity(uint8_t*  vel, ModeManager::MSG_ORIGIN origin);
+	void setTurn(uint8_t*  turn, ModeManager::MSG_ORIGIN origin);
+	void fill_frame(uint8_t* data);
 
 	// Tx part
 	enum SEND_MODE{
@@ -62,7 +62,7 @@ private:
 		VELOCITY,
 		STATUS
 	};
-	void sendMsg(SEND_MODE mode, uint8_t * msgData);
+	void sendMsg(SEND_MODE mode);
 	uint8_t getSign_Tx(float value);
 	uint16_t convertFloatToUint16t(float maxValue, float value);
 	uint8_t * convertToFrame_Tx(uint8_t sign, uint16_t value, SEND_MODE mode);
@@ -70,11 +70,10 @@ private:
 	void convertVelocityTurnData_Tx(float value,SEND_MODE mode);
 
 	//Tx part
-	void setVelocity(float vel, ModeManager::MSG_ORIGIN origin);
-	void setTurn(float turn, ModeManager::MSG_ORIGIN origin);
 
 
-	void hal_can_send(uint16_t frame_id, uint8_t dlc, uint8_t* data);
+
+	void hal_can_send(uint16_t frame_id, uint8_t dlc);
 	CAN_FilterTypeDef hcan_filter;
 	void hal_can_filter_init(void);
 
@@ -84,24 +83,23 @@ public:
 	void process();
 
 	void getData_Rx(uint32_t frame_id, uint8_t* data, uint8_t dlc);
-	void sendVelocity(float vel);
-	void sendTurn(float turn);
 	void stopAllMotors();
 
 
 	typedef struct{
 		CAN_TxHeaderTypeDef     header;
 		uint32_t 				mailbox;
-		uint8_t*				data;
+		uint8_t				    data[8];
 	}hal_can_messageTx;
 
 	typedef struct{
 		CAN_RxHeaderTypeDef	    header;
 		uint32_t 				mailbox;
-		uint8_t*				data;
+		uint8_t				    data[8];
 	}hal_can_messageRx;
 
-	hal_can_messageRx canMsgRx;
+	hal_can_messageRx  canMsgRx;
+	hal_can_messageTx  canMsgTx;
 
 	CanManager();
 	virtual ~CanManager();

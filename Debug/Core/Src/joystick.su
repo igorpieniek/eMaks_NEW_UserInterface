@@ -1,11 +1,11 @@
 Joy.h:24:10:uint8_t Joy::getSign() const	16	static
 Joy.h:25:8:float Joy::getPercentage() const	16	static
 Joystick.cpp:12:6:void Joystick::init()	16	static
-Joystick.cpp:19:6:void Joystick::addJoy()	32	static
-Joystick.cpp:27:6:void Joystick::update_measurments()	16	static
-Joystick.cpp:32:9:uint8_t Joystick::getSign(Joystick::Axis_num)	16	static
-Joystick.cpp:35:7:float Joystick::getPercentage(Joystick::Axis_num)	16	static
-Joystick.cpp:39:1:Joystick::Joystick()	32	static
-Joystick.cpp:43:1:Joystick::~Joystick()	24	static
-Joystick.cpp:45:1:void __static_initialization_and_destruction_0(int, int)	16	static
-Joystick.cpp:45:1:cpp)	8	static
+Joystick.cpp:20:6:void Joystick::addJoy()	32	static
+Joystick.cpp:28:6:void Joystick::update_measurments()	16	static
+Joystick.cpp:33:9:uint8_t Joystick::getSign(Joystick::Axis_num)	16	static
+Joystick.cpp:36:7:float Joystick::getPercentage(Joystick::Axis_num)	16	static
+Joystick.cpp:40:1:Joystick::Joystick()	32	static
+Joystick.cpp:44:1:Joystick::~Joystick()	24	static
+Joystick.cpp:46:1:void __static_initialization_and_destruction_0(int, int)	16	static
+Joystick.cpp:46:1:cpp)	8	static
