@@ -59,7 +59,7 @@ class ModeManager {
 		void resetIdleTimer();
 //		void process();
 
-
+		uint8_t isIdleTimerON;
 		DRIVE_MODE driveMode;
 		RC_MODE RCmode;
 
