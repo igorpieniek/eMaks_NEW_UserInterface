@@ -33,8 +33,8 @@
 
 #define MAX_CANVALUE 0xC800
 
-#define STATUS_MODE_BYTE      0
-#define STATUS_PERMITION_BYTE 1
+#define STATUS_MODE_BYTE      2
+#define STATUS_PERMITION_BYTE 0
 
 #define POSITIVE_SIGN 1
 #define NEGATIVE_SIGN 0
@@ -71,10 +71,6 @@ private:
 	uint16_t convertFloatToUint16t( float value);
 	void convertToFrame_Tx(uint8_t sign, uint16_t value);
 	void encode_frame_big_endian(uint8_t data_length);
-//	void convertVelocityTurnData_Tx(float value,SEND_MODE mode);
-
-	//Tx part
-
 
 
 	void hal_can_send(uint16_t frame_id, uint8_t dlc);

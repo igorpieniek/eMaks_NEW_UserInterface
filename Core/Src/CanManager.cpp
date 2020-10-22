@@ -74,7 +74,6 @@ ModeManager::DRIVE_MODE CanManager::getDriveModestatus_Rx(uint8_t permition){
 	else if(permition ==  DISABLE_DRIVE_MSG ) 	return ModeManager::DISABLE;
 }
 
-
 void CanManager::setVelocity(uint8_t* data, ModeManager::MSG_ORIGIN origin){
 	if (modeManager.velocityPermission(origin)){
 		fill_frame(data);
