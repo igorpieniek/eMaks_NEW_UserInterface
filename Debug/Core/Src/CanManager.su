@@ -1,22 +1,24 @@
 CanManager.cpp:13:6:void CanManager::init()	16	static
-CanManager.cpp:23:6:void CanManager::joystickSendProcess()	16	static
-CanManager.cpp:28:6:void CanManager::rewriteFrameProcess(uint32_t, uint8_t*)	24	static
-CanManager.cpp:36:6:void CanManager::convertStatusData_Rx(uint8_t*)	32	static
-CanManager.cpp:43:22:ModeManager::RC_MODE CanManager::getRCmodeStatus_Rx(uint8_t)	16	static
-CanManager.cpp:50:25:ModeManager::DRIVE_MODE CanManager::getDriveModestatus_Rx(uint8_t)	16	static
-CanManager.cpp:56:6:void CanManager::setVelocity(uint8_t*, ModeManager::MSG_ORIGIN)	24	static
-CanManager.cpp:63:6:void CanManager::setTurn(uint8_t*, ModeManager::MSG_ORIGIN)	24	static
-CanManager.cpp:71:6:void CanManager::fill_frame(uint8_t*)	24	static
-CanManager.cpp:79:6:void CanManager::sendMsg(CanManager::SEND_MODE)	16	static
-CanManager.cpp:93:9:uint8_t CanManager::getSign_Tx(float)	16	static
-CanManager.cpp:98:10:uint16_t CanManager::convertFloatToUint16t(float, float)	40	static
-CanManager.cpp:110:11:uint8_t* CanManager::convertToFrame_Tx(uint8_t, uint16_t, CanManager::SEND_MODE)	24	static
-CanManager.cpp:125:6:void CanManager::stopAllMotors()	24	static
-CanManager.cpp:134:6:void CanManager::hal_can_send(uint16_t, uint8_t)	16	static
-CanManager.cpp:141:6:void CanManager::hal_can_filter_init()	16	static
-CanManager.cpp:155:1:CanManager::CanManager()	16	static
-CanManager.cpp:159:1:CanManager::~CanManager()	16	static
-CanManager.cpp:159:1:virtual CanManager::~CanManager()	16	static
+CanManager.cpp:26:6:void CanManager::joystickSendProcess()	16	static
+CanManager.cpp:35:6:void CanManager::rewriteFrameProcess(uint32_t, uint8_t*)	24	static
+CanManager.cpp:43:6:void CanManager::convertStatusData_Rx(uint8_t*)	32	static
+CanManager.cpp:50:22:ModeManager::RC_MODE CanManager::getRCmodeStatus_Rx(uint8_t)	16	static
+CanManager.cpp:57:25:ModeManager::DRIVE_MODE CanManager::getDriveModestatus_Rx(uint8_t)	16	static
+CanManager.cpp:63:6:void CanManager::setVelocity(uint8_t*, ModeManager::MSG_ORIGIN)	24	static
+CanManager.cpp:70:6:void CanManager::setTurn(uint8_t*, ModeManager::MSG_ORIGIN)	24	static
+CanManager.cpp:78:6:void CanManager::fill_frame(uint8_t*)	24	static
+CanManager.cpp:86:6:void CanManager::sendMsg(CanManager::SEND_MODE)	16	static
+CanManager.cpp:97:6:void CanManager::clearTxBuff()	24	static
+CanManager.cpp:103:9:uint8_t CanManager::getSign_Tx(float)	16	static
+CanManager.cpp:108:10:uint16_t CanManager::convertFloatToUint16t(float, float)	40	static
+CanManager.cpp:116:6:void CanManager::convertToFrame_Tx(uint8_t, uint16_t)	16	static
+CanManager.cpp:124:6:void CanManager::encode_frame_big_endian(uint8_t)	24	static
+CanManager.cpp:137:6:void CanManager::stopAllMotors()	24	static
+CanManager.cpp:146:6:void CanManager::hal_can_send(uint16_t, uint8_t)	16	static
+CanManager.cpp:153:6:void CanManager::hal_can_filter_init()	16	static
+CanManager.cpp:167:1:CanManager::CanManager()	16	static
+CanManager.cpp:171:1:CanManager::~CanManager()	16	static
+CanManager.cpp:171:1:virtual CanManager::~CanManager()	16	static
 cmath:438:5:typename __gnu_cxx::__promote_2<_Tp, _Up>::__type std::pow(_Tp, _Up) [with _Tp = int; _Up = int]	24	static
-CanManager.cpp:161:1:void __static_initialization_and_destruction_0(int, int)	16	static
-CanManager.cpp:161:1:cpp)	8	static
+CanManager.cpp:173:1:void __static_initialization_and_destruction_0(int, int)	16	static
+CanManager.cpp:173:1:cpp)	8	static

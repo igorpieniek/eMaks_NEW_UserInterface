@@ -15,12 +15,19 @@ void CanManager::init(){
 	canMsgTx.header.IDE  = CAN_ID_STD;
 	canMsgTx.header.ExtId = 0x01;
 	canMsgTx.header.TransmitGlobalTime = DISABLE;
+
+	clearTxBuff();
+
 	hal_can_filter_init();
 	HAL_CAN_Start(&hcan);
 	HAL_CAN_ActivateNotification(&hcan,CAN_IT_RX_FIFO0_MSG_PENDING);
 
 }
 void CanManager::joystickSendProcess(){
+	//1. get data
+	//2. convert to frame
+	//3 change to big endian
+	//4 send msg
 
 }
 /////////////////////////RX PART///////////////////////////////////////////
@@ -83,10 +90,13 @@ void CanManager::sendMsg(SEND_MODE mode){
 	else if (mode == VELOCITY){
 		hal_can_send( STEERING_TURN_FRAME_ID,  STEERING_FRAME_LENGTH );
 	}
+
+	clearTxBuff();
 }
 
-
-
+void CanManager::clearTxBuff(){
+	for(uint8_t i = 0; i<8; i++) canMsgTx.data[i]=0;
+}
 
 
 /////////////////////////////////////////////////////////////////
@@ -96,29 +106,31 @@ uint8_t CanManager::getSign_Tx(float value){
 }
 
 uint16_t CanManager::convertFloatToUint16t(float maxValue, float value){
-//	float percentage = value/maxValue;
-//	if (percentage > 1) percentage = 1;
-//	return (uint16_t)(MAX_CANVALUE * percentage); // to tez daje dobre wyniki
 	float range = 128;
 	if( value > range){
 		return range;
 	}
 	return(uint16_t)(value * pow(2, 16) /range);
-
 }
 
-uint8_t * CanManager::convertToFrame_Tx(uint8_t sign, uint16_t value, SEND_MODE mode){
-	if (mode == VELOCITY || mode == TURN ){
-		uint8_t data_to_encode[]={
-				(uint8_t)(sign >> 8),
-				(uint8_t) sign,
-				(uint8_t)(value >> 8 ),
-				(uint8_t) value,
-		};
-		return encode_frame_big_endian(data_to_encode,STEERING_FRAME_LENGTH);
-	}
-}
+void CanManager::convertToFrame_Tx(uint8_t sign, uint16_t value){
+	canMsgTx.data[0] = (uint8_t)(sign >> 8);
+	canMsgTx.data[1] = (uint8_t) sign;
+	canMsgTx.data[2] = (uint8_t)(value >> 8 );
+	canMsgTx.data[3] = (uint8_t) value;
 
+	encode_frame_big_endian(STEERING_FRAME_LENGTH);
+}
+void CanManager::encode_frame_big_endian(uint8_t data_length){
+	 uint8_t* encoded_data = new uint8_t[data_length];
+	 if (encoded_data != NULL){
+		for( uint8_t i = 1 ; i <= data_length  ;i++){
+			encoded_data[i-1] = canMsgTx.data[data_length-i];
+		}
+		for( uint8_t i = 0 ; i < data_length  ;i++) canMsgTx.data[i] = encoded_data[i];
+	 }
+	 delete[] encoded_data;
+}
 
 /////////////////////////////////////////////////////////////////////
 

@@ -11,6 +11,7 @@
 #include "main.h"
 #include "can.h"
 #include "ModeManager.h"
+#include "Joystick.h"
 #include <malloc.h>
 
 
@@ -55,6 +56,7 @@ private:
 	void setVelocity(uint8_t*  vel, ModeManager::MSG_ORIGIN origin);
 	void setTurn(uint8_t*  turn, ModeManager::MSG_ORIGIN origin);
 	void fill_frame(uint8_t* data);
+	void clearTxBuff();
 
 	// Tx part
 	enum SEND_MODE{
@@ -65,8 +67,8 @@ private:
 	void sendMsg(SEND_MODE mode);
 	uint8_t getSign_Tx(float value);
 	uint16_t convertFloatToUint16t(float maxValue, float value);
-	uint8_t * convertToFrame_Tx(uint8_t sign, uint16_t value, SEND_MODE mode);
-	uint8_t* encode_frame_big_endian(uint8_t* data , uint8_t data_length);
+	void convertToFrame_Tx(uint8_t sign, uint16_t value);
+	void encode_frame_big_endian(uint8_t data_length);
 //	void convertVelocityTurnData_Tx(float value,SEND_MODE mode);
 
 	//Tx part
