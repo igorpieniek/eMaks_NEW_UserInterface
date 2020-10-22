@@ -24,10 +24,25 @@ void CanManager::init(){
 
 }
 void CanManager::joystickSendProcess(){
-	//1. get data
-	//2. convert to frame
-	//3 change to big endian
-	//4 send msg
+	if(modeManager.isJoystickMode()){
+		uint8_t signX = joystick.getSign(Joystick::X_AXIS_INDEX);
+		uint8_t signY = joystick.getSign(Joystick::Y_AXIS_INDEX);
+		float   perX = joystick.getPercentage(Joystick::X_AXIS_INDEX);
+		float   perY = joystick.getPercentage(Joystick::Y_AXIS_INDEX);
+
+		uint16_t uperX = convertFloatToUint16t(perX);
+		uint16_t uperY = convertFloatToUint16t(perY);
+
+
+		// X conversion and sending (VELOCITY)
+		convertToFrame_Tx(signX, uperX);
+		sendMsg(JOYSTICK_X);
+
+		// X conversion and sending (TURN)
+		convertToFrame_Tx(signY, uperY);
+		sendMsg(JOYSTICK_Y);
+
+	}
 
 }
 /////////////////////////RX PART///////////////////////////////////////////
@@ -90,6 +105,12 @@ void CanManager::sendMsg(SEND_MODE mode){
 	else if (mode == VELOCITY){
 		hal_can_send( STEERING_TURN_FRAME_ID,  STEERING_FRAME_LENGTH );
 	}
+	else if (mode == JOYSTICK_X){
+		hal_can_send( STEERING_VELOCITY_FRAME_ID,  STEERING_FRAME_LENGTH );
+	}
+	else if (mode == JOYSTICK_Y){
+		hal_can_send( STEERING_TURN_FRAME_ID ,  STEERING_FRAME_LENGTH );
+	}
 
 	clearTxBuff();
 }
@@ -105,7 +126,7 @@ uint8_t CanManager::getSign_Tx(float value){
 	else return NEGATIVE_SIGN;
 }
 
-uint16_t CanManager::convertFloatToUint16t(float maxValue, float value){
+uint16_t CanManager::convertFloatToUint16t( float value){
 	float range = 128;
 	if( value > range){
 		return range;

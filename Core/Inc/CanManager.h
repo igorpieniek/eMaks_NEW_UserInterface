@@ -62,11 +62,13 @@ private:
 	enum SEND_MODE{
 		TURN = 0,
 		VELOCITY,
-		STATUS
+		STATUS,
+		JOYSTICK_X,
+		JOYSTICK_Y
 	};
 	void sendMsg(SEND_MODE mode);
 	uint8_t getSign_Tx(float value);
-	uint16_t convertFloatToUint16t(float maxValue, float value);
+	uint16_t convertFloatToUint16t( float value);
 	void convertToFrame_Tx(uint8_t sign, uint16_t value);
 	void encode_frame_big_endian(uint8_t data_length);
 //	void convertVelocityTurnData_Tx(float value,SEND_MODE mode);
